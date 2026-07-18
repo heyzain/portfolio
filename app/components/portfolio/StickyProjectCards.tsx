@@ -1,0 +1,420 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { workProjects } from "@/content/portfolio";
+
+type FeaturedProject = {
+  id: string;
+  number: string;
+  title: string;
+  category: string;
+  year?: string;
+  role?: string;
+  purpose: string;
+  highlight?: string;
+  stack: string[];
+  image: string;
+  liveUrl?: string;
+  githubUrl?: string;
+  liveLabel?: string;
+};
+
+const projects: FeaturedProject[] = workProjects.map((project, index) => ({
+  id: project.title.toLowerCase().replace(/\s+/g, "-"),
+  number: project.num,
+  title: project.title,
+  category: index === 1 ? "AI Tool" : index === 3 ? "Commerce" : "Product",
+  year: "2026",
+  role: project.rolenote,
+  purpose: project.desc,
+  highlight: project.subtitle,
+  stack: project.stack
+    .replaceAll("ÃƒÆ’Ã¢â‚¬Å¡", "")
+    .replaceAll("Ãƒâ€š", "")
+    .replaceAll("Ã‚", "")
+    .split("Â·")
+    .map((item) => item.trim())
+    .filter(Boolean),
+  image: project.image,
+  liveUrl: project.liveLink,
+  githubUrl: project.githubLink,
+  liveLabel: "View Project",
+}));
+
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+    const updateMatch = () => setMatches(mediaQuery.matches);
+
+    updateMatch();
+    mediaQuery.addEventListener("change", updateMatch);
+    return () => mediaQuery.removeEventListener("change", updateMatch);
+  }, [query]);
+
+  return matches;
+}
+
+function Sparkle({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M12 0l1.8 8.2L22 12l-8.2 1.8L12 24l-1.8-10.2L2 12l8.2-3.8z" />
+    </svg>
+  );
+}
+
+function CurlyArrow({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 120 120"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeWidth="1.6"
+      aria-hidden="true"
+    >
+      <path d="M108 16 C 72 22, 42 42, 26 78" />
+      <path d="M20 66 L 26 82 L 42 78" />
+    </svg>
+  );
+}
+
+export function StickyProjectCards() {
+  const reduced = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const useSticky = isDesktop && !reduced;
+  const total = projects.length;
+
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const mobileRefs = useRef<Array<HTMLElement | null>>([]);
+
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (!useSticky) return;
+
+    const update = () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const scrollable = rect.height - window.innerHeight;
+      const progress = Math.min(1, Math.max(0, -rect.top / Math.max(1, scrollable)));
+      const index = Math.min(total - 1, Math.round(progress * (total - 1)));
+
+      setActive(index);
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [useSticky, total]);
+
+  useEffect(() => {
+    if (useSticky) return;
+
+    const nodes = mobileRefs.current.filter(Boolean) as HTMLElement[];
+    if (nodes.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const index = nodes.indexOf(entry.target as HTMLElement);
+          if (index >= 0) setActive(index);
+        });
+      },
+      { threshold: 0.4 },
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, [useSticky]);
+
+  const goToDesktop = (direction: -1 | 1) => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const target = Math.min(Math.max(active + direction, 0), total - 1);
+    const scrollable = section.offsetHeight - window.innerHeight;
+    const y = section.offsetTop + (scrollable * target) / Math.max(1, total - 1);
+
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+  return (
+    <section
+      ref={sectionRef}
+      id="work"
+      aria-label="Selected work"
+      className="relative isolate bg-paper text-ink"
+      style={{ minHeight: useSticky ? `${total * 115}vh` : undefined }}
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-multiply"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.65'/></svg>\")",
+        }}
+      />
+
+      {useSticky ? (
+        <div className="sticky top-0 h-dvh w-full overflow-hidden">
+          <div className="mx-auto flex h-full w-full max-w-[1400px] flex-col px-8 pb-8 pt-10 lg:px-12 lg:pt-12">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="h-px w-8 bg-ink/40" />
+                <span className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Selected Work</span>
+              </div>
+              <span className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">2024 - 2026</span>
+            </div>
+
+            <div className="relative mt-6 flex items-center justify-center lg:mt-8">
+              <Sparkle className="absolute left-[6%] top-1 h-4 w-4 text-ink/70" />
+              <Sparkle className="absolute right-[8%] top-6 h-3 w-3 text-ink/50" />
+              <CurlyArrow className="absolute left-[2%] top-14 hidden h-16 w-16 text-muted-foreground/60 xl:block" />
+              <div className="relative mx-auto h-[7.5rem] w-full max-w-[960px] lg:h-[9rem]">
+                {projects.map((project, index) => (
+                  <h2
+                    key={project.id}
+                    className={`absolute inset-0 flex items-center justify-center text-center font-display text-5xl font-medium leading-[1.02] tracking-tight transition-all duration-500 ease-out lg:text-7xl ${
+                      index === active
+                        ? "z-10 translate-y-0 opacity-100"
+                        : index < active
+                          ? "pointer-events-none z-0 -translate-y-8 opacity-0"
+                          : "pointer-events-none z-0 translate-y-8 opacity-0"
+                    }`}
+                  >
+                    {project.title}
+                  </h2>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative mt-2 grid flex-1 grid-cols-12 items-center gap-6 lg:mt-4 lg:gap-10">
+              <div className="relative col-span-3">
+                <div className="relative h-[22rem]">
+                  {projects.map((project, index) => (
+                    <div
+                      key={project.id}
+                      className={`absolute inset-0 flex flex-col justify-center transition-all duration-500 ease-out ${
+                        index === active
+                          ? "z-10 translate-y-0 opacity-100"
+                          : index < active
+                            ? "pointer-events-none z-0 -translate-y-6 opacity-0"
+                            : "pointer-events-none z-0 translate-y-6 opacity-0"
+                      }`}
+                    >
+                      <div className="mb-3 flex items-center gap-2">
+                        <span className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Purpose</span>
+                        <span className="font-display text-xs text-olive">{project.number}</span>
+                      </div>
+                      <p className="max-w-[22rem] text-[15px] leading-relaxed text-ink">{project.purpose}</p>
+                      <div className="mt-6 space-y-1 text-xs">
+                        <div>
+                          <span className="text-muted-foreground">Category - </span>
+                          <span>{project.category}</span>
+                        </div>
+                        {project.year ? (
+                          <div>
+                            <span className="text-muted-foreground">Year - </span>
+                            <span>{project.year}</span>
+                          </div>
+                        ) : null}
+                        {project.role ? (
+                          <div>
+                            <span className="text-muted-foreground">Role - </span>
+                            <span>{project.role}</span>
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="col-span-6 flex items-center justify-center">
+                <div className="relative aspect-square w-full max-w-[460px] text-olive">
+                  <div className="pointer-events-none absolute -inset-4 rounded-[80px] border border-current opacity-40" />
+                  <div className="absolute inset-0 overflow-hidden rounded-[64px] bg-ink/5">
+                    {projects.map((project, index) => (
+                      <div
+                        key={project.id}
+                        className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                          index === active
+                            ? "z-10 translate-y-0 scale-100 opacity-100"
+                            : index < active
+                              ? "pointer-events-none z-0 -translate-y-full scale-95 opacity-0"
+                              : "pointer-events-none z-0 translate-y-full scale-105 opacity-0"
+                        }`}
+                        aria-hidden={index !== active}
+                      >
+                        <img
+                          src={project.image}
+                          alt={`${project.title} - ${project.category}`}
+                          loading={index === 0 ? "eager" : "lazy"}
+                          draggable={false}
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => goToDesktop(-1)}
+                    className="absolute -left-12 top-1/2 z-30 flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-border bg-paper text-ink shadow-sm transition hover:bg-ink hover:text-paper disabled:cursor-default disabled:opacity-40"
+                    disabled={active === 0}
+                    aria-label="Previous project"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => goToDesktop(1)}
+                    className="absolute -right-12 top-1/2 z-30 flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-border bg-paper text-ink shadow-sm transition hover:bg-ink hover:text-paper disabled:cursor-default disabled:opacity-40"
+                    disabled={active === total - 1}
+                    aria-label="Next project"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="relative col-span-3">
+                <div className="relative h-[22rem]">
+                  {projects.map((project, index) => (
+                    <div
+                      key={project.id}
+                      className={`absolute inset-0 flex flex-col justify-center transition-all duration-500 ease-out ${
+                        index === active
+                          ? "z-10 translate-y-0 opacity-100"
+                          : index < active
+                            ? "pointer-events-none z-0 -translate-y-6 opacity-0"
+                            : "pointer-events-none z-0 translate-y-6 opacity-0"
+                      }`}
+                    >
+                      <div className="mb-3 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Tech Stack</div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.stack.map((stackItem) => (
+                          <span key={stackItem} className="rounded-full border border-border bg-paper/80 px-2.5 py-1 text-[11px] text-ink">
+                            {stackItem}
+                          </span>
+                        ))}
+                      </div>
+                      {project.highlight ? <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{project.highlight}</p> : null}
+                      <div className="mt-6 flex flex-col items-start gap-2">
+                        {project.liveUrl ? (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm font-medium text-paper transition hover:bg-olive"
+                          >
+                            {project.liveLabel || "View Project"}
+                            <ArrowUpRight className="h-4 w-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                          </a>
+                        ) : null}
+                        {project.githubUrl ? (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2.5 text-sm text-ink transition hover:bg-ink hover:text-paper"
+                          >
+                            Source
+                          </a>
+                        ) : null}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Sparkle className="pointer-events-none absolute bottom-2 right-6 h-3 w-3 text-olive/70" />
+            </div>
+
+          </div>
+        </div>
+      ) : (
+        <div className="mx-auto max-w-[720px] px-6 pb-24 pt-16">
+          <div className="mb-10 flex items-center gap-3">
+            <span className="h-px w-8 bg-ink/40" />
+            <span className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Selected Work</span>
+          </div>
+          {projects.map((project, index) => (
+            <article
+              key={project.id}
+              ref={(element) => {
+                mobileRefs.current[index] = element;
+              }}
+              className="mb-24 flex flex-col gap-6 opacity-0 animate-[fadeIn_.6s_ease-out_forwards]"
+              style={{ animationDelay: "0.05s" }}
+              aria-label={`Project ${project.number}: ${project.title}`}
+            >
+              <h3 className="font-display text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl">{project.title}</h3>
+              <div className="relative aspect-square w-full text-olive">
+                <div className="pointer-events-none absolute -inset-4 rounded-[80px] border border-current opacity-40" />
+                <div className="absolute inset-0 overflow-hidden rounded-[64px] bg-ink/5">
+                  <img src={project.image} alt={`${project.title} - ${project.category}`} loading="lazy" className="h-full w-full object-cover" />
+                </div>
+              </div>
+              <div>
+                <div className="mb-2 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Purpose</div>
+                <p className="text-base leading-relaxed text-ink">{project.purpose}</p>
+                <div className="mt-2 text-sm text-muted-foreground">
+                  {project.category}
+                  {project.year ? ` - ${project.year}` : ""}
+                </div>
+              </div>
+              <div>
+                <div className="mb-3 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Tech Stack</div>
+                <div className="flex flex-wrap gap-2">
+                  {project.stack.map((stackItem) => (
+                    <span key={stackItem} className="rounded-full border border-border bg-paper px-3 py-1 text-xs text-ink">
+                      {stackItem}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-3">
+                {project.liveUrl ? (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm font-medium text-paper transition hover:bg-olive"
+                  >
+                    {project.liveLabel || "View Project"}
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                ) : null}
+                {project.githubUrl ? (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2.5 text-sm text-ink transition hover:bg-ink hover:text-paper"
+                  >
+                    Source
+                  </a>
+                ) : null}
+              </div>
+              <div className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+                {project.number} / {String(total).padStart(2, "0")}
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}

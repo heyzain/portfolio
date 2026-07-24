@@ -155,6 +155,12 @@ export const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>
           const x = e.clientX - rect.left - h;
           const y = e.clientY - rect.top - w;
 
+          // Set mouse position percentage for specular highlight
+          const mouseXPercent = ((e.clientX - rect.left) / rect.width) * 100;
+          const mouseYPercent = ((e.clientY - rect.top) / rect.height) * 100;
+          element.style.setProperty("--mouse-x", `${mouseXPercent}%`);
+          element.style.setProperty("--mouse-y", `${mouseYPercent}%`);
+
           gsap.to(element, {
             x: x * 0.4,
             y: y * 0.4,
@@ -176,6 +182,9 @@ export const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>
             ease: "elastic.out(1, 0.3)",
             duration: 1.2,
           });
+          // Slowly reset CSS variables to center
+          element.style.setProperty("--mouse-x", "50%");
+          element.style.setProperty("--mouse-y", "50%");
         };
 
         element.addEventListener("mousemove", handleMouseMove);

@@ -63,13 +63,14 @@ export function Experience() {
 
           <div className="grid gap-8 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
-              <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">Professional path</p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">Actual timeline</p>
               <h2 className="mt-3 max-w-3xl font-display text-5xl font-medium leading-[0.98] md:text-[7vw]">
-                Chapters to be written.
+                From zero to hired.
               </h2>
             </div>
             <p className="max-w-md text-sm leading-[1.75] text-background/65 md:col-span-5">
-              Scroll to move through each experience one screen at a time. Add real roles here as they land.
+              Started learning in October 2024, built real full-stack projects through 2025, and landed the
+              first professional role on October 20, 2025.
             </p>
           </div>
 

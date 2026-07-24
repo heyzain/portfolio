@@ -127,6 +127,10 @@
   }
 }
 
+[data-hero-ready="false"] [data-hero-reveal] {
+  visibility: hidden;
+}
+
 /* Outline display type */
 @utility text-outline-ink {
   color: transparent;
@@ -188,6 +192,53 @@
     transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* 
+ * iOS-style / Liquid Glass "Apple Glass" effect inspired by Aave.
+ * Features real backdrop blur, dual inner shadows for lighting depth (top specular edge + bottom shading),
+ * and supports pointer-tracking specular reflection overlay.
+ */
+@utility apple-glass {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklch, var(--background) 50%, transparent) 0%,
+    color-mix(in oklch, var(--background) 25%, transparent) 100%
+  );
+  border: 1px solid color-mix(in oklch, var(--foreground) 15%, transparent);
+  backdrop-filter: blur(24px) saturate(180%) contrast(90%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(90%);
+  box-shadow:
+    0 12px 28px -12px color-mix(in oklch, var(--ink) 25%, transparent),
+    inset 0 1px 1px 0 color-mix(in oklch, var(--background) 70%, transparent),
+    inset 0 -1px 2px 0 color-mix(in oklch, var(--foreground) 12%, transparent);
+  transition: 
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklch, var(--background) 70%, transparent) 0%,
+      color-mix(in oklch, var(--background) 40%, transparent) 100%
+    );
+    border-color: color-mix(in oklch, var(--foreground) 30%, transparent);
+    box-shadow:
+      0 20px 40px -10px color-mix(in oklch, var(--ink) 35%, transparent),
+      inset 0 1.5px 2px 0 color-mix(in oklch, var(--background) 90%, transparent),
+      inset 0 -2px 4px 0 color-mix(in oklch, var(--foreground) 20%, transparent);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow:
+      0 10px 20px -8px color-mix(in oklch, var(--ink) 25%, transparent),
+      inset 0 1px 1px 0 color-mix(in oklch, var(--background) 70%, transparent);
+  }
+}
+
 @keyframes ambient-breathe {
   0% {
     transform: translate(-50%, -50%) scale(1);
@@ -244,6 +295,98 @@
 
 @utility animate-caret {
   animation: caret-blink 1s step-end infinite;
+}
+
+@keyframes case-study-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes case-study-backdrop-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes case-study-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes case-study-panel-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px) scale(0.985);
+  }
+}
+
+@utility animate-case-study-backdrop-in {
+  animation: case-study-backdrop-in 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility animate-case-study-backdrop-out {
+  animation: case-study-backdrop-out 180ms ease both;
+}
+
+@utility animate-case-study-panel-in {
+  animation: case-study-panel-in 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility animate-case-study-panel-out {
+  animation: case-study-panel-out 220ms cubic-bezier(0.7, 0, 0.84, 0) both;
+}
+
+@utility case-study-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--ink) 42%, transparent) color-mix(in oklch, var(--paper) 74%, transparent);
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--paper) 84%, transparent),
+      color-mix(in oklch, var(--paper-dim) 92%, transparent)
+    );
+    margin-block: 18px 10px;
+    border-left: 1px solid color-mix(in oklch, var(--ink) 8%, transparent);
+    border-radius: 999px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    min-height: 96px;
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background:
+      linear-gradient(color-mix(in oklch, var(--ink) 46%, var(--paper)), color-mix(in oklch, var(--ink) 34%, var(--paper))) padding-box,
+      linear-gradient(180deg, color-mix(in oklch, var(--vermillion) 65%, var(--paper)), color-mix(in oklch, var(--ink) 25%, var(--paper))) border-box;
+    box-shadow: inset 0 1px 0 color-mix(in oklch, var(--paper) 60%, transparent);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background:
+      linear-gradient(color-mix(in oklch, var(--ink) 62%, var(--paper)), color-mix(in oklch, var(--ink) 46%, var(--paper))) padding-box,
+      linear-gradient(180deg, var(--vermillion), color-mix(in oklch, var(--ink) 30%, var(--paper))) border-box;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

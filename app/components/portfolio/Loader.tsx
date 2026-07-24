@@ -2,46 +2,95 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
-import { profile } from "@/content/portfolio";
+
+let splashPlayedInThisDocument = false;
 
 export function Loader({ onDone }: { onDone: () => void }) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const numRef = useRef<HTMLSpanElement>(null);
-  const [gone, setGone] = useState(false);
+  const ballRef = useRef<HTMLDivElement>(null);
+  const [gone, setGone] = useState(() => splashPlayedInThisDocument);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      const frame = requestAnimationFrame(() => {
-        setGone(true);
-        onDone();
-      });
+    const finish = () => {
+      setGone(true);
+      onDone();
+    };
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reducedMotion || splashPlayedInThisDocument) {
+      splashPlayedInThisDocument = true;
+      const frame = requestAnimationFrame(finish);
       return () => cancelAnimationFrame(frame);
     }
-    const counter = { v: 0 };
-    const tl = gsap.timeline({
-      onComplete: () => {
-        setGone(true);
-        onDone();
-      },
-    });
-    tl.to(counter, {
-      v: 100,
-      duration: 1.3,
-      ease: "power3.inOut",
-      onUpdate: () => {
-        if (numRef.current) {
-          numRef.current.textContent = String(Math.round(counter.v)).padStart(3, "0");
-        }
-      },
-    });
-    tl.to(rootRef.current, {
-      yPercent: -100,
-      duration: 0.7,
-      ease: "power4.inOut",
-    });
-    return () => {
-      tl.kill();
+
+    splashPlayedInThisDocument = true;
+
+    const html = document.documentElement;
+    const body = document.body;
+    const previousHtmlOverflow = html.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+
+    const ball = ballRef.current;
+    const root = rootRef.current;
+    if (!ball || !root) {
+      finish();
+      return;
+    }
+
+    const unlockScroll = () => {
+      html.style.overflow = previousHtmlOverflow;
+      body.style.overflow = previousBodyOverflow;
     };
+
+    const timeline = gsap.timeline({
+      defaults: { overwrite: "auto" },
+      onComplete: () => {
+        unlockScroll();
+        finish();
+      },
+    });
+
+    timeline
+      .set(ball, {
+        y: () => -window.innerHeight / 2 - 24,
+        scaleX: 1,
+        scaleY: 1,
+        transformOrigin: "50% 50%",
+      })
+      .to(ball, { y: 0, duration: 0.58, ease: "power2.in" })
+      .to(ball, { scaleX: 1.16, scaleY: 0.84, duration: 0.08, ease: "power2.out" })
+      .to(ball, {
+        y: -30,
+        scaleX: 0.96,
+        scaleY: 1.04,
+        duration: 0.2,
+        ease: "power2.out",
+      })
+      .to(ball, { y: 0, scaleX: 1.08, scaleY: 0.92, duration: 0.2, ease: "power2.in" })
+      .to(ball, { scaleX: 1, scaleY: 1, duration: 0.1, ease: "power2.out" })
+      .set(root, {
+        "--splash-radius": "20px",
+        maskImage:
+          "radial-gradient(circle at 50% 50%, transparent 0, transparent var(--splash-radius), black calc(var(--splash-radius) + 1px))",
+        WebkitMaskImage:
+          "radial-gradient(circle at 50% 50%, transparent 0, transparent var(--splash-radius), black calc(var(--splash-radius) + 1px))",
+      })
+      .set(ball, { visibility: "hidden" })
+      .to(root, {
+        "--splash-radius": () => `${Math.hypot(window.innerWidth, window.innerHeight) / 2 + 2}px`,
+        duration: 0.56,
+        ease: "power3.inOut",
+      })
+      .set(root, { visibility: "hidden" });
+
+    return () => {
+      timeline.kill();
+      unlockScroll();
+    };
+    // onDone is intentionally treated as a mount-time completion callback.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -50,19 +99,14 @@ export function Loader({ onDone }: { onDone: () => void }) {
   return (
     <div
       ref={rootRef}
-      className="fixed inset-0 z-[90] flex flex-col justify-between bg-paper p-8 text-ink md:p-12"
+      className="splash-loader fixed inset-0 z-[90] overflow-hidden bg-ink"
+      role="status"
+      aria-label="Loading portfolio"
     >
-      <div className="font-mono text-xs tracking-widest text-ink/70">
-        {profile.name.toUpperCase()} · PORTFOLIO · {profile.location}
-      </div>
-      <div className="flex items-end justify-between">
-        <span className="font-display text-2xl italic text-ink/85">
-          setting the type
-        </span>
-        <span ref={numRef} className="font-mono text-6xl text-ink md:text-8xl">
-          000
-        </span>
-      </div>
+      <div
+        ref={ballRef}
+        className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-paper will-change-transform"
+      />
     </div>
   );
 }

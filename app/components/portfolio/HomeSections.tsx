@@ -5,13 +5,15 @@ import { Github, Mail } from "lucide-react";
 import { ScrollTrigger } from "@/lib/gsap";
 import { SmoothScroll } from "@/components/portfolio/SmoothScroll";
 import { Loader } from "@/components/portfolio/Loader";
+import { FloatingNav } from "@/components/portfolio/FloatingNav";
 import { Hero } from "@/components/portfolio/Hero";
 import { BackgroundEssay } from "@/components/portfolio/BackgroundEssay";
 import { SkillsArc } from "@/components/portfolio/SkillsArc";
 import { Experience } from "@/components/portfolio/Experience";
+import { CodeContributions } from "@/components/portfolio/CodeContributions";
 import { StickyProjectCards } from "@/components/portfolio/StickyProjectCards";
 import { WorkProjectsShowcase } from "@/components/portfolio/WorkProjectsShowcase";
-import { Contact } from "@/components/portfolio/Contact";
+import { ContactDispatch } from "@/components/portfolio/ContactDispatch";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { profile } from "@/content/portfolio";
 
@@ -31,13 +33,15 @@ export function HomeSections() {
     <main className="bg-background text-foreground">
       <SmoothScroll />
       <Loader onDone={() => setReady(true)} />
+      {ready && <FloatingNav />}
       <Hero ready={ready} />
       <BackgroundEssay />
       <SkillsArc />
       <Experience />
       <StickyProjectCards />
       <WorkProjectsShowcase />
-      <Contact />
+      <CodeContributions />
+      <ContactDispatch />
       <CinematicFooter
         giantText="ZAIN"
         heading="Let's build something."

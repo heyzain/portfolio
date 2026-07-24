@@ -180,48 +180,48 @@ export const about = {
   },
 };
 
-// No work history yet — replace these three placeholder slots as you take on
-// roles or internships. Structure (year/span/company/role/blurb/bullets/stack)
-// matches what Experience.tsx expects.
 export const experience = [
   {
-    year: "20XX",
-    span: "20XX — 20XX",
-    company: "Company name #1",
-    role: "Job title",
-    blurb: "One line on what this role was about.",
+    year: "2024",
+    span: "Oct 2024 - Jan 2025",
+    company: "Started from zero",
+    role: "Self-taught full-stack foundation",
+    blurb:
+      "October 2024 is where the serious learning started: no polished path, just daily practice, documentation, tutorials rebuilt from scratch, and small experiments that slowly turned into real product thinking.",
     bullets: [
-      "Add a key responsibility or achievement",
-      "Add another concrete result",
-      "Add a third highlight",
+      "Built the core base in HTML, CSS, JavaScript, React, and backend fundamentals.",
+      "Practiced by rebuilding interfaces and then changing them until the logic made sense.",
+      "Learned debugging discipline, Git workflow, deployment basics, and how frontend and backend pieces connect.",
     ],
-    stack: ["Tech A", "Tech B", "Tech C"],
+    stack: ["HTML", "CSS", "JavaScript", "React", "Git"],
   },
   {
-    year: "20XX",
-    span: "20XX — 20XX",
-    company: "Company name #2",
-    role: "Job title",
-    blurb: "One line on what this role was about.",
+    year: "2025",
+    span: "Feb 2025 - Oct 2025",
+    company: "Product practice",
+    role: "Portfolio projects and full-stack builds",
+    blurb:
+      "The learning moved from isolated concepts into complete apps. LinkVault, ZephyrLint, Tickure, and Snapsack became the proof: authentication, dashboards, CRUD flows, APIs, databases, and user-facing polish.",
     bullets: [
-      "Add a key responsibility or achievement",
-      "Add another concrete result",
-      "Add a third highlight",
+      "Shipped multiple full-stack projects with secure login, dashboards, filters, analytics, and admin-style workflows.",
+      "Designed and implemented API routes, MongoDB models, protected UI states, and responsive product interfaces.",
+      "Used each project to practice the real cycle: idea, structure, build, test, deploy, improve.",
     ],
-    stack: ["Tech A", "Tech B", "Tech C"],
+    stack: ["React", "Node.js", "Express", "MongoDB", "Tailwind"],
   },
   {
-    year: "20XX",
-    span: "20XX — 20XX",
-    company: "Company name #3",
-    role: "Job title",
-    blurb: "One line on what this role was about.",
+    year: "2025",
+    span: "Oct 20, 2025 - Present",
+    company: "Kakushin",
+    role: "Full-Stack Developer",
+    blurb:
+      "The first professional chapter started on October 20, 2025. After a year of focused self-learning and shipped projects, the work shifted into a real team environment: building production features, collaborating, and turning requirements into usable web experiences.",
     bullets: [
-      "Add a key responsibility or achievement",
-      "Add another concrete result",
-      "Add a third highlight",
+      "Work across frontend and backend tasks with a product-minded full-stack approach.",
+      "Translate requirements into usable interfaces, data flows, and maintainable application code.",
+      "Bring the same self-taught momentum into professional delivery: learn fast, communicate clearly, and ship carefully.",
     ],
-    stack: ["Tech A", "Tech B", "Tech C"],
+    stack: ["Next.js", "React", "TypeScript", "Node.js", "MongoDB"],
   },
 ];
 

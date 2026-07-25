@@ -55,6 +55,7 @@ export function Loader({ onDone }: { onDone: () => void }) {
 
     timeline
       .set(ball, {
+        visibility: "visible",
         y: () => -window.innerHeight / 2 - 24,
         scaleX: 1,
         scaleY: 1,
@@ -105,7 +106,7 @@ export function Loader({ onDone }: { onDone: () => void }) {
     >
       <div
         ref={ballRef}
-        className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-paper will-change-transform"
+        className="invisible absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-paper will-change-transform"
       />
     </div>
   );

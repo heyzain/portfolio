@@ -155,17 +155,17 @@ export function FloatingNav() {
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className={cn(
-            "flex items-center gap-2 rounded-full px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 border backdrop-blur-xl shadow-lg cursor-pointer outline-none select-none",
+            "flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-mono text-[9px] font-bold uppercase tracking-[0.16em] transition-all duration-300 border backdrop-blur-xl shadow-lg cursor-pointer outline-none select-none whitespace-nowrap shrink-0",
             isNavbarOverDark
               ? "bg-black/85 border-white/20 text-white"
               : "bg-white/92 border-black/10 text-ink"
           )}
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-          <span>ZAIN ALI</span>
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent animate-pulse" />
+          <span className="whitespace-nowrap font-bold">ZAIN ALI</span>
           <span className="opacity-40">//</span>
-          <span className="text-accent">{activeItem.label}</span>
-          <span className="ml-1 text-[8px] transition-transform duration-300" style={{ transform: mobileMenuOpen ? "rotate(180deg)" : "rotate(0deg)" }}>
+          <span className="whitespace-nowrap text-accent">{activeItem.label}</span>
+          <span className="ml-0.5 text-[8px] transition-transform duration-300" style={{ transform: mobileMenuOpen ? "rotate(180deg)" : "rotate(0deg)" }}>
             ▼
           </span>
         </button>

@@ -24,7 +24,7 @@ const projects: FeaturedProject[] = workProjects.map((project, index) => ({
   id: project.title.toLowerCase().replace(/\s+/g, "-"),
   number: project.num,
   title: project.title,
-  category: index === 1 ? "AI Tool" : index === 3 ? "Commerce" : "Product",
+  category: (project as { category?: string }).category || "Product",
   year: "2026",
   role: project.rolenote,
   purpose: project.desc,

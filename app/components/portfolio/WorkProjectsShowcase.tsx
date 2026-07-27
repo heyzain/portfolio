@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowUpRight, ChevronRight, ExternalLink, Eye, Github, X } from "lucide-react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { workProjects } from "@/content/portfolio";
+import { playgroundProjects } from "@/content/portfolio";
 
 type ProjectFeature = {
   title: string;
@@ -236,7 +236,7 @@ const caseStudyCopy = [
   },
 ];
 
-const projects: Project[] = workProjects.map((project, index) => ({
+const projects: Project[] = playgroundProjects.map((project, index) => ({
   id: project.title.toLowerCase().replace(/\s+/g, "-"),
   number: project.num,
   title: project.title,
@@ -787,9 +787,10 @@ export function WorkProjectsShowcase() {
               <button
                 type="button"
                 onClick={() => openProject(project)}
-                className="mt-4 flex cursor-pointer items-center gap-1.5 text-xs font-bold text-ink hover:underline focus:outline-none focus:ring-2 focus:ring-ink"
+                className="mt-4 flex items-center justify-center gap-1.5 rounded-full bg-ink px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-paper shadow-md transition-all duration-300 hover:bg-accent hover:text-accent-foreground focus:outline-none cursor-pointer"
               >
-                Open Case Study <ChevronRight size={14} />
+                <span>Open Case Study</span>
+                <ChevronRight size={13} />
               </button>
             </div>
           ))}
@@ -835,9 +836,10 @@ export function WorkProjectsShowcase() {
                 <button
                   type="button"
                   onClick={() => openProject(project)}
-                  className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-xl border border-ink bg-ink/5 py-2.5 text-xs font-bold text-ink transition-colors duration-300 hover:bg-ink hover:text-paper focus:outline-none"
+                  className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-full bg-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-paper shadow-md transition-all duration-300 hover:bg-accent hover:text-accent-foreground focus:outline-none active:scale-[0.98] cursor-pointer"
                 >
-                  Open Case Study <ChevronRight size={14} />
+                  <span>Open Case Study</span>
+                  <ChevronRight size={13} />
                 </button>
               </div>
             </div>

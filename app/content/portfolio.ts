@@ -225,6 +225,69 @@ export const experience = [
 export const workProjects = [
   {
     num: "01",
+    title: "MT4 Trading App",
+    subtitle: "Real-time forex & market analytics platform",
+    category: "FINTECH",
+    desc: "A high-performance MetaTrader 4 integration app built for real-time market data streaming, automated trading signals, order execution tracking, and interactive financial charting dashboards.",
+    stack: "React · Next.js · Node.js · WebSockets · Chart.js · Tailwind",
+    rolenote: "Full-Stack Developer @ Kakushin",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1200&auto=format&fit=crop",
+    githubLink: "https://github.com/kakushinas2/MT4_app",
+    liveLink: "",
+  },
+  {
+    num: "02",
+    title: "ReadMyCup Web",
+    subtitle: "AI coffee cup reading & e-commerce platform",
+    category: "AI & COMMERCE",
+    desc: "An interactive web platform enabling automated coffee cup reading and digital analysis paired with e-commerce booking, custom merchandise checkout, and user profile management.",
+    stack: "Next.js · React · TypeScript · Tailwind CSS · Node.js",
+    rolenote: "Full-Stack Developer @ Kakushin",
+    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1200&auto=format&fit=crop",
+    githubLink: "https://github.com/Kakushin-Create/readmycup_web_deploy",
+    liveLink: "",
+  },
+  {
+    num: "03",
+    title: "DentalBox",
+    subtitle: "Dental clinic & practice management system",
+    category: "HEALTHCARE",
+    desc: "A comprehensive dental practice management application featuring patient record keeping, appointment scheduling, treatment tracking, inventory management, and automated invoicing.",
+    stack: "React · Node.js · Express · MongoDB · Tailwind CSS",
+    rolenote: "Full-Stack Developer @ Kakushin",
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop",
+    githubLink: "https://github.com/kakushinas2/dentalBox",
+    liveLink: "",
+  },
+  {
+    num: "04",
+    title: "Bookmi",
+    subtitle: "On-demand service booking & scheduling platform",
+    category: "BOOKING ENGINE",
+    desc: "An end-to-end service appointment scheduling engine with real-time calendar syncing, provider availability management, customer notifications, and secure online payment processing.",
+    stack: "Next.js · React · TypeScript · Node.js · PostgreSQL · Tailwind",
+    rolenote: "Full-Stack Developer @ Kakushin",
+    image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1200&auto=format&fit=crop",
+    githubLink: "https://github.com/kakushinas2/bookmi",
+    liveLink: "",
+  },
+  {
+    num: "05",
+    title: "ShopRehan",
+    subtitle: "Full-stack e-commerce marketplace",
+    category: "E-COMMERCE",
+    desc: "A modern digital e-commerce marketplace featuring product catalog search, category filtering, cart & checkout management, user order tracking, and an admin dashboard.",
+    stack: "Next.js · React · Node.js · MongoDB · Tailwind CSS",
+    rolenote: "Full-Stack Developer @ Kakushin",
+    image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=1200&auto=format&fit=crop",
+    githubLink: "https://github.com/shoprehan786-arch/shoprehan",
+    liveLink: "",
+  },
+];
+
+export const playgroundProjects = [
+  {
+    num: "01",
     title: "LinkVault",
     subtitle: "Personal link management app",
     desc: "LinkVault is a personal link management app that lets users save, categorize, and tag links with a secure login system. It includes features like smart search, favorites, filtering, and a full dashboard with category, tag, and task organization.",
@@ -271,14 +334,12 @@ export const workProjects = [
   },
 ];
 
-// Reusing the same 4 real projects as draggable cards (no separate hobby
-// projects exist on the source site).
-export const hobbyProjects = workProjects.map((p, i) => ({
+export const hobbyProjects = playgroundProjects.map((p, i) => ({
   title: p.title,
   caption: p.subtitle,
   detail: p.stack,
   image: p.image,
-  rotate: [-4, 3, -2, 5][i],
-  x: ["6%", "40%", "20%", "56%"][i],
-  y: ["8%", "2%", "46%", "40%"][i],
+  rotate: [-4, 3, -2, 5][i % 4],
+  x: ["6%", "40%", "20%", "56%"][i % 4],
+  y: ["8%", "2%", "46%", "40%"][i % 4],
 }));

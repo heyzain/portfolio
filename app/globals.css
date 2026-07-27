@@ -5,7 +5,7 @@
 
 /*
  * Editorial-brutalist design system.
- * Paper / Ink / Vermillion / Olive. No gradients.
+ * Paper / Ink / Brass / Graphite.
  */
 
 @theme inline {
@@ -61,11 +61,11 @@
 
 :root {
   --radius: 0.625rem;
-  --paper: #f4f0e6;
-  --paper-dim: #f6f3ec;
-  --ink: oklch(0.17 0.005 60);
-  --vermillion: oklch(0.6 0.195 33);
-  --olive: oklch(0.42 0.07 115);
+  --paper: #f4f0e8;
+  --paper-dim: #f8f5ee;
+  --ink: oklch(0.18 0.006 70);
+  --vermillion: oklch(0.58 0.085 72);
+  --olive: oklch(0.58 0.085 72);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -76,14 +76,14 @@
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: var(--vermillion);
+  --accent-foreground: var(--paper);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: var(--paper);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --background: #f6f3ec;
+  --background: #f8f5ee;
   --foreground: oklch(0.145 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
@@ -122,7 +122,7 @@
   }
 
   ::selection {
-    background: var(--vermillion);
+  background: color-mix(in oklch, var(--vermillion) 82%, var(--ink));
     color: var(--paper);
   }
 }
@@ -148,12 +148,12 @@
  * without abandoning the sharp editorial identity.
  * ------------------------------------------------------------------------- */
 
-/* Warm, paper-friendly aurora glow (vermillion → olive). */
+/* Warm, paper-friendly graphite/brass glow. */
 @utility ambient-aurora {
   background: radial-gradient(
     circle at 50% 45%,
-    color-mix(in oklch, var(--vermillion) 16%, transparent) 0%,
-    color-mix(in oklch, var(--olive) 9%, transparent) 38%,
+    color-mix(in oklch, var(--vermillion) 13%, transparent) 0%,
+    color-mix(in oklch, var(--ink) 7%, transparent) 42%,
     transparent 72%
   );
 }

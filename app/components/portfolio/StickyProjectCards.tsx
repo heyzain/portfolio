@@ -321,12 +321,10 @@ export function StickyProjectCards() {
       {useSticky ? (
         <div className="sticky top-0 h-dvh w-full overflow-hidden">
           <div className="mx-auto flex h-full w-full max-w-[1400px] flex-col px-8 pb-8 pt-10 lg:px-12 lg:pt-12">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span className="h-px w-8 bg-ink/40" />
-                <span className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Selected Work</span>
-              </div>
-              <span className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">2024 - 2026</span>
+            <div className="flex items-baseline gap-6">
+              <span className="font-mono text-xs tracking-[0.25em] text-accent">05 FEATURED WORKPLACE PROJECTS</span>
+              <span className="h-px flex-1 bg-ink/20" />
+              <span className="hidden font-mono text-xs text-muted-foreground md:inline">2024 - 2026</span>
             </div>
 
             <div className="relative mt-6 flex items-center justify-center lg:mt-8">
@@ -337,7 +335,7 @@ export function StickyProjectCards() {
                 {projects.map((project, index) => (
                   <h2
                     key={project.id}
-                    className={`absolute inset-0 flex items-center justify-center text-center font-display text-5xl font-medium leading-[1.02] tracking-tight transition-all duration-500 ease-out lg:text-7xl ${
+                    className={`absolute inset-0 flex items-center justify-center text-center font-display text-4xl font-medium leading-[1.02] tracking-tight transition-all duration-500 ease-out md:text-6xl ${
                       index === active
                         ? "z-10 translate-y-0 opacity-100"
                         : index < active
@@ -367,7 +365,7 @@ export function StickyProjectCards() {
                     >
                       <div className="mb-3 flex items-center gap-2">
                         <span className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Purpose</span>
-                        <span className="font-display text-xs text-olive">{project.number}</span>
+                        <span className="font-display text-xs text-vermillion">{project.number}</span>
                       </div>
                       <p className="max-w-[22rem] text-[15px] leading-relaxed text-ink">{project.purpose}</p>
                       <div className="mt-6 space-y-1 text-xs">
@@ -394,7 +392,7 @@ export function StickyProjectCards() {
               </div>
 
               <div className="col-span-6 flex items-center justify-center">
-                <div className="group/project-frame relative aspect-square w-full max-w-[500px] text-olive">
+                <div className="group/project-frame relative aspect-square w-full max-w-[500px] text-vermillion">
                   <div className="pointer-events-none absolute -inset-2 rounded-[72px] bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.78),transparent_34%),radial-gradient(circle_at_50%_92%,rgba(224,92,54,0.16),transparent_42%)] opacity-0 blur-xl transition duration-500 group-hover/project-frame:opacity-100" />
                   <div className="absolute inset-0 overflow-hidden rounded-[64px] border border-ink/10 bg-white/35 p-3 shadow-[0_28px_90px_rgba(26,24,20,0.12),inset_0_1px_0_rgba(255,255,255,0.75)] transition duration-500 group-hover/project-frame:-translate-y-1 group-hover/project-frame:border-vermillion/45 group-hover/project-frame:shadow-[0_36px_110px_rgba(26,24,20,0.18),inset_0_1px_0_rgba(255,255,255,0.9)]">
                     <div className="relative h-full w-full overflow-hidden rounded-[52px] bg-ink/5">
@@ -506,16 +504,17 @@ export function StickyProjectCards() {
                 </div>
               </div>
 
-              <Sparkle className="pointer-events-none absolute bottom-2 right-6 h-3 w-3 text-olive/70" />
+              <Sparkle className="pointer-events-none absolute bottom-2 right-6 h-3 w-3 text-vermillion/70" />
             </div>
 
           </div>
         </div>
       ) : (
         <div className="mx-auto max-w-[720px] px-6 pb-24 pt-16">
-          <div className="mb-10 flex items-center gap-3">
-            <span className="h-px w-8 bg-ink/40" />
-            <span className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Selected Work</span>
+          <div className="mb-10 flex items-baseline gap-6">
+            <span className="font-mono text-xs tracking-[0.25em] text-accent">05 FEATURED WORKPLACE PROJECTS</span>
+            <span className="h-px flex-1 bg-ink/20" />
+            <span className="font-mono text-xs text-muted-foreground">2024 - 2026</span>
           </div>
           {projects.map((project, index) => (
             <article
@@ -528,7 +527,7 @@ export function StickyProjectCards() {
               aria-label={`Project ${project.number}: ${project.title}`}
             >
               <h3 className="font-display text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl">{project.title}</h3>
-              <div className="group/project-frame relative aspect-square w-full text-olive">
+              <div className="group/project-frame relative aspect-square w-full text-vermillion">
                 <div className="absolute inset-0 overflow-hidden rounded-[64px] border border-ink/10 bg-white/35 p-3 shadow-[0_24px_70px_rgba(26,24,20,0.12)] transition duration-500 group-hover/project-frame:-translate-y-1 group-hover/project-frame:border-vermillion/40">
                   <div className="relative h-full w-full overflow-hidden rounded-[52px] bg-ink/5">
                     <img src={project.image} alt={`${project.title} - ${project.category}`} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover/project-frame:scale-[1.045] group-hover/project-frame:saturate-[1.08]" />

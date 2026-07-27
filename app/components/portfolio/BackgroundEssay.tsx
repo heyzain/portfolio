@@ -6,6 +6,7 @@ import { gsap } from "@/lib/gsap";
 
 const architectureLabels = ["Database", "API", "Authentication", "Payments"];
 const buildWords = ["Frontend", "Backend", "Database", "Authentication", "Deployment"];
+const buildTiles = ["Next", "React", "TypeScript", "Node", "API", "Mongo", "Auth", "Stripe", "Tailwind", "GSAP", "Git", "Vercel", "UI", "Perf", "A11y"];
 const polishChips = ["Responsive", "Performance", "Accessibility", "Security", "Scalability", "Animations", "Maintainability"];
 const stats = [
   { value: "12+", label: "Projects Built" },
@@ -118,22 +119,19 @@ export function BackgroundEssay() {
 
   return (
     <section id="background" ref={rootRef} className="relative z-20 h-[220vh] border-t border-border bg-background">
-      <div ref={stageRef} className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-6 text-ink md:px-12">
+      <div ref={stageRef} className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-8 text-ink lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.72),transparent_48%)]" />
         <div className="pointer-events-none absolute inset-0 opacity-[0.32] ambient-grid" />
-        <div className="pointer-events-none absolute left-8 right-8 top-10 hidden h-px bg-border md:block" />
-        <div className="pointer-events-none absolute bottom-10 left-8 right-8 hidden h-px bg-border md:block" />
 
-        <div className="relative z-10 h-full w-full max-w-[1360px]">
-          <div className="absolute left-0 top-10 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-olive">
-            Product Engineering
-          </div>
-          <div className="absolute right-0 top-10 hidden font-mono text-[11px] uppercase tracking-[0.28em] text-ink/45 md:block">
-            Scroll Story
+        <div className="relative z-10 h-full w-full max-w-[1400px]">
+          <div className="absolute inset-x-0 top-10 flex items-baseline gap-6 w-full text-left">
+            <span className="font-mono text-xs tracking-[0.25em] text-accent">02 BACKGROUND & STORY</span>
+            <span className="h-px flex-1 bg-ink/20" />
+            <span className="hidden font-mono text-xs text-muted-foreground md:inline">PRODUCT ENGINEERING</span>
           </div>
 
           <article data-story-step className="absolute inset-0 flex flex-col items-center justify-center text-center">
-            <h2 className="max-w-5xl font-display text-5xl font-medium leading-[0.98] tracking-tight md:text-8xl">
+            <h2 className="max-w-5xl font-display text-4xl font-medium leading-[1.02] tracking-tight md:text-6xl">
               Building products,
               <br />
               <span className="italic">not just pages.</span>
@@ -144,7 +142,7 @@ export function BackgroundEssay() {
           </article>
 
           <article data-story-step className="absolute inset-0 flex flex-col items-center justify-center text-center">
-            <h2 className="max-w-5xl font-display text-5xl font-medium leading-[0.98] tracking-tight md:text-8xl">
+            <h2 className="max-w-5xl font-display text-4xl font-medium leading-[1.02] tracking-tight md:text-6xl">
               I don&apos;t start
               <br />
               with code.
@@ -163,7 +161,7 @@ export function BackgroundEssay() {
               <span data-blueprint-line className="absolute left-[18%] top-[18%] h-[64%] w-px bg-ink/10" />
               <span data-blueprint-line className="absolute right-[18%] top-[18%] h-[64%] w-px bg-ink/10" />
             </div>
-            <h2 className="max-w-5xl font-display text-5xl font-medium leading-[0.98] tracking-tight md:text-8xl">
+            <h2 className="max-w-5xl font-display text-4xl font-medium leading-[1.02] tracking-tight md:text-6xl">
               I design the
               <br />
               architecture.
@@ -182,13 +180,17 @@ export function BackgroundEssay() {
           </article>
 
           <article data-story-step className="absolute inset-0 flex flex-col items-center justify-center text-center">
-            <div className="mb-10 grid grid-cols-5 gap-2">
-              {Array.from({ length: 15 }).map((_, index) => (
+            <div className="group/build mb-10 grid grid-cols-5 gap-2">
+              {buildTiles.map((tool, index) => (
                 <span
-                  key={index}
+                  key={tool}
                   data-build-block
-                  className="h-9 w-9 rounded-[8px] border border-ink/12 bg-white/80 shadow-[0_12px_28px_-24px_var(--ink)] md:h-12 md:w-12"
-                />
+                  className={`flex h-9 w-12 items-center justify-center rounded-[8px] border border-ink/12 bg-white/82 font-mono text-[8px] font-semibold uppercase tracking-[0.08em] text-ink/58 shadow-[0_12px_28px_-24px_var(--ink)] transition duration-300 hover:-translate-y-1 hover:border-ink/30 hover:bg-ink hover:text-paper md:h-12 md:w-16 md:text-[9px] ${
+                    index % 5 === 0 ? "bg-vermillion/10 text-ink/72" : ""
+                  }`}
+                >
+                  {tool}
+                </span>
               ))}
             </div>
             <h2 className="font-display text-6xl font-medium leading-none tracking-tight md:text-9xl">Then I build.</h2>
@@ -227,7 +229,7 @@ export function BackgroundEssay() {
           </article>
 
           <article data-story-step className="absolute inset-0 flex flex-col items-center justify-center text-center">
-            <h2 className="max-w-5xl font-display text-5xl font-medium leading-[0.98] tracking-tight md:text-8xl">
+            <h2 className="max-w-5xl font-display text-4xl font-medium leading-[1.02] tracking-tight md:text-6xl">
               Complete product
               <br />
               ownership.

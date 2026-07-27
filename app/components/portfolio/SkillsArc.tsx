@@ -12,21 +12,21 @@ const devSkills = [
   },
   {
     name: "React",
-    image: "https://cdn.simpleicons.org/react/61DAFB/61DAFB",
+    image: "https://cdn.simpleicons.org/react/2b2924/2b2924",
     description:
       "Creating reusable component architectures, interactive interfaces, efficient state management, and high-performance user experiences.",
     chips: ["Components", "Hooks", "State Management", "Context API", "Performance", "Reusable UI"],
   },
   {
     name: "TypeScript",
-    image: "https://cdn.simpleicons.org/typescript/3178C6/3178C6",
+    image: "https://cdn.simpleicons.org/typescript/2b2924/2b2924",
     description:
       "Writing scalable, maintainable applications with strong typing, improved tooling, and safer development workflows.",
     chips: ["Generics", "Type Safety", "Interfaces", "Utility Types", "Strict Mode", "DX"],
   },
   {
     name: "Node.js",
-    image: "https://cdn.simpleicons.org/nodedotjs/5FA04E/5FA04E",
+    image: "https://cdn.simpleicons.org/nodedotjs/2b2924/2b2924",
     description:
       "Developing scalable backend services, REST APIs, authentication systems, and asynchronous server-side applications.",
     chips: ["REST APIs", "Authentication", "Middleware", "Async", "File Uploads", "Security"],
@@ -40,21 +40,21 @@ const devSkills = [
   },
   {
     name: "MongoDB",
-    image: "https://cdn.simpleicons.org/mongodb/47A248/47A248",
+    image: "https://cdn.simpleicons.org/mongodb/2b2924/2b2924",
     description:
       "Designing scalable document databases with Mongoose, aggregation pipelines, indexing, and efficient data modeling.",
     chips: ["Mongoose", "Aggregation", "Indexing", "Atlas", "Transactions", "Schema Design"],
   },
   {
     name: "Firebase",
-    image: "https://cdn.simpleicons.org/firebase/FFCA28/FFCA28",
+    image: "https://cdn.simpleicons.org/firebase/2b2924/2b2924",
     description:
       "Integrating authentication, Firestore, cloud services, and real-time backend features for modern web applications.",
     chips: ["Auth", "Firestore", "Security Rules", "Storage", "Real-time", "Cloud"],
   },
   {
     name: "Tailwind CSS",
-    image: "https://cdn.simpleicons.org/tailwindcss/06B6D4/06B6D4",
+    image: "https://cdn.simpleicons.org/tailwindcss/2b2924/2b2924",
     description: "Building responsive interfaces rapidly with utility-first styling and reusable design systems.",
     chips: ["Responsive", "Utility First", "Components", "Dark Mode", "Design System", "Accessibility"],
   },
@@ -66,7 +66,7 @@ const devSkills = [
   },
   {
     name: "Git",
-    image: "https://cdn.simpleicons.org/git/F05032/F05032",
+    image: "https://cdn.simpleicons.org/git/2b2924/2b2924",
     description: "Managing version control, collaboration workflows, feature branches, and clean development history.",
     chips: ["Branching", "Merge", "Rebase", "Commits", "Workflow", "Collaboration"],
   },
@@ -84,7 +84,7 @@ const devSkills = [
   },
   {
     name: "Stripe",
-    image: "https://cdn.simpleicons.org/stripe/635BFF/635BFF",
+    image: "https://cdn.simpleicons.org/stripe/2b2924/2b2924",
     description: "Building secure payment flows including subscriptions, billing, webhooks, and checkout integrations.",
     chips: ["Checkout", "Billing", "Webhooks", "Subscriptions", "Payments", "Connect"],
   },

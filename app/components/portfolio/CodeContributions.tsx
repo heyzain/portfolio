@@ -231,23 +231,27 @@ export function CodeContributions() {
   ];
 
   return (
-    <section id="code" className="relative overflow-hidden bg-paper px-6 py-24 text-ink md:px-12">
+    <section id="code" className="relative overflow-hidden bg-paper px-8 py-24 text-ink lg:px-12">
       <div className="pointer-events-none absolute inset-0 ambient-grid opacity-60" />
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-[1400px]">
+        <div className="mb-10 flex items-baseline gap-6">
+          <span className="font-mono text-xs tracking-[0.25em] text-accent">07 CODE & CONTRIBUTIONS</span>
+          <span className="h-px flex-1 bg-ink/20" />
+          <span className="hidden font-mono text-xs text-muted-foreground md:inline">GITHUB ACTIVITY</span>
+        </div>
+
         <div className="mb-14">
-          <div className="mb-4 flex items-center gap-3">
-            <span className="h-px w-8 bg-ink/40" />
-            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-muted-foreground">Open Source Pulse</span>
-          </div>
-          <h2 className="font-display text-5xl font-black leading-none tracking-tight sm:text-7xl">Code & Contributions</h2>
-          <div className="mt-5 h-1.5 w-24 rounded-full bg-vermillion" />
+          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">REPOSITORY SIGNAL</p>
+          <h2 className="mt-3 font-display text-4xl font-medium leading-[1.02] tracking-tight text-ink md:text-6xl">
+            Code &amp; Contributions<span className="text-accent">.</span>
+          </h2>
         </div>
 
         <div className="rounded-[28px] border border-ink/10 bg-white/50 p-5 shadow-[0_24px_80px_rgba(26,24,20,0.08),inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl sm:p-8">
           <div className="mb-8 flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex flex-col gap-5 md:flex-row md:items-center">
               <a href={`https://github.com/${username}`} target="_blank" rel="noreferrer" className="group flex items-center gap-4">
-                <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-[18px] border border-ink/10 bg-vermillion/10 text-vermillion transition group-hover:-translate-y-0.5">
+                <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-[18px] border border-ink/10 bg-accent/10 text-accent transition group-hover:-translate-y-0.5">
                   {stats.user?.avatar_url ? (
                     <img src={stats.user.avatar_url} alt={`${username} GitHub avatar`} className="h-full w-full object-cover" />
                   ) : (

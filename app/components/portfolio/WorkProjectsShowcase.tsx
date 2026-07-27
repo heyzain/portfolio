@@ -276,7 +276,7 @@ function ProjectCard({ project, isActive, onClick, onPointerMove, onPointerEnter
       onPointerMove={onPointerMove}
       onPointerEnter={onPointerEnter}
       onPointerLeave={onPointerLeave}
-      className="group relative block cursor-none select-none text-left transition-all duration-300 focus:outline-none"
+      className="group relative block cursor-pointer select-none text-left transition-all duration-300 focus:outline-none"
       aria-label={`View detailed case study for ${project.title}`}
       onKeyDown={(event) => {
         if (event.key === "Enter" || event.key === " ") {
@@ -293,9 +293,9 @@ function ProjectCard({ project, isActive, onClick, onPointerMove, onPointerEnter
       </div>
 
       <div
-        className={`relative mt-8 flex w-64 flex-col gap-3 overflow-hidden rounded-2xl border bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all duration-500 before:pointer-events-none before:absolute before:inset-0 before:rounded-2xl before:bg-[radial-gradient(circle_at_var(--glare-x,50%)_var(--glare-y,20%),rgba(255,255,255,0.95),rgba(250,142,93,0.22)_22%,transparent_48%)] before:opacity-0 before:transition-opacity before:duration-300 group-hover:shadow-[0_22px_55px_rgba(26,24,20,0.14)] group-hover:before:opacity-100 sm:w-72 ${
+        className={`relative mt-8 flex w-64 flex-col gap-3 overflow-hidden rounded-2xl border bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all duration-500 group-hover:shadow-[0_22px_55px_rgba(26,24,20,0.14)] sm:w-72 ${
           isActive
-            ? "scale-105 border-ink ring-2 ring-ink/10 group-hover:border-vermillion/70"
+            ? "scale-105 border-ink ring-2 ring-ink/10 group-hover:border-ink/80"
             : "scale-95 border-border opacity-80 contrast-[0.95]"
         }`}
       >
@@ -756,17 +756,18 @@ export function WorkProjectsShowcase() {
 
   if (prefersReducedMotion) {
     return (
-      <section id="after-hours" className="mx-auto flex min-h-screen max-w-7xl flex-col justify-center bg-[#F6F3EC] px-6 py-24 md:px-12">
+      <section id="after-hours" className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center bg-[#F6F3EC] px-8 py-24 lg:px-12">
         <ProjectCaseStudyModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-        <div className="mb-16 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-ink" />
-            Playground
+        <div className="mb-16 w-full text-left">
+          <div className="flex items-baseline gap-6 w-full mb-6">
+            <span className="font-mono text-xs tracking-[0.25em] text-accent">06 THE PLAYGROUND</span>
+            <span className="h-px flex-1 bg-ink/20" />
+            <span className="hidden font-mono text-xs text-muted-foreground md:inline">2024 - 2026</span>
           </div>
-          <h2 className="font-display text-4xl font-black uppercase tracking-tight text-ink sm:text-6xl">
+          <h2 className="font-display text-4xl font-medium leading-[1.02] tracking-tight text-ink text-center md:text-6xl">
             The <span className="text-ink">Playground</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-sm font-medium leading-relaxed text-muted-foreground sm:text-base">
+          <p className="mx-auto mt-4 max-w-md text-center text-sm font-medium leading-relaxed text-muted-foreground sm:text-base">
             A premium selection of platforms, designs, and visual interactive experiences.
           </p>
         </div>
@@ -801,12 +802,13 @@ export function WorkProjectsShowcase() {
     return (
       <section id="after-hours" className="relative flex min-h-screen flex-col justify-between overflow-hidden bg-[#F6F3EC] px-6 pb-16 pt-24">
         <ProjectCaseStudyModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-        <div className="mb-8 text-center">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-border bg-white/60 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-ink" />
-            Playground
+        <div className="mb-8 w-full text-left">
+          <div className="flex items-baseline gap-6 w-full mb-6">
+            <span className="font-mono text-xs tracking-[0.25em] text-accent">06 THE PLAYGROUND</span>
+            <span className="h-px flex-1 bg-ink/20" />
+            <span className="font-mono text-xs text-muted-foreground">2024 - 2026</span>
           </div>
-          <h2 className="font-display text-4xl font-black uppercase tracking-tight text-ink">
+          <h2 className="font-display text-4xl font-black uppercase tracking-tight text-ink text-center">
             The <span className="text-ink">Playground</span>
           </h2>
         </div>
@@ -865,37 +867,6 @@ export function WorkProjectsShowcase() {
     <section id="after-hours" className="relative z-20 bg-[#F6F3EC]">
       <ProjectCaseStudyModal project={selectedProject} onClose={() => setSelectedProject(null)} />
       <div
-        ref={hoverCursorRef}
-        className={`pointer-events-none fixed left-0 top-0 z-[90] hidden h-28 w-28 items-center justify-center rounded-full border border-white/55 bg-[#F6F3EC]/62 text-ink shadow-[0_20px_50px_rgba(26,24,20,0.18),inset_0_1px_0_rgba(255,255,255,0.82),inset_0_-10px_24px_rgba(26,24,20,0.05)] backdrop-blur-xl backdrop-saturate-150 transition-opacity duration-75 md:flex ${
-          isHoverCursorVisible ? "opacity-100" : "opacity-0"
-        }`}
-        style={{
-          transform: `translate3d(var(--cursor-x, 0px), var(--cursor-y, 0px), 0) translate(-50%, -50%) scale(${
-            isHoverCursorVisible ? 1 : 0.75
-          })`,
-        }}
-      >
-        <span className="absolute inset-0 rounded-full border border-ink/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.88)]" />
-        <span className="absolute inset-[31px] rounded-full border border-ink/14 bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]" />
-        <svg
-          className="absolute inset-0 h-full w-full animate-spin overflow-visible [animation-duration:8s]"
-          viewBox="0 0 112 112"
-          aria-hidden="true"
-        >
-          <defs>
-            <path id="project-hover-text-path" d="M 56 56 m -46 0 a 46 46 0 1 1 92 0 a 46 46 0 1 1 -92 0" />
-          </defs>
-          <text className="fill-ink font-mono text-[9px] font-black uppercase tracking-[0.26em]">
-            <textPath href="#project-hover-text-path" startOffset="0%">
-              Explore . Open to Explore . Open to
-            </textPath>
-          </text>
-        </svg>
-        <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-transparent text-ink">
-          <Eye size={18} className="stroke-[2.4]" />
-        </span>
-      </div>
-      <div
         ref={triggerRef}
         className="relative h-screen w-full overflow-hidden bg-[#F6F3EC]"
         onKeyDown={handleKeyDown}
@@ -903,13 +874,15 @@ export function WorkProjectsShowcase() {
         role="region"
         aria-label="Interactive projects showcase slider. Use scroll or arrow keys to navigate."
       >
-        <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-start gap-8 px-6 py-12 md:px-12 md:py-16">
+        <div className="mx-auto flex h-full w-full max-w-[1400px] flex-col justify-start gap-6 px-8 py-8 lg:px-12 lg:py-10">
+          <div className="flex items-baseline gap-6 w-full text-left">
+            <span className="font-mono text-xs tracking-[0.25em] text-accent">06 THE PLAYGROUND</span>
+            <span className="h-px flex-1 bg-ink/20" />
+            <span className="hidden font-mono text-xs text-muted-foreground md:inline">2024 - 2026</span>
+          </div>
+
           <div className="z-10 pt-2 text-center md:pt-4">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-white/50 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
-              <span className="h-1.5 w-1.5 rounded-full bg-ink" />
-              Playground
-            </div>
-            <h2 className="font-display text-5xl font-black uppercase leading-[0.95] tracking-tight text-ink md:text-7xl">
+            <h2 className="font-display text-4xl font-medium leading-[1.02] tracking-tight text-ink md:text-6xl">
               The <span className="text-ink">Playground</span>
             </h2>
           </div>

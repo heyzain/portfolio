@@ -8,6 +8,9 @@ import { experience } from "@/content/portfolio";
 export function Experience() {
   const rootRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const learning = experience[0];
+  const projects = experience[1];
+  const role = experience[2];
 
   useGSAP(
     () => {
@@ -18,6 +21,7 @@ export function Experience() {
         if (!track) return;
 
         const distance = () => track.scrollWidth - window.innerWidth;
+        const hold = () => window.innerHeight * 0.75;
 
         gsap.to(track, {
           x: () => -distance(),
@@ -28,7 +32,7 @@ export function Experience() {
             scrub: 1,
             anticipatePin: 1,
             invalidateOnRefresh: true,
-            end: () => `+=${distance()}`,
+            end: () => `+=${distance() + hold()}`,
           },
         });
 
@@ -54,87 +58,107 @@ export function Experience() {
       className="overflow-hidden border-t border-border bg-foreground text-background"
     >
       <div ref={trackRef} className="flex flex-col md:h-screen md:w-max md:flex-row">
-        <section className="flex min-h-screen flex-col justify-between px-6 py-16 md:h-screen md:w-screen md:shrink-0 md:px-12 md:py-14">
+        <article
+          data-experience-panel
+          className="grid min-h-screen px-6 py-14 md:h-screen md:w-screen md:shrink-0 md:grid-rows-[auto_1fr_auto] md:px-12"
+        >
           <div className="flex items-baseline gap-6">
             <span className="font-mono text-xs tracking-[0.25em] text-accent">04 EXPERIENCE</span>
             <span className="h-px flex-1 bg-background/20" />
-            <span className="hidden font-mono text-xs text-background/45 md:inline">HORIZONTAL TIMELINE</span>
+            <span className="hidden font-mono text-xs text-background/45 md:inline">01 / 02</span>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-12 md:items-end">
-            <div className="md:col-span-7">
-              <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">Actual timeline</p>
-              <h2 className="mt-3 max-w-3xl font-display text-5xl font-medium leading-[0.98] md:text-[7vw]">
-                From zero to hired.
+          <div className="grid gap-10 self-center md:grid-cols-12 md:items-center">
+            <div className="md:col-span-6">
+              <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
+                {learning.span} / {projects.span}
+              </p>
+              <h2 className="mt-3 max-w-3xl font-display text-4xl font-medium leading-[1.02] tracking-tight md:text-6xl">
+                Learning by building.
               </h2>
             </div>
-            <p className="max-w-md text-sm leading-[1.75] text-background/65 md:col-span-5">
-              Started learning in October 2024, built real full-stack projects through 2025, and landed the
-              first professional role on October 20, 2025.
-            </p>
+
+            <div className="space-y-7 md:col-span-5 md:col-start-8">
+              <p className="text-base leading-[1.8] text-background/74">
+                I started from zero in October 2024 and kept the learning practical: understand the basics, rebuild
+                interfaces, debug the gaps, then turn the lessons into complete projects.
+              </p>
+
+              <div className="grid gap-5 border-l border-background/20 pl-5">
+                <div>
+                  <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent">Foundation</p>
+                  <p className="mt-2 text-sm leading-relaxed text-background/72">
+                    HTML, CSS, JavaScript, React, Git, backend fundamentals, and the discipline to keep practicing
+                    until the pieces connected.
+                  </p>
+                </div>
+                <div>
+                  <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent">Proof</p>
+                  <p className="mt-2 text-sm leading-relaxed text-background/72">
+                    LinkVault, ZephyrLint, Tickure, and Snapsack turned the practice into real full-stack product
+                    work with auth, APIs, databases, dashboards, and responsive UI.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="hidden items-center gap-3 font-mono text-[11px] tracking-[0.22em] text-background/45 md:flex">
-            SCROLL
+            TIMELINE
             <span className="h-px w-16 bg-background/25" />
-            {experience.length} PANELS
+            TWO PHASES
           </div>
-        </section>
+        </article>
 
-        {experience.map((job, index) => (
-          <article
-            data-experience-panel
-            key={`${job.company}-${index}`}
-            className="flex min-h-screen flex-col px-6 py-16 md:h-screen md:w-screen md:shrink-0 md:px-12 md:py-14"
-          >
-            <div className="flex items-baseline gap-6">
-              <span className="font-mono text-xs tracking-[0.25em] text-accent">
-                {String(index + 1).padStart(2, "0")} / {String(experience.length).padStart(2, "0")}
-              </span>
-              <span className="h-px flex-1 bg-background/20" />
-              <span className="hidden font-mono text-xs text-background/45 md:inline">{job.span}</span>
+        <article
+          data-experience-panel
+          className="grid min-h-screen px-6 py-14 md:h-screen md:w-screen md:shrink-0 md:grid-rows-[auto_1fr_auto] md:px-12"
+        >
+          <div className="flex items-baseline gap-6">
+            <span className="font-mono text-xs tracking-[0.25em] text-accent">02 / 02</span>
+            <span className="h-px flex-1 bg-background/20" />
+            <span className="hidden font-mono text-xs text-background/45 md:inline">{role.span}</span>
+          </div>
+
+          <div className="grid gap-10 self-center md:grid-cols-12 md:items-center">
+            <div className="md:col-span-5">
+              <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">{role.span}</p>
+              <h3 className="mt-3 font-display text-4xl font-medium leading-[1.02] tracking-tight md:text-6xl">
+                {role.company}
+              </h3>
+              <p className="mt-4 font-display text-2xl italic text-background/72">{role.role}</p>
             </div>
 
-            <div className="grid flex-1 gap-8 py-10 md:grid-cols-12 md:items-center md:py-0">
-              <div className="md:col-span-5">
-                <div className="font-mono text-[11px] tracking-[0.25em] text-accent">{job.span}</div>
-                <h3 className="mt-4 font-display text-5xl font-medium leading-[0.98] md:text-[6.5vw]">
-                  {job.company}
-                </h3>
-                <p className="mt-3 font-display text-2xl italic text-background/72">{job.role}</p>
-              </div>
+            <div className="space-y-7 md:col-span-5 md:col-start-8">
+              <p className="text-base leading-[1.8] text-background/74">
+                On October 20, 2025, the self-taught work became a professional chapter: building production features,
+                working with requirements, and contributing across the full-stack flow.
+              </p>
 
-              <div className="rounded-[16px] border border-background/15 bg-background/[0.04] p-5 shadow-[0_22px_56px_-44px_var(--paper)] md:col-span-7 md:p-8">
-                <div className="flex items-start justify-between gap-4">
-                  <p className="max-w-xl text-base leading-[1.8] text-background/74">{job.blurb}</p>
-                  <span className="shrink-0 rounded-full border border-background/20 px-3 py-1 font-mono text-[11px] text-background/55">
-                    {job.year}
+              <ul className="grid gap-3 border-l border-background/20 pl-5">
+                {role.bullets.map((bullet, bulletIndex) => (
+                  <li key={bulletIndex} className="flex gap-3 text-sm leading-relaxed text-background/82">
+                    <span className="mt-[7px] h-1 w-1 shrink-0 bg-accent" />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-wrap gap-2">
+                {role.stack.map((tool, toolIndex) => (
+                  <span
+                    key={toolIndex}
+                    className="rounded-full border border-background/20 px-3 py-1.5 font-mono text-[11px] text-background/66"
+                  >
+                    {tool}
                   </span>
-                </div>
-
-                <ul className="mt-8 grid gap-3">
-                  {job.bullets.map((bullet, bulletIndex) => (
-                    <li key={bulletIndex} className="flex gap-3 text-sm leading-relaxed text-background/84">
-                      <span className="mt-[7px] h-1 w-1 shrink-0 bg-accent" />
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-10 flex flex-wrap gap-2">
-                  {job.stack.map((tool, toolIndex) => (
-                    <span
-                      key={toolIndex}
-                      className="rounded-full border border-background/20 px-3 py-1.5 font-mono text-[11px] text-background/66"
-                    >
-                      {tool}
-                    </span>
-                  ))}
-                </div>
+                ))}
               </div>
             </div>
-          </article>
-        ))}
+          </div>
+
+          {/* End of experience panel 2 */}
+        </article>
       </div>
     </section>
   );

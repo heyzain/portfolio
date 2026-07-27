@@ -257,13 +257,13 @@ export function Contact() {
   const showStandbyReceipt = hasSubmitted && !name && !email && !message && (phase === "idle" || phase === "resetting");
 
   return (
-    <section id="contact" className="relative overflow-hidden border-t border-border bg-paper px-6 py-16 md:px-12 md:py-24">
+    <section id="contact" className="relative overflow-hidden border-t border-border bg-paper px-8 py-16 lg:px-12 md:py-24">
       <Ambient className="opacity-25" />
 
-      <div className="relative z-10 mx-auto max-w-[1360px]">
-        <div className="mb-8 flex items-baseline gap-6 md:mb-10 [&>span:first-child]:font-semibold [&>span:first-child]:text-olive [&>span:last-child]:font-semibold [&>span:last-child]:tracking-[0.18em] [&>span:last-child]:text-ink/55">
-          <span className="font-mono text-xs tracking-[0.25em] text-accent">⑦ CONTACT</span>
-          <span className="h-px flex-1 bg-border" />
+      <div className="relative z-10 mx-auto max-w-[1400px]">
+        <div className="mb-8 flex items-baseline gap-6 md:mb-10">
+          <span className="font-mono text-xs tracking-[0.25em] text-accent">07 CONTACT</span>
+          <span className="h-px flex-1 bg-ink/20" />
           <span className="hidden font-mono text-xs text-muted-foreground md:inline">REMOTE FRIENDLY</span>
         </div>
 

@@ -114,11 +114,17 @@ export function ArcGalleryHero({
   return (
     <section
       ref={sectionRef}
-      className={`relative min-h-screen overflow-hidden bg-paper px-5 py-10 text-ink grain md:px-10 md:py-14 ${className}`}
+      className={`relative min-h-screen overflow-hidden bg-paper px-8 pb-14 pt-10 text-ink grain lg:px-12 lg:pt-12 ${className}`}
     >
       <div className="ambient-grid pointer-events-none absolute inset-0 opacity-60" />
-      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-5rem)] max-w-[1360px] flex-col justify-center">
-        <div className="relative mx-auto w-full" style={{ height: dimensions.radius * 0.72 }}>
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-6rem)] max-w-[1400px] flex-col justify-between">
+        <div className="flex items-baseline gap-6 w-full text-left">
+          <span className="font-mono text-xs tracking-[0.25em] text-accent">03 THE STACK</span>
+          <span className="h-px flex-1 bg-ink/20" />
+          <span className="hidden font-mono text-xs text-muted-foreground md:inline">FULL-STACK CAPABILITIES</span>
+        </div>
+        <div className="my-auto relative w-full pt-4">
+          <div className="relative mx-auto w-full" style={{ height: dimensions.radius * 0.72 }}>
           <div className="absolute left-1/2 bottom-0 -translate-x-1/2">
             {items.map((item, index) => {
               const angle = startAngle + step * index;
@@ -164,9 +170,9 @@ export function ArcGalleryHero({
         </div>
 
         <div className="relative z-10 mx-auto -mt-20 max-w-4xl text-center sm:-mt-24 md:-mt-32 lg:-mt-36">
-          <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-olive">full-stack capabilities</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-vermillion">full-stack capabilities</p>
           <h2
-            className={`mt-3 font-display text-4xl font-medium leading-[0.98] tracking-tight text-ink md:text-6xl lg:text-[4.35rem] ${
+            className={`mt-3 font-display text-4xl font-medium leading-[1.02] tracking-tight text-ink md:text-6xl ${
               isInView ? "copy-in" : "opacity-0"
             }`}
           >
@@ -211,6 +217,7 @@ export function ArcGalleryHero({
           </div>
         </div>
       </div>
+    </div>
 
       <style>{`
         @keyframes arc-card-in {

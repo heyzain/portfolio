@@ -28,7 +28,7 @@ export const sections = [
   { id: "background", num: "②", label: "BACKGROUND" },
   { id: "stack", num: "③", label: "THE STACK" },
   { id: "experience", num: "④", label: "EXPERIENCE" },
-  { id: "work", num: "⑤", label: "SELECTED WORK" },
+  { id: "work", num: "⑤", label: "FEATURED WORKPLACE PROJECTS" },
   { id: "after-hours", num: "⑥", label: "AFTER HOURS" },
   { id: "contact", num: "⑦", label: "CONTACT" },
 ];
@@ -187,11 +187,10 @@ export const experience = [
     company: "Started from zero",
     role: "Self-taught full-stack foundation",
     blurb:
-      "October 2024 is where the serious learning started: no polished path, just daily practice, documentation, tutorials rebuilt from scratch, and small experiments that slowly turned into real product thinking.",
+      "Started in October 2024 with the basics and kept the pace practical: rebuild, break, debug, repeat.",
     bullets: [
-      "Built the core base in HTML, CSS, JavaScript, React, and backend fundamentals.",
-      "Practiced by rebuilding interfaces and then changing them until the logic made sense.",
-      "Learned debugging discipline, Git workflow, deployment basics, and how frontend and backend pieces connect.",
+      "Built the base in HTML, CSS, JavaScript, React, Git, and backend fundamentals.",
+      "Turned tutorials into changed, working interfaces instead of copied screens.",
     ],
     stack: ["HTML", "CSS", "JavaScript", "React", "Git"],
   },
@@ -201,11 +200,10 @@ export const experience = [
     company: "Product practice",
     role: "Portfolio projects and full-stack builds",
     blurb:
-      "The learning moved from isolated concepts into complete apps. LinkVault, ZephyrLint, Tickure, and Snapsack became the proof: authentication, dashboards, CRUD flows, APIs, databases, and user-facing polish.",
+      "Moved from isolated lessons into complete products: LinkVault, ZephyrLint, Tickure, and Snapsack.",
     bullets: [
-      "Shipped multiple full-stack projects with secure login, dashboards, filters, analytics, and admin-style workflows.",
-      "Designed and implemented API routes, MongoDB models, protected UI states, and responsive product interfaces.",
-      "Used each project to practice the real cycle: idea, structure, build, test, deploy, improve.",
+      "Shipped authentication, dashboards, filters, API routes, MongoDB models, and responsive UI.",
+      "Practiced the full cycle: idea, structure, build, test, deploy, improve.",
     ],
     stack: ["React", "Node.js", "Express", "MongoDB", "Tailwind"],
   },
@@ -215,11 +213,10 @@ export const experience = [
     company: "Kakushin",
     role: "Full-Stack Developer",
     blurb:
-      "The first professional chapter started on October 20, 2025. After a year of focused self-learning and shipped projects, the work shifted into a real team environment: building production features, collaborating, and turning requirements into usable web experiences.",
+      "Joined Kakushin on October 20, 2025, turning self-taught momentum into professional product work.",
     bullets: [
-      "Work across frontend and backend tasks with a product-minded full-stack approach.",
-      "Translate requirements into usable interfaces, data flows, and maintainable application code.",
-      "Bring the same self-taught momentum into professional delivery: learn fast, communicate clearly, and ship carefully.",
+      "Work across frontend, backend, data flow, and production UI tasks.",
+      "Translate requirements into maintainable features with clear communication.",
     ],
     stack: ["Next.js", "React", "TypeScript", "Node.js", "MongoDB"],
   },

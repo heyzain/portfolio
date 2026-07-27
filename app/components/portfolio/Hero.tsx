@@ -97,54 +97,145 @@ export function Hero({ ready }: { ready: boolean }) {
           <div
             data-hero-reveal
             data-hero-meta
-            className="group absolute -right-2 top-[-5.8rem] z-20 hidden h-[31rem] w-[23.5rem] max-w-full text-left lg:block xl:right-10 xl:w-[25rem] 2xl:right-8"
+            className="group absolute -right-2 top-[-4.5rem] z-20 hidden h-[34rem] w-[23.5rem] max-w-full text-left lg:block xl:right-8 xl:w-[24.5rem] 2xl:right-6"
           >
             <HangingIdCard
               className="pointer-events-auto"
               cardClassName="w-auto overflow-visible rounded-none border-0 bg-transparent shadow-none"
-              ropeLength={118}
+              ropeLength={92}
               ropeColor="#0b0b0b"
               accentColor="#0b0b0b"
               showHint={false}
               enableClickImpulse={false}
             >
-              <span className="relative flex aspect-[0.68] w-[20.5rem] flex-col overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#050505] px-7 py-8 text-white shadow-[0_34px_70px_rgba(0,0,0,0.34),0_10px_22px_rgba(0,0,0,0.18)] xl:w-[22rem]">
-                <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_34%_16%,rgba(255,255,255,0.16),transparent_30%),linear-gradient(135deg,#242424_0%,#0d0d0d_38%,#020202_72%,#171717_100%)]" />
-                <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.075)_34%,transparent_58%)] opacity-75" />
-                <span className="pointer-events-none absolute inset-0 opacity-22 [background-image:linear-gradient(rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:48px_48px]" />
-                <span className="pointer-events-none absolute left-1/2 top-8 h-28 w-28 -translate-x-1/2 rounded-full bg-white/10 blur-2xl" />
-                <span className="absolute left-5 top-5 h-2 w-2 rounded-full border border-white/20 bg-white/5" />
-                <span className="absolute right-5 top-5 h-2 w-2 rounded-full border border-white/20 bg-white/5" />
-                <span className="absolute bottom-5 left-5 h-2 w-2 rounded-full border border-white/20 bg-white/5" />
-                <span className="absolute bottom-5 right-5 h-2 w-2 rounded-full border border-white/20 bg-white/5" />
-                <span className="relative z-20 flex h-full flex-col items-center justify-center gap-5 text-center">
-                  <span className="flex h-20 w-20 items-center justify-center rounded-full border border-white/20 bg-white/88 font-display text-2xl text-foreground shadow-[0_18px_50px_rgba(255,255,255,0.12)] transition duration-500 group-hover:scale-105">
-                    ZA
-                  </span>
-                  <span>
-                    <span className="block whitespace-nowrap font-mono text-[1.02rem] font-semibold uppercase leading-tight tracking-[0.22em] text-white xl:text-[1.12rem]">
-                      {profile.name}
+              <span className="relative flex w-[21rem] flex-col overflow-hidden rounded-[1.35rem] border border-white/12 bg-[#050505] p-6 text-white shadow-[0_34px_70px_rgba(0,0,0,0.38),0_10px_22px_rgba(0,0,0,0.22)] xl:w-[22.5rem]">
+                {/* Background lighting & textures */}
+                <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_34%_12%,rgba(255,255,255,0.14),transparent_40%),linear-gradient(135deg,#1f1f1f_0%,#0a0a0a_40%,#020202_75%,#121212_100%)]" />
+                <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.06)_34%,transparent_58%)] opacity-75" />
+                <span className="pointer-events-none absolute inset-0 opacity-15 [background-image:linear-gradient(rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:36px_36px]" />
+                <span className="pointer-events-none absolute left-1/2 top-6 h-32 w-32 -translate-x-1/2 rounded-full bg-white/10 blur-2xl" />
+
+                {/* Corner rivets */}
+                <span className="absolute left-4 top-4 h-2 w-2 rounded-full border border-white/20 bg-white/10" />
+                <span className="absolute right-4 top-4 h-2 w-2 rounded-full border border-white/20 bg-white/10" />
+                <span className="absolute bottom-4 left-4 h-2 w-2 rounded-full border border-white/20 bg-white/10" />
+                <span className="absolute bottom-4 right-4 h-2 w-2 rounded-full border border-white/20 bg-white/10" />
+
+                <span className="relative z-20 flex flex-col items-center gap-4 text-center">
+                  {/* Top card header: Smartchip + Status */}
+                  <div className="flex w-full items-center justify-between border-b border-white/10 pb-3">
+                    {/* SIM / Smartcard Chip SVG */}
+                    <div className="flex items-center gap-1.5">
+                      <div className="h-5 w-7 rounded-[3px] border border-amber-400/40 bg-gradient-to-br from-amber-300/30 via-amber-500/20 to-amber-600/40 p-[2px] shadow-sm">
+                        <div className="grid h-full w-full grid-cols-2 gap-[1px]">
+                          <div className="rounded-[1px] bg-amber-200/40" />
+                          <div className="rounded-[1px] bg-amber-200/40" />
+                          <div className="rounded-[1px] bg-amber-200/40" />
+                          <div className="rounded-[1px] bg-amber-200/40" />
+                        </div>
+                      </div>
+                      <span className="font-mono text-[0.52rem] uppercase tracking-[0.2em] text-white/40">
+                        DEV // ACCESS
+                      </span>
+                    </div>
+
+                    {/* Online Status Pill */}
+                    <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[0.52rem] font-medium uppercase tracking-wider text-emerald-400">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      AVAILABLE
                     </span>
-                    <span className="mt-2 block font-mono text-[0.58rem] uppercase tracking-[0.26em] text-white/45">
-                      ID #ZA-954
+                  </div>
+
+                  {/* Avatar & Main Identity */}
+                  <div className="flex flex-col items-center gap-2 pt-1">
+                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-white/25 bg-gradient-to-b from-white/20 via-white/10 to-white/5 font-display text-xl text-white shadow-[0_12px_35px_rgba(0,0,0,0.6)] transition duration-500 group-hover:scale-105 group-hover:border-white/40">
+                      <span className="absolute -inset-1 rounded-full bg-white/10 blur-sm opacity-60" />
+                      <span className="relative z-10 font-medium tracking-tight">ZA</span>
+                    </div>
+                    <div>
+                      <span className="block font-mono text-[1.08rem] font-bold uppercase tracking-[0.22em] text-white">
+                        {profile.name}
+                      </span>
+                      <span className="mt-0.5 block font-mono text-[0.62rem] font-medium uppercase tracking-[0.2em] text-accent">
+                        {profile.role}
+                      </span>
+                      <span className="mt-1.5 inline-block rounded border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[0.54rem] tracking-[0.22em] text-white/45">
+                        ID #ZA-954 // VERIFIED
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Tech Stack Pills */}
+                  <div className="w-full border-t border-white/10 pt-3">
+                    <span className="mb-2 block text-center font-mono text-[0.5rem] uppercase tracking-[0.25em] text-white/40">
+                      PRIMARY TOOLSET
                     </span>
-                  </span>
-                  <span className="mt-8 grid w-full grid-cols-2 gap-6 font-mono text-[0.55rem] uppercase tracking-[0.18em] text-white/46">
-                    <span className="text-left">
-                      Department
-                      <br />
-                      <span className="text-white/72">Product Eng.</span>
+                    <div className="flex flex-wrap items-center justify-center gap-1.5">
+                      {["React", "Next.js", "TypeScript", "Node.js", "MongoDB", "Tailwind"].map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-md border border-white/12 bg-white/5 px-2 py-0.5 font-mono text-[0.56rem] tracking-wider text-white/80 transition-colors group-hover:border-white/25 group-hover:bg-white/10"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Detailed Specs Grid */}
+                  <div className="grid w-full grid-cols-2 gap-2 text-left font-mono text-[0.54rem] uppercase tracking-[0.16em]">
+                    <div className="rounded-lg border border-white/8 bg-white/[0.03] p-2">
+                      <span className="block text-[0.48rem] text-white/40">DEPARTMENT</span>
+                      <span className="font-semibold text-white/85">PRODUCT ENG.</span>
+                    </div>
+                    <div className="rounded-lg border border-white/8 bg-white/[0.03] p-2">
+                      <span className="block text-[0.48rem] text-white/40">EXPERIENCE</span>
+                      <span className="font-semibold text-white/85">2+ YEARS</span>
+                    </div>
+                    <div className="rounded-lg border border-white/8 bg-white/[0.03] p-2">
+                      <span className="block text-[0.48rem] text-white/40">DEGREE</span>
+                      <span className="font-semibold text-white/85">BSCS</span>
+                    </div>
+                    <div className="rounded-lg border border-white/8 bg-white/[0.03] p-2">
+                      <span className="block text-[0.48rem] text-white/40">LOCATION</span>
+                      <span className="font-semibold text-white/85">{profile.location}</span>
+                    </div>
+                  </div>
+
+                  {/* Security Barcode */}
+                  <div className="flex w-full flex-col items-center gap-1 pt-1">
+                    <div className="flex h-5 items-center gap-[2px] opacity-40 transition-opacity group-hover:opacity-70">
+                      {[4, 2, 6, 1, 3, 5, 2, 4, 1, 6, 2, 5, 3, 1, 4, 2, 6, 3, 1, 5, 2, 4, 1, 3, 6, 2, 4].map((h, i) => (
+                        <span
+                          key={i}
+                          className="rounded-[0.5px] bg-white"
+                          style={{
+                            width: i % 4 === 0 ? "2px" : "1px",
+                            height: `${h * 2.5 + 6}px`,
+                          }}
+                        />
+                      ))}
+                    </div>
+                    <span className="font-mono text-[0.48rem] tracking-[0.28em] text-white/30">
+                      954-2024-FULLSTACK-ACCESS
                     </span>
-                    <span className="text-right">
-                      Position
-                      <br />
-                      <span className="text-white/72">{profile.role}</span>
+                  </div>
+
+                  {/* Interactive Footer Button */}
+                  <button
+                    type="button"
+                    onClick={() => scrollToSection("contact")}
+                    className="flex w-full items-center justify-between border-t border-white/10 pt-3 font-mono text-[0.58rem] uppercase tracking-[0.2em] text-white/65 transition-colors hover:text-white"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                      GET IN TOUCH
                     </span>
-                  </span>
-                  <span className="mt-auto flex w-full items-center justify-between border-t border-white/10 pt-4 font-mono text-[0.58rem] uppercase tracking-[0.2em] text-white/62">
-                    <span>Contact</span>
-                    <span className="transition-transform duration-500 group-hover:translate-x-1">-&gt;</span>
-                  </span>
+                    <span className="flex items-center gap-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <span>CONNECT</span>
+                      <span>-&gt;</span>
+                    </span>
+                  </button>
                 </span>
               </span>
             </HangingIdCard>
@@ -168,7 +259,7 @@ export function Hero({ ready }: { ready: boolean }) {
               <MagneticButton
                 as="button"
                 onClick={() => scrollToSection("contact")}
-                className="apple-glass inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-mono text-[11px] tracking-[0.25em] text-foreground hover:text-accent-foreground"
+                className="apple-glass inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-mono text-[11px] tracking-[0.25em] text-foreground transition-colors hover:bg-foreground hover:text-background"
               >
                 <span className="relative z-10">GET IN TOUCH</span>
               </MagneticButton>

@@ -800,7 +800,7 @@ export function WorkProjectsShowcase() {
 
   if (isMobile) {
     return (
-      <section id="after-hours" className="relative flex min-h-screen flex-col justify-between overflow-hidden bg-[#F6F3EC] px-6 pb-16 pt-24">
+      <section id="after-hours" className="relative flex min-h-screen flex-col justify-between overflow-hidden bg-[#F6F3EC] px-8 pb-16 pt-24 lg:px-12">
         <ProjectCaseStudyModal project={selectedProject} onClose={() => setSelectedProject(null)} />
         <div className="mb-8 w-full text-left">
           <div className="flex items-baseline gap-6 w-full mb-6">

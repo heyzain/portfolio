@@ -57,7 +57,6 @@ export function Hero({ ready }: { ready: boolean }) {
           y: 0,
         });
       }
-
     },
     { scope: rootRef, dependencies: [ready] },
   );
@@ -67,7 +66,7 @@ export function Hero({ ready }: { ready: boolean }) {
       id="intro"
       ref={rootRef}
       data-hero-ready={ready}
-      className="grain relative flex min-h-screen flex-col overflow-hidden bg-paper px-6 pb-10 pt-8 md:px-12"
+      className="grain relative flex min-h-0 flex-col justify-between overflow-hidden bg-paper px-8 pb-12 pt-8 lg:min-h-screen lg:pb-10 lg:px-12"
     >
       <Ambient className="opacity-35" />
 
@@ -78,19 +77,19 @@ export function Hero({ ready }: { ready: boolean }) {
       </header>
 
       {/* kinetic manifesto */}
-      <div className="relative z-10 mx-auto mt-20 w-full max-w-[1360px] md:mt-24 xl:mt-28">
-        <p data-hero-reveal data-hero-meta className="mb-5 font-mono text-xs tracking-[0.25em] text-accent">
+      <div className="relative z-10 mx-auto mt-10 sm:mt-14 md:mt-20 xl:mt-24 w-full max-w-[1400px]">
+        <p data-hero-reveal data-hero-meta className="mb-3 sm:mb-5 font-mono text-[10px] sm:text-xs tracking-[0.16em] sm:tracking-[0.25em] text-accent">
           ① {profile.name.toUpperCase()} — OPEN TO FULL-STACK ROLES
         </p>
         <div className="relative">
-          <h1 className="relative z-10 max-w-[66rem] font-display font-medium leading-[0.95] tracking-tight text-foreground xl:max-w-[74rem]">
-            <span data-hero-reveal data-hero-line className="block text-[13vw] md:text-[7.45vw] 2xl:text-[7.2vw]">
+          <h1 className="relative z-10 max-w-[66rem] font-display font-medium leading-[0.98] sm:leading-[0.95] tracking-tight text-foreground xl:max-w-[74rem]">
+            <span data-hero-reveal data-hero-line className="block text-[10vw] sm:text-[11.5vw] md:text-[7.45vw] 2xl:text-[7.2vw]">
               I build web apps
             </span>
-            <span data-hero-reveal data-hero-line className="block text-[13vw] italic md:text-[7.45vw] 2xl:text-[7.2vw]">
+            <span data-hero-reveal data-hero-line className="block text-[10vw] sm:text-[11.5vw] italic md:text-[7.45vw] 2xl:text-[7.2vw]">
               people actually
             </span>
-            <span data-hero-reveal data-hero-line className="block text-[13vw] md:text-[7.45vw] 2xl:text-[7.2vw]">
+            <span data-hero-reveal data-hero-line className="block text-[10vw] sm:text-[11.5vw] md:text-[7.45vw] 2xl:text-[7.2vw]">
               use<span className="text-accent">.</span>
             </span>
           </h1>
@@ -241,29 +240,48 @@ export function Hero({ ready }: { ready: boolean }) {
             </HangingIdCard>
           </div>
         </div>
-        <div className="mt-10 flex flex-wrap items-end justify-between gap-8">
+        <div className="mt-6 sm:mt-8 md:mt-10 flex flex-wrap items-end justify-between gap-8">
           <div className="max-w-md">
-            <p data-hero-reveal data-hero-meta className="text-sm leading-relaxed text-muted-foreground">
+            <p data-hero-reveal data-hero-meta className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
               {profile.name}, full-stack developer. I own the whole build —
               database, API, and interface — and ship products that solve the
               problem they were made for.
             </p>
-            <div data-hero-reveal data-hero-meta className="mt-6 flex flex-wrap items-center gap-3">
+            <div data-hero-reveal data-hero-meta className="mt-4 sm:mt-6 flex flex-wrap items-center gap-2.5 sm:gap-3">
               <MagneticButton
                 as="button"
                 onClick={() => scrollToSection("work")}
-                className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 font-mono text-[11px] tracking-[0.25em] text-background shadow-[0_14px_30px_-14px_var(--ink)] transition-colors hover:bg-accent hover:text-accent-foreground"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 sm:px-7 sm:py-3.5 font-mono text-[10px] sm:text-[11px] tracking-[0.18em] sm:tracking-[0.25em] text-background shadow-[0_14px_30px_-14px_var(--ink)] transition-colors hover:bg-accent hover:text-accent-foreground"
               >
                 SEE MY WORK <span aria-hidden>↓</span>
               </MagneticButton>
               <MagneticButton
                 as="button"
                 onClick={() => scrollToSection("contact")}
-                className="apple-glass inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-mono text-[11px] tracking-[0.25em] text-foreground transition-colors hover:bg-foreground hover:text-background"
+                className="apple-glass inline-flex items-center gap-2 rounded-full px-5 py-3 sm:px-7 sm:py-3.5 font-mono text-[10px] sm:text-[11px] tracking-[0.18em] sm:tracking-[0.25em] text-foreground transition-colors hover:bg-foreground hover:text-background"
               >
                 <span className="relative z-10">GET IN TOUCH</span>
               </MagneticButton>
             </div>
+          </div>
+        </div>
+
+        {/* Mobile Spec Strip (Mobile Only - Fills bottom empty space) */}
+        <div data-hero-reveal data-hero-meta className="mt-6 border-t border-ink/10 pt-4 lg:hidden">
+          <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+            <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-emerald-600 font-semibold">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              AVAILABLE FOR HIRE
+            </span>
+            <span className="rounded-full border border-ink/10 bg-white/60 px-2.5 py-1 font-semibold text-ink">
+              2+ YRS EXP
+            </span>
+            <span className="rounded-full border border-ink/10 bg-white/60 px-2.5 py-1 font-semibold text-ink">
+              BSCS DEGREE
+            </span>
+            <span className="rounded-full border border-ink/10 bg-white/60 px-2.5 py-1 font-semibold text-ink">
+              PRODUCT ENG.
+            </span>
           </div>
         </div>
       </div>

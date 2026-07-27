@@ -60,7 +60,7 @@ export function Experience() {
       <div ref={trackRef} className="flex flex-col md:h-screen md:w-max md:flex-row">
         <article
           data-experience-panel
-          className="grid min-h-screen px-6 py-14 md:h-screen md:w-screen md:shrink-0 md:grid-rows-[auto_1fr_auto] md:px-12"
+          className="grid min-h-screen px-8 py-14 md:h-screen md:w-screen md:shrink-0 md:grid-rows-[auto_1fr_auto] lg:px-12"
         >
           <div className="flex items-baseline gap-6">
             <span className="font-mono text-xs tracking-[0.25em] text-accent">04 EXPERIENCE</span>
@@ -112,7 +112,7 @@ export function Experience() {
 
         <article
           data-experience-panel
-          className="grid min-h-screen px-6 py-14 md:h-screen md:w-screen md:shrink-0 md:grid-rows-[auto_1fr_auto] md:px-12"
+          className="grid min-h-screen px-8 py-14 md:h-screen md:w-screen md:shrink-0 md:grid-rows-[auto_1fr_auto] lg:px-12"
         >
           <div className="flex items-baseline gap-6">
             <span className="font-mono text-xs tracking-[0.25em] text-accent">02 / 02</span>

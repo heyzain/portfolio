@@ -510,7 +510,7 @@ export function StickyProjectCards() {
           </div>
         </div>
       ) : (
-        <div className="mx-auto max-w-[720px] px-6 pb-24 pt-16">
+        <div className="mx-auto max-w-[1400px] px-8 pb-24 pt-16 lg:px-12">
           <div className="mb-10 flex items-baseline gap-6">
             <span className="font-mono text-xs tracking-[0.25em] text-accent">05 FEATURED WORKPLACE PROJECTS</span>
             <span className="h-px flex-1 bg-ink/20" />
@@ -522,7 +522,7 @@ export function StickyProjectCards() {
               ref={(element) => {
                 mobileRefs.current[index] = element;
               }}
-              className="mb-24 flex flex-col gap-6 opacity-0 animate-[fadeIn_.6s_ease-out_forwards]"
+              className="mb-20 flex flex-col gap-6 opacity-100"
               style={{ animationDelay: "0.05s" }}
               aria-label={`Project ${project.number}: ${project.title}`}
             >

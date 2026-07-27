@@ -96,18 +96,18 @@ export function Hero({ ready }: { ready: boolean }) {
           <div
             data-hero-reveal
             data-hero-meta
-            className="group absolute -right-2 top-[-4.5rem] z-20 hidden h-[34rem] w-[23.5rem] max-w-full text-left lg:block xl:right-8 xl:w-[24.5rem] 2xl:right-6"
+            className="group absolute -right-2 top-[-3.5rem] z-20 hidden h-[32rem] w-[23.5rem] max-w-full text-left lg:block xl:right-8 xl:w-[24.5rem] 2xl:right-6"
           >
             <HangingIdCard
               className="pointer-events-auto"
               cardClassName="w-auto overflow-visible rounded-none border-0 bg-transparent shadow-none"
-              ropeLength={92}
+              ropeLength={82}
               ropeColor="#0b0b0b"
               accentColor="#0b0b0b"
               showHint={false}
               enableClickImpulse={false}
             >
-              <span className="relative flex w-[21rem] flex-col overflow-hidden rounded-[1.35rem] border border-white/12 bg-[#050505] p-6 text-white shadow-[0_34px_70px_rgba(0,0,0,0.38),0_10px_22px_rgba(0,0,0,0.22)] xl:w-[22.5rem]">
+              <span className="relative flex w-[21rem] flex-col overflow-hidden rounded-[1.35rem] border border-white/12 bg-[#050505] p-5 text-white shadow-[0_34px_70px_rgba(0,0,0,0.38),0_10px_22px_rgba(0,0,0,0.22)] xl:w-[22rem]">
                 {/* Background lighting & textures */}
                 <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_34%_12%,rgba(255,255,255,0.14),transparent_40%),linear-gradient(135deg,#1f1f1f_0%,#0a0a0a_40%,#020202_75%,#121212_100%)]" />
                 <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.06)_34%,transparent_58%)] opacity-75" />
@@ -120,36 +120,17 @@ export function Hero({ ready }: { ready: boolean }) {
                 <span className="absolute bottom-4 left-4 h-2 w-2 rounded-full border border-white/20 bg-white/10" />
                 <span className="absolute bottom-4 right-4 h-2 w-2 rounded-full border border-white/20 bg-white/10" />
 
-                <span className="relative z-20 flex flex-col items-center gap-4 text-center">
-                  {/* Top card header: Smartchip + Status */}
-                  <div className="flex w-full items-center justify-between border-b border-white/10 pb-3">
-                    {/* SIM / Smartcard Chip SVG */}
-                    <div className="flex items-center gap-1.5">
-                      <div className="h-5 w-7 rounded-[3px] border border-amber-400/40 bg-gradient-to-br from-amber-300/30 via-amber-500/20 to-amber-600/40 p-[2px] shadow-sm">
-                        <div className="grid h-full w-full grid-cols-2 gap-[1px]">
-                          <div className="rounded-[1px] bg-amber-200/40" />
-                          <div className="rounded-[1px] bg-amber-200/40" />
-                          <div className="rounded-[1px] bg-amber-200/40" />
-                          <div className="rounded-[1px] bg-amber-200/40" />
-                        </div>
-                      </div>
-                      <span className="font-mono text-[0.52rem] uppercase tracking-[0.2em] text-white/40">
-                        DEV // ACCESS
-                      </span>
-                    </div>
-
-                    {/* Online Status Pill */}
-                    <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[0.52rem] font-medium uppercase tracking-wider text-emerald-400">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      AVAILABLE
-                    </span>
-                  </div>
-
+                <span className="relative z-20 flex flex-col items-center gap-3.5 text-center">
                   {/* Avatar & Main Identity */}
                   <div className="flex flex-col items-center gap-2 pt-1">
                     <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-white/25 bg-gradient-to-b from-white/20 via-white/10 to-white/5 font-display text-xl text-white shadow-[0_12px_35px_rgba(0,0,0,0.6)] transition duration-500 group-hover:scale-105 group-hover:border-white/40">
                       <span className="absolute -inset-1 rounded-full bg-white/10 blur-sm opacity-60" />
                       <span className="relative z-10 font-medium tracking-tight">ZA</span>
+
+                      {/* Green Status Ticker Badge on Profile Circle */}
+                      <span className="absolute bottom-0 right-0 z-20 flex h-4 w-4 items-center justify-center rounded-full bg-[#050505] p-[2px]">
+                        <span className="h-full w-full rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                      </span>
                     </div>
                     <div>
                       <span className="block font-mono text-[1.08rem] font-bold uppercase tracking-[0.22em] text-white">
@@ -202,20 +183,20 @@ export function Hero({ ready }: { ready: boolean }) {
                   </div>
 
                   {/* Security Barcode */}
-                  <div className="flex w-full flex-col items-center gap-1 pt-1">
-                    <div className="flex h-5 items-center gap-[2px] opacity-40 transition-opacity group-hover:opacity-70">
+                  <div className="flex w-full flex-col items-center gap-1 pt-0.5">
+                    <div className="flex h-4 items-center gap-[2px] opacity-40 transition-opacity group-hover:opacity-70">
                       {[4, 2, 6, 1, 3, 5, 2, 4, 1, 6, 2, 5, 3, 1, 4, 2, 6, 3, 1, 5, 2, 4, 1, 3, 6, 2, 4].map((h, i) => (
                         <span
                           key={i}
                           className="rounded-[0.5px] bg-white"
                           style={{
                             width: i % 4 === 0 ? "2px" : "1px",
-                            height: `${h * 2.5 + 6}px`,
+                            height: `${h * 2 + 5}px`,
                           }}
                         />
                       ))}
                     </div>
-                    <span className="font-mono text-[0.48rem] tracking-[0.28em] text-white/30">
+                    <span className="font-mono text-[0.46rem] tracking-[0.28em] text-white/30">
                       954-2024-FULLSTACK-ACCESS
                     </span>
                   </div>
@@ -224,7 +205,7 @@ export function Hero({ ready }: { ready: boolean }) {
                   <button
                     type="button"
                     onClick={() => scrollToSection("contact")}
-                    className="flex w-full items-center justify-between border-t border-white/10 pt-3 font-mono text-[0.58rem] uppercase tracking-[0.2em] text-white/65 transition-colors hover:text-white"
+                    className="flex w-full items-center justify-between border-t border-white/10 pt-2.5 font-mono text-[0.58rem] uppercase tracking-[0.2em] text-white/65 transition-colors hover:text-white"
                   >
                     <span className="flex items-center gap-1.5">
                       <span className="h-1.5 w-1.5 rounded-full bg-accent" />

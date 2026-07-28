@@ -7,9 +7,11 @@ import { reportLovableError } from "@/lib/lovable-error-reporting";
 
 export default function Error({
   error,
+  unstable_retry,
   reset,
 }: {
   error: Error & { digest?: string };
+  unstable_retry?: () => void;
   reset: () => void;
 }) {
   const router = useRouter();
@@ -31,8 +33,12 @@ export default function Error({
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
-              router.refresh();
-              reset();
+              if (unstable_retry) {
+                unstable_retry();
+              } else {
+                router.refresh();
+                reset();
+              }
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >

@@ -32,6 +32,7 @@ export function SmoothScroll() {
       gsap.ticker.remove(raf);
       lenis.destroy();
       setLenis(null);
+      delete (window as unknown as { __lenis?: unknown }).__lenis;
     };
   }, []);
 

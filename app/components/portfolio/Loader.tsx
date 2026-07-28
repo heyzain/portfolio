@@ -95,7 +95,9 @@ export function Loader({ onDone }: { onDone: () => void }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (gone) return null;
+  if (gone) {
+    return <div className="pointer-events-none fixed inset-0 z-[-1] hidden" aria-hidden="true" />;
+  }
 
   return (
     <div

@@ -20,9 +20,9 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Contact", id: "contact" },
 ];
 
-export function FloatingNav() {
+export function FloatingNav({ ready = true }: { ready?: boolean }) {
   const [activeSection, setActiveSection] = useState("intro");
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(ready);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavbarOverDark, setIsNavbarOverDark] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -92,7 +92,7 @@ export function FloatingNav() {
     <nav
       className={cn(
         "fixed left-1/2 top-4 z-50 -translate-x-1/2 transition-all duration-500 ease-out",
-        visible ? "translate-y-0 opacity-100" : "-translate-y-20 opacity-0 pointer-events-none"
+        visible && ready ? "translate-y-0 opacity-100" : "-translate-y-20 opacity-0 pointer-events-none"
       )}
     >
       {/* Desktop Navbar (MD & Up) */}

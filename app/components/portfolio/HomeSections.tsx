@@ -33,7 +33,7 @@ export function HomeSections() {
     <main className="bg-background text-foreground">
       <SmoothScroll />
       <Loader onDone={() => setReady(true)} />
-      {ready && <FloatingNav />}
+      <FloatingNav ready={ready} />
       <Hero ready={ready} />
       <BackgroundEssay />
       <SkillsArc />

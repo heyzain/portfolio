@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ArrowUpRight, ChevronRight, ExternalLink, Eye, Github, X } from "lucide-react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { playgroundProjects } from "@/content/portfolio";
@@ -330,9 +331,14 @@ function ProjectCard({ project, isActive, onClick, onPointerMove, onPointerEnter
 }
 
 function ProjectCaseStudyModal({ project, onClose }: { project: Project | null; onClose: () => void }) {
+  const [mounted, setMounted] = useState(false);
   const modalScrollRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<number | null>(null);
   const [isClosing, setIsClosing] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!project) return;
@@ -371,9 +377,38 @@ function ProjectCaseStudyModal({ project, onClose }: { project: Project | null; 
     }, 240);
   };
 
-  if (!project) return null;
+  if (!project || !mounted) return null;
 
-  return (
+  const caseStudy = project.caseStudy || {
+    brief: project.description || "Project case study overview.",
+    challenge: "Defining user needs and architectural scope.",
+    solution: "Designing an intuitive, responsive user experience.",
+    outcome: "A production-ready web platform.",
+    duration: "3 weeks",
+    audience: "Target product users and developers.",
+    research: ["User interaction signals", "Interface performance"],
+    decisions: [{ title: "Product Architecture", description: "Focused on clarity and performance." }],
+    sections: [
+      {
+        kicker: "Overview",
+        title: project.title,
+        body: project.description,
+        imageLabel: "Interface",
+        imageCaption: project.tagline,
+      },
+    ],
+    learnings: ["Building with clear defaults improves product quality."],
+    screens: [{ label: "Dashboard", caption: "Main product interface." }],
+  };
+
+  const technologies = project.technologies || [];
+  const researchList = caseStudy.research || [];
+  const sectionsList = caseStudy.sections || [];
+  const decisionsList = caseStudy.decisions || [];
+  const screensList = caseStudy.screens || [];
+  const learningsList = caseStudy.learnings || [];
+
+  return createPortal(
     <div
       className={`fixed inset-0 z-[100] overflow-hidden bg-ink/45 px-3 pb-0 pt-3 text-ink backdrop-blur-md sm:px-6 sm:pb-0 sm:pt-6 ${
         isClosing ? "animate-case-study-backdrop-out" : "animate-case-study-backdrop-in"
@@ -415,7 +450,7 @@ function ProjectCaseStudyModal({ project, onClose }: { project: Project | null; 
 
             <div className="space-y-7">
               <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech) => (
+                {technologies.map((tech) => (
                   <span key={tech} className="rounded-full border border-ink/10 bg-white/70 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
                     {tech}
                   </span>
@@ -424,13 +459,13 @@ function ProjectCaseStudyModal({ project, onClose }: { project: Project | null; 
               <div>
                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground">Project Overview</p>
                 <h4 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight sm:text-5xl">{project.tagline}</h4>
-                <p className="mt-5 text-lg font-medium leading-relaxed text-ink/78">{project.caseStudy.brief}</p>
+                <p className="mt-5 text-lg font-medium leading-relaxed text-ink/78">{caseStudy.brief}</p>
               </div>
               <div className="grid gap-3 sm:grid-cols-3">
                 {[
                   ["Role", project.role],
-                  ["Timeline", project.caseStudy.duration],
-                  ["Audience", project.caseStudy.audience],
+                  ["Timeline", caseStudy.duration],
+                  ["Audience", caseStudy.audience],
                 ].map(([label, value]) => (
                   <div key={label} className="rounded-2xl border border-ink/10 bg-white/60 p-4">
                     <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{label}</p>
@@ -443,9 +478,9 @@ function ProjectCaseStudyModal({ project, onClose }: { project: Project | null; 
 
           <section className="mt-14 grid gap-4 md:grid-cols-3">
             {[
-              ["Challenge", project.caseStudy.challenge],
-              ["Solution", project.caseStudy.solution],
-              ["Outcome", project.caseStudy.outcome],
+              ["Challenge", caseStudy.challenge],
+              ["Solution", caseStudy.solution],
+              ["Outcome", caseStudy.outcome],
             ].map(([label, copy]) => (
               <div key={label} className="rounded-[22px] border border-ink/10 bg-white/62 p-5 shadow-sm">
                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground">{label}</p>
@@ -454,104 +489,119 @@ function ProjectCaseStudyModal({ project, onClose }: { project: Project | null; 
             ))}
           </section>
 
-          <section className="mt-16 border-y border-ink/10 py-12">
-            <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
-              <div>
-                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground">Research Signals</p>
-                <h4 className="mt-3 font-display text-3xl font-black leading-tight">What shaped the direction</h4>
+          {researchList.length > 0 ? (
+            <section className="mt-16 border-y border-ink/10 py-12">
+              <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
+                <div>
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground">Research Signals</p>
+                  <h4 className="mt-3 font-display text-3xl font-black leading-tight">What shaped the direction</h4>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {researchList.map((insight, index) => (
+                    <div key={insight} className="rounded-[22px] border border-ink/10 bg-[#fffaf0]/70 p-5">
+                      <p className="font-mono text-xs font-black text-vermillion">{String(index + 1).padStart(2, "0")}</p>
+                      <p className="mt-4 text-sm font-medium leading-relaxed text-ink/78">{insight}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="grid gap-4 sm:grid-cols-3">
-                {project.caseStudy.research.map((insight, index) => (
-                  <div key={insight} className="rounded-[22px] border border-ink/10 bg-[#fffaf0]/70 p-5">
-                    <p className="font-mono text-xs font-black text-vermillion">{String(index + 1).padStart(2, "0")}</p>
-                    <p className="mt-4 text-sm font-medium leading-relaxed text-ink/78">{insight}</p>
+            </section>
+          ) : null}
+
+          {sectionsList.length > 0 ? (
+            <div className="mt-16 space-y-16">
+              {sectionsList.map((section, index) => (
+                <section
+                  key={section.title}
+                  className={`grid gap-8 lg:grid-cols-2 lg:items-center ${index % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""}`}
+                >
+                  <div className="group/modal-image overflow-hidden rounded-[26px] border border-ink/12 bg-white p-3 shadow-[0_20px_60px_rgba(26,24,20,0.1)] transition duration-500 hover:-translate-y-1 hover:border-vermillion/40 hover:shadow-[0_30px_76px_rgba(26,24,20,0.15)]">
+                    <div className="relative overflow-hidden rounded-[18px]">
+                      <img src={project.image} alt={`${project.title} ${section.imageLabel}`} className="aspect-[16/10] w-full object-cover transition duration-700 group-hover/modal-image:scale-[1.04] group-hover/modal-image:saturate-[1.08]" />
+                      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.38)_44%,transparent_58%)] opacity-0 transition duration-700 group-hover/modal-image:translate-x-full group-hover/modal-image:opacity-100" />
+                    </div>
+                    <div className="px-2 pb-2 pt-4">
+                      <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground">{section.imageLabel}</p>
+                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{section.imageCaption}</p>
+                    </div>
+                  </div>
+
+                  <div className="max-w-xl">
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-vermillion">{section.kicker}</p>
+                    <h4 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight sm:text-5xl">{section.title}</h4>
+                    <p className="mt-5 text-base leading-relaxed text-ink/74 sm:text-lg">{section.body}</p>
+                  </div>
+                </section>
+              ))}
+            </div>
+          ) : null}
+
+          {decisionsList.length > 0 ? (
+            <section className="mt-16 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+              <div>
+                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground">Decision System</p>
+                <h4 className="mt-3 font-display text-3xl font-black leading-tight">The choices behind the interface</h4>
+              </div>
+              <div className="grid gap-4">
+                {decisionsList.map((decision) => (
+                  <div key={decision.title} className="rounded-[22px] border border-ink/10 bg-white/62 p-5">
+                    <h5 className="font-display text-xl font-bold">{decision.title}</h5>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{decision.description}</p>
                   </div>
                 ))}
               </div>
-            </div>
-          </section>
+            </section>
+          ) : null}
 
-          <div className="mt-16 space-y-16">
-            {project.caseStudy.sections.map((section, index) => (
-              <section
-                key={section.title}
-                className={`grid gap-8 lg:grid-cols-2 lg:items-center ${index % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""}`}
-              >
-                <div className="group/modal-image overflow-hidden rounded-[26px] border border-ink/12 bg-white p-3 shadow-[0_20px_60px_rgba(26,24,20,0.1)] transition duration-500 hover:-translate-y-1 hover:border-vermillion/40 hover:shadow-[0_30px_76px_rgba(26,24,20,0.15)]">
-                  <div className="relative overflow-hidden rounded-[18px]">
-                    <img src={project.image} alt={`${project.title} ${section.imageLabel}`} className="aspect-[16/10] w-full object-cover transition duration-700 group-hover/modal-image:scale-[1.04] group-hover/modal-image:saturate-[1.08]" />
-                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.38)_44%,transparent_58%)] opacity-0 transition duration-700 group-hover/modal-image:translate-x-full group-hover/modal-image:opacity-100" />
+          {screensList.length > 0 ? (
+            <section className="mt-16">
+              <p className="mb-5 font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground">Screen Notes</p>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {screensList.map((screen) => (
+                  <div key={screen.label} className="group/modal-image rounded-[22px] border border-ink/10 bg-white/65 p-3 shadow-sm transition duration-500 hover:-translate-y-1 hover:border-vermillion/35 hover:shadow-[0_20px_55px_rgba(26,24,20,0.12)]">
+                    <div className="mb-3 aspect-[4/3] overflow-hidden rounded-[18px] border border-ink/10 bg-muted">
+                      <img src={project.image} alt={`${project.title} ${screen.label}`} className="h-full w-full object-cover transition duration-700 group-hover/modal-image:scale-[1.05] group-hover/modal-image:saturate-[1.08]" />
+                    </div>
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-ink">{screen.label}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{screen.caption}</p>
                   </div>
-                  <div className="px-2 pb-2 pt-4">
-                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground">{section.imageLabel}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{section.imageCaption}</p>
-                  </div>
-                </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
-                <div className="max-w-xl">
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-vermillion">{section.kicker}</p>
-                  <h4 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight sm:text-5xl">{section.title}</h4>
-                  <p className="mt-5 text-base leading-relaxed text-ink/74 sm:text-lg">{section.body}</p>
-                </div>
-              </section>
-            ))}
-          </div>
-
-          <section className="mt-16 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground">Decision System</p>
-              <h4 className="mt-3 font-display text-3xl font-black leading-tight">The choices behind the interface</h4>
-            </div>
-            <div className="grid gap-4">
-              {project.caseStudy.decisions.map((decision) => (
-                <div key={decision.title} className="rounded-[22px] border border-ink/10 bg-white/62 p-5">
-                  <h5 className="font-display text-xl font-bold">{decision.title}</h5>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{decision.description}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="mt-16">
-            <p className="mb-5 font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground">Screen Notes</p>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {project.caseStudy.screens.map((screen) => (
-                <div key={screen.label} className="group/modal-image rounded-[22px] border border-ink/10 bg-white/65 p-3 shadow-sm transition duration-500 hover:-translate-y-1 hover:border-vermillion/35 hover:shadow-[0_20px_55px_rgba(26,24,20,0.12)]">
-                  <div className="mb-3 aspect-[4/3] overflow-hidden rounded-[18px] border border-ink/10 bg-muted">
-                    <img src={project.image} alt={`${project.title} ${screen.label}`} className="h-full w-full object-cover transition duration-700 group-hover/modal-image:scale-[1.05] group-hover/modal-image:saturate-[1.08]" />
-                  </div>
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-ink">{screen.label}</p>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{screen.caption}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="mt-16 grid gap-8 rounded-[26px] border border-ink/10 bg-ink p-6 text-paper sm:p-8 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-paper/55">Learnings</p>
-              <h4 className="mt-3 font-display text-3xl font-black leading-tight">What I would carry forward</h4>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {project.caseStudy.learnings.map((learning) => (
-                <p key={learning} className="rounded-2xl border border-paper/10 bg-paper/5 p-5 text-sm leading-relaxed text-paper/75">
-                  {learning}
-                </p>
-              ))}
-            </div>
-          </section>
+          {learningsList.length > 0 ? (
+            <section className="mt-16 grid gap-8 rounded-[26px] border border-ink/10 bg-ink p-6 text-paper sm:p-8 lg:grid-cols-[0.8fr_1.2fr]">
+              <div>
+                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-paper/55">Learnings</p>
+                <h4 className="mt-3 font-display text-3xl font-black leading-tight">What I would carry forward</h4>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {learningsList.map((learning) => (
+                  <p key={learning} className="rounded-2xl border border-paper/10 bg-paper/5 p-5 text-sm leading-relaxed text-paper/75">
+                    {learning}
+                  </p>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-end">
-            <a href={project.liveLink} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-bold text-paper transition hover:-translate-y-0.5 hover:bg-vermillion focus:outline-none focus:ring-2 focus:ring-ink">
-              Visit Live <ExternalLink size={16} />
-            </a>
-            <a href={project.githubLink} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-white/70 px-5 py-3 text-sm font-bold text-ink transition hover:-translate-y-0.5 hover:border-ink/35 focus:outline-none focus:ring-2 focus:ring-ink">
-              Source Code <Github size={16} />
-            </a>
+            {project.liveLink ? (
+              <a href={project.liveLink} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-bold text-paper transition hover:-translate-y-0.5 hover:bg-vermillion focus:outline-none focus:ring-2 focus:ring-ink">
+                Visit Live <ExternalLink size={16} />
+              </a>
+            ) : null}
+            {project.githubLink ? (
+              <a href={project.githubLink} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-white/70 px-5 py-3 text-sm font-bold text-ink transition hover:-translate-y-0.5 hover:border-ink/35 focus:outline-none focus:ring-2 focus:ring-ink">
+                Source Code <Github size={16} />
+              </a>
+            ) : null}
           </div>
         </article>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
@@ -707,7 +757,10 @@ export function WorkProjectsShowcase() {
       });
     }, triggerRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      scrollTriggerRef.current = null;
+    };
   }, [isMobile, prefersReducedMotion]);
 
   const openProject = (project: Project) => {

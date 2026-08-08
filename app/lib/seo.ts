@@ -1,4 +1,4 @@
-const fallbackSiteUrl = "https://heyzain.dev";
+const fallbackSiteUrl = "https://www.heyzain.dev";
 
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || fallbackSiteUrl).replace(/\/$/, "");
 

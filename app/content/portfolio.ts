@@ -8,7 +8,7 @@ export const profile = {
   location: "Pakistan",
   email: "zainali.portfolio@gmail.com",
   github: "github.com/zainali954",
-  linkedin: "linkedin.com/in/zain-ali-1a49b2361",
+  linkedin: "linkedin.com/in/iamzainali",
   resumeUrl: "https://drive.google.com/file/d/1XMS7GXx-FljlbCnH8Zg_n85QSIRgASQP/view?usp=sharing",
   portrait,
 };
@@ -21,8 +21,7 @@ export const education = {
 };
 
 // The section index — drives the fixed nav rail and the numbered eyebrow in
-// each section. Seven sections, top to bottom; `id` must match the `id` on the
-// corresponding <section>.
+// each section.
 export const sections = [
   { id: "intro", num: "①", label: "INTRO" },
   { id: "background", num: "②", label: "BACKGROUND" },
@@ -30,7 +29,9 @@ export const sections = [
   { id: "experience", num: "④", label: "EXPERIENCE" },
   { id: "work", num: "⑤", label: "FEATURED WORKPLACE PROJECTS" },
   { id: "after-hours", num: "⑥", label: "AFTER HOURS" },
-  { id: "contact", num: "⑦", label: "CONTACT" },
+  { id: "code", num: "⑦", label: "CODE & CONTRIBUTIONS" },
+  { id: "blog", num: "⑧", label: "WRITING" },
+  { id: "contact", num: "⑨", label: "CONTACT" },
 ];
 
 // The toolset, grouped as layers of the stack (top = closest to the user,

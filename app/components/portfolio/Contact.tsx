@@ -262,7 +262,7 @@ export function Contact() {
 
       <div className="relative z-10 mx-auto max-w-[1400px]">
         <div className="mb-8 flex items-baseline gap-6 md:mb-10">
-          <span className="font-mono text-xs tracking-[0.25em] text-accent">07 CONTACT</span>
+          <span className="font-mono text-xs tracking-[0.25em] text-accent">09 CONTACT</span>
           <span className="h-px flex-1 bg-ink/20" />
           <span className="hidden font-mono text-xs text-muted-foreground md:inline">REMOTE FRIENDLY</span>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ArrowUpRight, BookOpen, Github, Star, Users } from "lucide-react";
+import { ArrowUpRight, BookOpen, GitCommit, Github, Star, Users } from "lucide-react";
 import { profile } from "@/content/portfolio";
 
 type GithubUser = {
@@ -14,9 +14,11 @@ type GithubUser = {
 
 type GithubRepo = {
   name: string;
+  description: string | null;
   html_url: string;
   stargazers_count: number;
   fork: boolean;
+  language: string | null;
   pushed_at: string | null;
   created_at: string;
 };
@@ -37,6 +39,14 @@ type GithubStats = {
 
 const username = profile.github.split("/").pop() || "zainali954";
 const fallbackDays = buildFallbackDays();
+
+const languageColors: Record<string, string> = {
+  TypeScript: "bg-blue-500",
+  JavaScript: "bg-amber-400",
+  Python: "bg-emerald-500",
+  HTML: "bg-orange-500",
+  CSS: "bg-indigo-500",
+};
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat("en", { notation: value > 999 ? "compact" : "standard" }).format(value);
@@ -149,7 +159,13 @@ function monthLabels(days: ContributionDay[]) {
 }
 
 function contributionClass(level: number) {
-  return ["bg-ink/7", "bg-vermillion/18", "bg-vermillion/35", "bg-vermillion/55", "bg-vermillion/78"][level] || "bg-ink/7";
+  return [
+    "bg-ink/[0.06] hover:bg-ink/[0.12]",
+    "bg-vermillion/25 hover:bg-vermillion/35",
+    "bg-vermillion/45 hover:bg-vermillion/55",
+    "bg-vermillion/70 hover:bg-vermillion/80",
+    "bg-vermillion hover:bg-vermillion/90",
+  ][level] || "bg-ink/[0.06]";
 }
 
 export function CodeContributions() {
@@ -231,80 +247,104 @@ export function CodeContributions() {
   ];
 
   return (
-    <section id="code" className="relative overflow-hidden bg-paper px-8 py-24 text-ink lg:px-12">
+    <section id="code" className="relative overflow-hidden bg-paper px-6 py-20 text-ink sm:px-8 sm:py-24 lg:px-12">
       <div className="pointer-events-none absolute inset-0 ambient-grid opacity-60" />
       <div className="relative mx-auto max-w-[1400px]">
+        {/* Section Header */}
         <div className="mb-10 flex items-baseline gap-6">
-          <span className="font-mono text-xs tracking-[0.25em] text-accent">07 CODE & CONTRIBUTIONS</span>
+          <span className="font-mono text-xs tracking-[0.25em] text-accent">07 CODE &amp; CONTRIBUTIONS</span>
           <span className="h-px flex-1 bg-ink/20" />
           <span className="hidden font-mono text-xs text-muted-foreground md:inline">GITHUB ACTIVITY</span>
         </div>
 
-        <div className="mb-14">
+        <div className="mb-12">
           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">REPOSITORY SIGNAL</p>
           <h2 className="mt-3 font-display text-4xl font-medium leading-[1.02] tracking-tight text-ink md:text-6xl">
             Code &amp; Contributions<span className="text-accent">.</span>
           </h2>
         </div>
 
-        <div className="rounded-[28px] border border-ink/10 bg-white/50 p-5 shadow-[0_24px_80px_rgba(26,24,20,0.08),inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl sm:p-8">
-          <div className="mb-8 flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
-            <div className="flex flex-col gap-5 md:flex-row md:items-center">
-              <a href={`https://github.com/${username}`} target="_blank" rel="noreferrer" className="group flex items-center gap-4">
-                <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-[18px] border border-ink/10 bg-accent/10 text-accent transition group-hover:-translate-y-0.5">
-                  {stats.user?.avatar_url ? (
-                    <img src={stats.user.avatar_url} alt={`${username} GitHub avatar`} className="h-full w-full object-cover" />
-                  ) : (
-                    <Github size={26} />
-                  )}
-                </span>
-                <span>
-                  <span className="block text-xl font-black">@{stats.user?.login || username}</span>
-                  <span className="text-sm font-medium text-muted-foreground">
-                    {stats.source === "calendar" ? "Contribution activity on GitHub" : "Public GitHub activity and repositories"}
+        {/* Main Contribution Card */}
+        <div className="rounded-[28px] border border-ink/10 bg-white/60 p-6 shadow-[0_24px_80px_rgba(26,24,20,0.06),inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl sm:p-8 md:p-10">
+          {/* Card Header: Profile Info & Stat Badges */}
+          <div className="mb-8 flex flex-col gap-6 border-b border-ink/8 pb-6 lg:flex-row lg:items-center lg:justify-between">
+            <a
+              href={`https://github.com/${username}`}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-center gap-4 transition"
+            >
+              <div className="relative flex h-13 w-13 items-center justify-center overflow-hidden rounded-2xl border border-ink/10 bg-accent/10 text-accent transition group-hover:scale-105 group-hover:border-accent/30">
+                {stats.user?.avatar_url ? (
+                  <img src={stats.user.avatar_url} alt={`${username} GitHub avatar`} className="h-full w-full object-cover" />
+                ) : (
+                  <Github size={24} />
+                )}
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xl font-bold tracking-tight text-ink group-hover:text-accent transition-colors">
+                    @{stats.user?.login || username}
                   </span>
-                </span>
-              </a>
+                  <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100" />
+                </div>
+                <p className="text-xs font-medium text-muted-foreground mt-0.5">
+                  {stats.source === "calendar" ? "Verified GitHub contribution calendar" : "Public repository activity & stats"}
+                </p>
+              </div>
+            </a>
 
-              <div className="flex flex-wrap gap-2 rounded-[22px] border border-ink/10 bg-paper/60 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
+            {/* Metrics Chips & Live Status */}
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              <div className="flex items-center gap-1.5 rounded-full border border-ink/10 bg-paper/80 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
                 {metrics.map((metric) => (
-                  <div key={metric.label} className="flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-3 py-2">
-                    <metric.icon className="h-4 w-4 text-vermillion" />
-                    <span className="font-display text-xl font-black leading-none">{formatNumber(metric.value)}</span>
-                    <span className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{metric.label}</span>
+                  <div
+                    key={metric.label}
+                    className="flex items-center gap-2 rounded-full border border-ink/8 bg-white/80 px-3.5 py-1.5 text-xs transition hover:bg-white hover:border-ink/15"
+                  >
+                    <metric.icon className="h-3.5 w-3.5 text-accent opacity-85" />
+                    <span className="font-display text-sm sm:text-base font-bold leading-none text-ink">{formatNumber(metric.value)}</span>
+                    <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+                      {metric.label}
+                    </span>
                   </div>
                 ))}
               </div>
-            </div>
 
-            <div className="flex items-center gap-3">
-              <div className="rounded-full border border-ink/10 bg-paper/70 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-                Real GitHub data
+              <div className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Active</span>
               </div>
             </div>
           </div>
 
-          <div className="overflow-x-auto pb-2">
-            <div className="min-w-[760px]">
-              <div className="relative mb-3 h-6">
+          {/* Full-width Responsive Heatmap Grid */}
+          <div className="w-full overflow-x-auto pb-3 pt-1 scrollbar-none">
+            <div className="w-full min-w-[760px]">
+              {/* Month Labels aligned dynamically across total weeks */}
+              <div className="relative mb-3 h-5 w-full">
                 {labels.map((item) => (
                   <span
                     key={`${item.label}-${item.column}`}
-                    className="absolute top-0 text-xs font-semibold text-ink/70"
-                    style={{ left: `${item.column * 18}px` }}
+                    className="absolute top-0 font-mono text-[11px] font-medium tracking-wide text-ink/60"
+                    style={{ left: `${(item.column / weeks.length) * 100}%` }}
                   >
                     {item.label}
                   </span>
                 ))}
               </div>
-              <div className="flex gap-[5px]">
+
+              {/* Grid of 53 week columns expanding edge-to-edge */}
+              <div className="grid grid-flow-col auto-cols-fr gap-[3px] sm:gap-1 md:gap-[5px] w-full">
                 {weeks.map((week, weekIndex) => (
-                  <div key={weekIndex} className="grid grid-rows-7 gap-[5px]">
+                  <div key={weekIndex} className="grid grid-rows-7 gap-[3px] sm:gap-1 md:gap-[5px]">
                     {week.map((day) => (
                       <span
                         key={day.date}
                         title={`${day.count} contributions on ${day.date}`}
-                        className={`h-3.5 w-3.5 rounded-[4px] border border-ink/5 transition hover:scale-125 hover:ring-2 hover:ring-vermillion/25 ${contributionClass(day.level)}`}
+                        className={`aspect-square w-full rounded-[3px] sm:rounded-[4px] border border-ink/5 transition-all duration-200 hover:scale-125 hover:z-10 hover:shadow-sm hover:ring-2 hover:ring-accent/40 ${contributionClass(
+                          day.level
+                        )}`}
                       />
                     ))}
                   </div>
@@ -313,18 +353,31 @@ export function CodeContributions() {
             </div>
           </div>
 
-          <div className="mt-5 flex flex-col gap-4 text-sm font-semibold text-ink/80 sm:flex-row sm:items-center sm:justify-between">
-            <span>{formatNumber(stats.totalContributions)} contributions in the last year</span>
-            <div className="flex items-center gap-2">
+          {/* Footer Info: Total count & Legend */}
+          <div className="mt-6 flex flex-col gap-4 border-t border-ink/8 pt-5 text-xs font-semibold text-ink/80 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-2 text-ink/75 font-mono text-[11px] uppercase tracking-[0.14em]">
+              <GitCommit className="h-4 w-4 text-accent" />
+              <span>
+                <strong className="text-ink font-bold">{formatNumber(stats.totalContributions)}</strong> contributions in the last year
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
               <span>Less</span>
-              {[0, 1, 2, 3, 4].map((level) => (
-                <span key={level} className={`h-4 w-4 rounded-[4px] border border-ink/5 ${contributionClass(level)}`} />
-              ))}
+              <div className="flex items-center gap-1">
+                {[0, 1, 2, 3, 4].map((level) => (
+                  <span
+                    key={level}
+                    className={`h-3 w-3 sm:h-3.5 sm:w-3.5 rounded-[3px] sm:rounded-[4px] border border-ink/5 ${contributionClass(level)}`}
+                  />
+                ))}
+              </div>
               <span>More</span>
             </div>
           </div>
         </div>
 
+        {/* Top Repositories Grid */}
         {topRepos.length > 0 ? (
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {topRepos.map((repo) => (
@@ -333,15 +386,38 @@ export function CodeContributions() {
                 href={repo.html_url}
                 target="_blank"
                 rel="noreferrer"
-                className="group rounded-[22px] border border-ink/10 bg-white/45 p-5 shadow-sm transition hover:-translate-y-1 hover:border-vermillion/40 hover:bg-white/70"
+                className="group relative flex flex-col justify-between rounded-[22px] border border-ink/10 bg-white/50 p-5 shadow-[0_12px_40px_rgba(26,24,20,0.04),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:bg-white/80 hover:shadow-md"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-display text-xl font-bold">{repo.name}</h3>
-                  <ArrowUpRight className="h-4 w-4 shrink-0 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <div>
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="font-display text-lg font-bold tracking-tight text-ink group-hover:text-accent transition-colors">
+                      {repo.name}
+                    </h3>
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-ink/10 bg-white/80 text-muted-foreground transition group-hover:border-accent/30 group-hover:text-accent">
+                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+
+                  <p className="mt-2.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+                    {repo.description || "Public repository and code on GitHub."}
+                  </p>
                 </div>
-                <p className="mt-4 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-                  {repo.stargazers_count} stars
-                </p>
+
+                <div className="mt-5 flex items-center justify-between border-t border-ink/8 pt-3 text-[11px] font-mono font-medium text-muted-foreground">
+                  {repo.language ? (
+                    <span className="flex items-center gap-1.5">
+                      <span className={`h-2 w-2 rounded-full ${languageColors[repo.language] || "bg-accent"}`} />
+                      <span>{repo.language}</span>
+                    </span>
+                  ) : (
+                    <span className="text-muted-foreground/60">Repository</span>
+                  )}
+
+                  <span className="flex items-center gap-1 font-bold text-ink/75">
+                    <Star className="h-3.5 w-3.5 text-accent fill-accent/20" />
+                    <span>{repo.stargazers_count}</span>
+                  </span>
+                </div>
               </a>
             ))}
           </div>

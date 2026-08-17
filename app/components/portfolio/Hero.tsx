@@ -136,7 +136,7 @@ export function Hero({ ready }: { ready: boolean }) {
                       <span className="block font-mono text-[1.08rem] font-bold uppercase tracking-[0.22em] text-white">
                         {profile.name}
                       </span>
-                      <span className="mt-0.5 block font-mono text-[0.62rem] font-medium uppercase tracking-[0.2em] text-accent">
+                      <span className="mt-0.5 block font-mono text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-white/75">
                         {profile.role}
                       </span>
                       <span className="mt-1.5 inline-block rounded border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[0.54rem] tracking-[0.22em] text-white/45">

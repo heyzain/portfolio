@@ -28,11 +28,11 @@ const POSTS: BlogPost[] = [
     isLive: true,
   },
   {
-    title: "Beyond the API: Structuring Full-Stack React Apps for Speed",
+    title: "Beyond the API: Why Fast Backends Still Produce Slow React UIs",
     category: "ARCHITECTURE",
     readTime: "Coming Soon",
     excerpt:
-      "How server components, selective hydration, and optimistic cache layers eliminate UI latency across complex workflows.",
+      "Why fast API responses still lead to delayed interfaces, and how server-first rendering, streaming, selective hydration, and optimistic updates reduce perceived latency.",
     isComingSoon: true,
   },
   {

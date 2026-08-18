@@ -29,11 +29,14 @@ const POSTS: BlogPost[] = [
   },
   {
     title: "Beyond the API: Why Fast Backends Still Produce Slow React UIs",
+    slug: "/structuring-full-stack-react-apps-for-speed",
     category: "ARCHITECTURE",
-    readTime: "Coming Soon",
+    readTime: "9 min read",
     excerpt:
       "Why fast API responses still lead to delayed interfaces, and how server-first rendering, streaming, selective hydration, and optimistic updates reduce perceived latency.",
-    isComingSoon: true,
+    thumbnail: "/structuring-full-stack-react-apps-for-speed-thumbnail.webp",
+    thumbnailAlt: "Fast API versus slow UI in a full-stack React application",
+    isLive: true,
   },
   {
     title: "MongoDB Indexing Strategies That Actually Scale in Production",

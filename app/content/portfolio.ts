@@ -7,7 +7,7 @@ export const profile = {
   role: "Full-Stack Developer",
   location: "Pakistan",
   email: "zainali.portfolio@gmail.com",
-  github: "github.com/zainali954",
+  github: "github.com/heyzain",
   linkedin: "linkedin.com/in/iamzainali",
   resumeUrl: "https://drive.google.com/file/d/1XMS7GXx-FljlbCnH8Zg_n85QSIRgASQP/view?usp=sharing",
   portrait,

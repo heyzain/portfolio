@@ -37,7 +37,7 @@ type GithubStats = {
   source: "calendar" | "repo-activity" | "fallback";
 };
 
-const username = profile.github.split("/").pop() || "zainali954";
+const username = profile.github.split("/").pop() || "heyzain";
 const fallbackDays = buildFallbackDays();
 
 const languageColors: Record<string, string> = {
@@ -247,7 +247,7 @@ export function CodeContributions() {
   ];
 
   return (
-    <section id="code" className="relative overflow-hidden bg-paper px-6 py-20 text-ink sm:px-8 sm:py-24 lg:px-12">
+    <section id="code" className="relative overflow-hidden bg-paper px-4 py-16 text-ink sm:px-8 sm:py-24 lg:px-12">
       <div className="pointer-events-none absolute inset-0 ambient-grid opacity-60" />
       <div className="relative mx-auto max-w-[1400px]">
         {/* Section Header */}
@@ -265,28 +265,28 @@ export function CodeContributions() {
         </div>
 
         {/* Main Contribution Card */}
-        <div className="rounded-[28px] border border-ink/10 bg-white/60 p-6 shadow-[0_24px_80px_rgba(26,24,20,0.06),inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl sm:p-8 md:p-10">
+        <div className="rounded-[24px] sm:rounded-[28px] border border-ink/10 bg-white/60 p-4 sm:p-8 md:p-10 shadow-[0_24px_80px_rgba(26,24,20,0.06),inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl">
           {/* Card Header: Profile Info & Stat Badges */}
-          <div className="mb-8 flex flex-col gap-6 border-b border-ink/8 pb-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mb-8 flex flex-col gap-5 border-b border-ink/8 pb-6 lg:flex-row lg:items-center lg:justify-between">
             <a
               href={`https://github.com/${username}`}
               target="_blank"
               rel="noreferrer"
-              className="group flex items-center gap-4 transition"
+              className="group flex items-center gap-3.5 sm:gap-4 transition"
             >
-              <div className="relative flex h-13 w-13 items-center justify-center overflow-hidden rounded-2xl border border-ink/10 bg-accent/10 text-accent transition group-hover:scale-105 group-hover:border-accent/30">
+              <div className="relative flex h-12 w-12 sm:h-13 sm:w-13 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-ink/10 bg-accent/10 text-accent transition group-hover:scale-105 group-hover:border-accent/30">
                 {stats.user?.avatar_url ? (
                   <img src={stats.user.avatar_url} alt={`${username} GitHub avatar`} className="h-full w-full object-cover" />
                 ) : (
                   <Github size={24} />
                 )}
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-bold tracking-tight text-ink group-hover:text-accent transition-colors">
+                  <span className="truncate text-lg sm:text-xl font-bold tracking-tight text-ink group-hover:text-accent transition-colors">
                     @{stats.user?.login || username}
                   </span>
-                  <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100" />
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground opacity-60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100" />
                 </div>
                 <p className="text-xs font-medium text-muted-foreground mt-0.5">
                   {stats.source === "calendar" ? "Verified GitHub contribution calendar" : "Public repository activity & stats"}
@@ -296,22 +296,22 @@ export function CodeContributions() {
 
             {/* Metrics Chips & Live Status */}
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              <div className="flex items-center gap-1.5 rounded-full border border-ink/10 bg-paper/80 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
+              <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 rounded-2xl sm:rounded-full border border-ink/10 bg-paper/80 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] max-w-full">
                 {metrics.map((metric) => (
                   <div
                     key={metric.label}
-                    className="flex items-center gap-2 rounded-full border border-ink/8 bg-white/80 px-3.5 py-1.5 text-xs transition hover:bg-white hover:border-ink/15"
+                    className="flex items-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-full border border-ink/8 bg-white/80 px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-xs transition hover:bg-white hover:border-ink/15"
                   >
-                    <metric.icon className="h-3.5 w-3.5 text-accent opacity-85" />
-                    <span className="font-display text-sm sm:text-base font-bold leading-none text-ink">{formatNumber(metric.value)}</span>
-                    <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+                    <metric.icon className="h-3.5 w-3.5 text-accent opacity-85 shrink-0" />
+                    <span className="font-display text-xs sm:text-base font-bold leading-none text-ink">{formatNumber(metric.value)}</span>
+                    <span className="font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
                       {metric.label}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <div className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700">
+              <div className="flex items-center gap-1.5 sm:gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 sm:px-3.5 sm:py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 shrink-0">
                 <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Active</span>
               </div>

@@ -92,7 +92,7 @@ export function BlogSection() {
                 >
                   <div>
                     {/* Live Thumbnail Image Container */}
-                    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[18px] border border-ink/10 bg-paper/80">
+                    <div className="relative aspect-[2/1] w-full overflow-hidden rounded-[18px] border border-ink/10 bg-paper/80">
                       {post.thumbnail ? (
                         <img
                           src={post.thumbnail}
@@ -146,7 +146,7 @@ export function BlogSection() {
               >
                 <div>
                   {/* Teaser Thumbnail Box */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[18px] border border-ink/8 bg-ink/[0.03] flex flex-col items-center justify-center p-4 text-center">
+                  <div className="relative aspect-[2/1] w-full overflow-hidden rounded-[18px] border border-ink/8 bg-ink/[0.03] flex flex-col items-center justify-center p-4 text-center">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-white/70 shadow-sm text-ink/60 mb-2">
                       <Lock className="h-4 w-4" />
                     </div>

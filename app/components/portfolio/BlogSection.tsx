@@ -23,7 +23,7 @@ const POSTS: BlogPost[] = [
     readTime: "8 min read",
     excerpt:
       "A good Lighthouse score does not always mean a fast-feeling website. Learn how perceived performance, Core Web Vitals, interactions, and real-user testing reveal what automated audits miss.",
-    thumbnail: "/lighthouse-score-website-feels-slow-thumbnail.webp",
+    thumbnail: "/lighthouse-score-website-feels-slow-hero.webp",
     thumbnailAlt: "Lighthouse performance score compared with a website that still feels slow",
     isLive: true,
   },
@@ -34,8 +34,8 @@ const POSTS: BlogPost[] = [
     readTime: "9 min read",
     excerpt:
       "Why fast API responses still lead to delayed interfaces, and how server-first rendering, streaming, selective hydration, and optimistic updates reduce perceived latency.",
-    thumbnail: "/structuring-full-stack-react-apps-for-speed-thumbnail.webp",
-    thumbnailAlt: "Fast API versus slow UI in a full-stack React application",
+    thumbnail: "/structuring-full-stack-react-apps-for-speed-hero.webp",
+    thumbnailAlt: "Full-stack React architecture showing how UI latency can remain even when the API is fast",
     isLive: true,
   },
   {

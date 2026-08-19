@@ -42,9 +42,10 @@ type Project = {
       body: string;
       imageLabel: string;
       imageCaption: string;
+      image?: string;
     }[];
     learnings: string[];
-    screens: { label: string; caption: string }[];
+    screens: { label: string; caption: string; image?: string }[];
   };
   results: {
     metric: string;
@@ -64,46 +65,60 @@ type ProjectCardProps = {
 
 const caseStudyCopy = [
   {
-    brief: "A focused save-and-retrieve workspace for people who collect references, tools, and learning links across many projects.",
-    challenge: "Saved links quickly become a junk drawer when tagging, categories, and search are treated as secondary details.",
-    solution: "I shaped the app around a clean dashboard, quick creation flow, secure accounts, and filters that make finding older links feel immediate.",
-    outcome: "The final experience feels like a personal knowledge shelf: fast to update, easy to scan, and calm enough to use every day.",
-    duration: "3 weeks",
-    audience: "Students, builders, and researchers saving high-volume references.",
+    brief: "An installable PWA and Manifest V3 Chrome extension ecosystem for smart bookmark organization and PIN-protected link security.",
+    challenge: "Standard bookmark tools lack rapid multi-surface capture (browser tabs, desktop, mobile) and fail to provide privacy isolation for sensitive resources.",
+    solution: "Engineered a dual-vault architecture (Standard + PIN-locked Private Vault), automated metadata scraping, tokenized sharing URLs, and an MV3 Chrome extension with instant shortcut capture.",
+    outcome: "A cohesive, cross-platform knowledge vault that installs natively across devices, securely isolates confidential links, and eliminates manual bookmark entry.",
+    duration: "4 weeks",
+    audience: "Power users, developers, and researchers needing fast cross-device link capture and secure private storage.",
     research: [
-      "Users save links from many contexts, but rarely remember the exact title later.",
-      "Categories are useful only when paired with lightweight tags and search.",
-      "The add-link flow must stay fast enough to use mid-task.",
+      "Users frequently save sensitive credentials, docs, and staging URLs that need extra access protection.",
+      "Manual entry of link titles and favicons creates high friction; automatic OpenGraph/metadata extraction is essential.",
+      "Fast capture from active browser tabs (shortcuts, context menu, side panel) dramatically increases retention.",
     ],
     decisions: [
-      { title: "Search First", description: "The dashboard favors fast retrieval with title, tag, and category cues visible together." },
-      { title: "Low-Friction Capture", description: "The creation flow asks for only the details needed to make the link useful later." },
-      { title: "Personal Structure", description: "Favorites, tags, and categories give users multiple ways back into the same archive." },
+      { title: "Dual-Vault Security", description: "Separated everyday bookmarks from a dedicated PIN/password-protected vault with isolated private collections." },
+      { title: "PWA + Chrome MV3", description: "Built custom install prompts, network status detection, and a Manifest V3 extension for keyboard-driven tab capture." },
+      { title: "Tokenized Sharing", description: "Implemented secure tokenized endpoints (/share/:token) to share curated collections without exposing user accounts." },
     ],
     sections: [
       {
-        kicker: "Idea",
-        title: "A calmer way to save useful resources.",
-        body: "The idea started from a common portfolio-builder problem: useful links are scattered across chats, bookmarks, docs, and notes. LinkVault turns that mess into one focused workspace where every saved item has enough context to be found again.",
-        imageLabel: "Capture Flow",
-        imageCaption: "A quick save pattern reduces the effort needed to add a useful link while working.",
+        kicker: "Architecture",
+        title: "Cross-platform capture meets zero-friction storage.",
+        body: "LinkVault integrates a responsive React 19 PWA with a Manifest V3 Chrome extension. Users can save links via hotkeys (Ctrl+Shift+L), side panels, or right-click menus, with the backend automatically pulling page titles, descriptions, and favicons.",
+        imageLabel: "Vault Console",
+        imageCaption: "Color-coded categories, real-time search, and instant metadata preview.",
+        image: "/assets/linkvault/vault-dashboard.webp",
       },
       {
-        kicker: "Execution",
-        title: "Designing around retrieval, not storage.",
-        body: "Instead of treating categories as decoration, the interface makes category, tag, favorite, and search states visible in the dashboard. The result is a product that feels useful after the archive grows, not only when it is empty.",
-        imageLabel: "Library System",
-        imageCaption: "The card system keeps metadata visible without making the dashboard feel heavy.",
+        kicker: "Security",
+        title: "Isolated private vault & active session control.",
+        body: "Beyond standard authentication, LinkVault features Google OAuth 2.0, multi-device session tracking with one-click remote revocation, and a dedicated secondary PIN layer for sensitive bookmark vaults.",
+        imageLabel: "Private Vault & Security",
+        imageCaption: "PIN authentication protecting sensitive URLs and multi-device session inspection.",
+        image: "/assets/linkvault/private-vault.webp",
       },
     ],
     learnings: [
-      "A personal productivity tool succeeds when the second visit is faster than the first.",
-      "Search, tags, and categories need to work as one system rather than separate features.",
+      "Building for Manifest V3 requires decoupling background service workers from DOM-dependent scrapers.",
+      "Dual-vault architectures must enforce encryption and authorization at both the API and database levels, not just UI hiding.",
     ],
     screens: [
-      { label: "Dashboard", caption: "Saved links grouped with category and tag context." },
-      { label: "Quick Save", caption: "A lightweight entry flow for dropping in references without friction." },
-      { label: "Library View", caption: "Search, favorites, and filters keep the archive useful." },
+      {
+        label: "Vault Dashboard",
+        caption: "Categorized links with live search, tags, and auto-fetched metadata.",
+        image: "/assets/linkvault/vault-dashboard.webp",
+      },
+      {
+        label: "Private Vault",
+        caption: "PIN-protected secondary space for confidential links and credentials.",
+        image: "/assets/linkvault/private-vault-dashboard.webp",
+      },
+      {
+        label: "PWA & Extension",
+        caption: "Native install experience with offline state indicators and MV3 quick-save.",
+        image: "/assets/linkvault/pwa-and-extension.webp",
+      },
     ],
   },
   {
@@ -443,7 +458,7 @@ function ProjectCaseStudyModal({ project, onClose }: { project: Project | null; 
           <section className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
             <div className="group/modal-image relative overflow-hidden rounded-[26px] border border-ink/15 bg-white p-3 shadow-[0_24px_70px_rgba(26,24,20,0.12)] transition duration-500 hover:-translate-y-1 hover:border-vermillion/45 hover:shadow-[0_32px_85px_rgba(26,24,20,0.17)]">
               <div className="overflow-hidden rounded-[18px]">
-                <img src={project.image} alt={`${project.title} main interface`} className="aspect-[16/10] w-full object-cover transition duration-700 group-hover/modal-image:scale-[1.035] group-hover/modal-image:saturate-[1.08]" />
+                <img src={project.image} alt={`${project.title} overview - ${project.tagline}`} className="aspect-[16/10] w-full object-cover transition duration-700 group-hover/modal-image:scale-[1.035] group-hover/modal-image:saturate-[1.08]" />
                 <div className="pointer-events-none absolute inset-3 rounded-[18px] bg-[linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.38)_44%,transparent_58%)] opacity-0 transition duration-700 group-hover/modal-image:translate-x-full group-hover/modal-image:opacity-100" />
               </div>
             </div>
@@ -517,7 +532,7 @@ function ProjectCaseStudyModal({ project, onClose }: { project: Project | null; 
                 >
                   <div className="group/modal-image overflow-hidden rounded-[26px] border border-ink/12 bg-white p-3 shadow-[0_20px_60px_rgba(26,24,20,0.1)] transition duration-500 hover:-translate-y-1 hover:border-vermillion/40 hover:shadow-[0_30px_76px_rgba(26,24,20,0.15)]">
                     <div className="relative overflow-hidden rounded-[18px]">
-                      <img src={project.image} alt={`${project.title} ${section.imageLabel}`} className="aspect-[16/10] w-full object-cover transition duration-700 group-hover/modal-image:scale-[1.04] group-hover/modal-image:saturate-[1.08]" />
+                      <img src={section.image || project.image} alt={`${project.title} - ${section.imageLabel}: ${section.imageCaption}`} className="aspect-[16/10] w-full object-cover transition duration-700 group-hover/modal-image:scale-[1.04] group-hover/modal-image:saturate-[1.08]" />
                       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.38)_44%,transparent_58%)] opacity-0 transition duration-700 group-hover/modal-image:translate-x-full group-hover/modal-image:opacity-100" />
                     </div>
                     <div className="px-2 pb-2 pt-4">
@@ -560,7 +575,7 @@ function ProjectCaseStudyModal({ project, onClose }: { project: Project | null; 
                 {screensList.map((screen) => (
                   <div key={screen.label} className="group/modal-image rounded-[22px] border border-ink/10 bg-white/65 p-3 shadow-sm transition duration-500 hover:-translate-y-1 hover:border-vermillion/35 hover:shadow-[0_20px_55px_rgba(26,24,20,0.12)]">
                     <div className="mb-3 aspect-[4/3] overflow-hidden rounded-[18px] border border-ink/10 bg-muted">
-                      <img src={project.image} alt={`${project.title} ${screen.label}`} className="h-full w-full object-cover transition duration-700 group-hover/modal-image:scale-[1.05] group-hover/modal-image:saturate-[1.08]" />
+                      <img src={screen.image || project.image} alt={`${project.title} - ${screen.label}: ${screen.caption}`} className="h-full w-full object-cover transition duration-700 group-hover/modal-image:scale-[1.05] group-hover/modal-image:saturate-[1.08]" />
                     </div>
                     <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-ink">{screen.label}</p>
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{screen.caption}</p>

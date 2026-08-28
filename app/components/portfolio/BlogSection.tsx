@@ -17,6 +17,17 @@ interface BlogPost {
 
 const POSTS: BlogPost[] = [
   {
+    title: "Your React UI May Be Buggy Because It Remembers Too Much",
+    slug: "/react-ui-buggy-remembers-too-much",
+    category: "FRONTEND ARCHITECTURE",
+    readTime: "9 min read",
+    excerpt:
+      "Duplicated React state creates stale UI, unnecessary effects, and avoidable failure paths. Store the minimum state, derive the rest, and make each source of truth obvious.",
+    thumbnail: "/react-ui-remembers-too-much-hero.webp",
+    thumbnailAlt: "A React state diagram contrasting duplicated state with one clear source of truth",
+    isLive: true,
+  },
+  {
     title: "Your Lighthouse Score Is Green. Why Does Your Website Still Feel Slow?",
     slug: "/lighthouse-score-green-website-feels-slow",
     category: "PERFORMANCE & ARCHITECTURE",

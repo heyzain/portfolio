@@ -17,6 +17,17 @@ interface BlogPost {
 
 const POSTS: BlogPost[] = [
   {
+    title: "The Page Felt Slow. React Wasn't the Bottleneck.",
+    slug: "/react-page-slow-database-query-bottleneck",
+    category: "FULL-STACK PERFORMANCE",
+    readTime: "11 min read",
+    excerpt:
+      "The delay appeared after a click in the UI, so React looked suspicious. Tracing the request backwards through the API handler and the MongoDB execution plan told a different story.",
+    thumbnail: "/react-page-slow-database-query-bottleneck-hero.webp",
+    thumbnailAlt: "A request pipeline diagram showing latency concentrated in the database layer, not the React render",
+    isLive: true,
+  },
+  {
     title: "Your React UI May Be Buggy Because It Remembers Too Much",
     slug: "/react-ui-buggy-remembers-too-much",
     category: "FRONTEND ARCHITECTURE",

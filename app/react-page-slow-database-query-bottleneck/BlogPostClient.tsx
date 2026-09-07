@@ -18,6 +18,7 @@ import {
   Filter,
 } from "lucide-react";
 import { toast } from "sonner";
+import { ArticleAuthorBio } from "@/components/portfolio/ArticleAuthorBio";
 
 const clientTimingCode = `const startedAt = performance.now();
 
@@ -237,15 +238,25 @@ export function BlogPostClient() {
         <div className="pointer-events-none absolute inset-0 ambient-grid opacity-40" />
 
         <div className="relative mx-auto max-w-4xl px-6 pt-12 sm:px-8 sm:pt-16 md:pt-20">
-          <div className="mb-6 flex flex-wrap items-center gap-2 font-mono text-xs text-muted-foreground">
-            <Link href="/" className="transition-colors hover:text-accent">
-              HOME
-            </Link>
-            <span>/</span>
-            <span className="font-semibold tracking-wider text-accent">FULL-STACK PERFORMANCE</span>
-            <span>/</span>
-            <span>DATABASE QUERIES</span>
-          </div>
+          <nav aria-label="Breadcrumb" className="mb-6 font-mono text-xs text-muted-foreground">
+            <ol className="flex flex-wrap items-center gap-2">
+              <li>
+                <Link href="/" className="transition-colors hover:text-accent">
+                  HOME
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href="/#blog" className="transition-colors hover:text-accent">
+                  WRITING
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li className="font-semibold text-accent" aria-current="page">
+                DATABASE QUERIES
+              </li>
+            </ol>
+          </nav>
 
           <h1 className="font-display text-3xl font-medium leading-[1.08] tracking-tight text-ink sm:text-5xl md:text-6xl">
             The Page Felt Slow. React Wasn&apos;t the Bottleneck.
@@ -769,7 +780,9 @@ query D`}
             </section>
           </div>
 
-          <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-ink/10 pt-8 font-mono text-xs sm:flex-row">
+          <ArticleAuthorBio />
+
+          <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-ink/10 pt-8 font-mono text-xs sm:flex-row">
             <Link
               href="/"
               className="group inline-flex items-center gap-2 font-bold text-ink/75 transition-colors hover:text-accent"
@@ -778,12 +791,20 @@ query D`}
               <span>Back to Home</span>
             </Link>
 
-            <Link
-              href="/react-ui-buggy-remembers-too-much"
-              className="group inline-flex items-center gap-2 font-bold text-accent hover:underline"
-            >
-              <span>Read: Your React UI May Be Buggy Because It Remembers Too Much -&gt;</span>
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Link
+                href="/structuring-full-stack-react-apps-for-speed"
+                className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"
+              >
+                <span>Fast Backends, Slow React UIs -&gt;</span>
+              </Link>
+              <Link
+                href="/react-ui-buggy-remembers-too-much"
+                className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"
+              >
+                <span>State &amp; Memory Leaks -&gt;</span>
+              </Link>
+            </div>
           </div>
         </div>
       </article>

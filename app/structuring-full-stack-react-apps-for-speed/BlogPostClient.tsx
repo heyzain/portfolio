@@ -9,19 +9,15 @@ import {
   Share2,
   Clock,
   Calendar,
-  Layers,
   Zap,
   Server,
   Sparkles,
-  ArrowRight,
-  ShieldCheck,
   RefreshCw,
   Cpu,
-  GitBranch,
-  Gauge,
   HelpCircle,
 } from "lucide-react";
 import { toast } from "sonner";
+import { ArticleAuthorBio } from "@/components/portfolio/ArticleAuthorBio";
 
 export function BlogPostClient() {
   const [copied, setCopied] = useState(false);
@@ -194,16 +190,25 @@ export default async function DashboardPage() {
         <div className="pointer-events-none absolute inset-0 ambient-grid opacity-40" />
 
         <div className="relative mx-auto max-w-4xl px-6 pt-12 sm:px-8 sm:pt-16 md:pt-20">
-          {/* Breadcrumb / Category Tag */}
-          <div className="mb-6 flex flex-wrap items-center gap-2 font-mono text-xs text-muted-foreground">
-            <Link href="/" className="hover:text-accent transition-colors">
-              HOME
-            </Link>
-            <span>/</span>
-            <span className="text-accent font-semibold tracking-wider">ARCHITECTURE</span>
-            <span>/</span>
-            <span>PERCEIVED SPEED</span>
-          </div>
+          <nav aria-label="Breadcrumb" className="mb-6 font-mono text-xs text-muted-foreground">
+            <ol className="flex flex-wrap items-center gap-2">
+              <li>
+                <Link href="/" className="transition-colors hover:text-accent">
+                  HOME
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href="/#blog" className="transition-colors hover:text-accent">
+                  WRITING
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li className="font-semibold text-accent" aria-current="page">
+                REACT ARCHITECTURE &amp; SPEED
+              </li>
+            </ol>
+          </nav>
 
           {/* Headline */}
           <h1 className="font-display text-3xl font-medium leading-[1.08] tracking-tight text-ink sm:text-5xl md:text-6xl">
@@ -707,8 +712,10 @@ export default async function DashboardPage() {
             </div>
           </section>
 
+          <ArticleAuthorBio />
+
           {/* Footer Navigation */}
-          <div className="mt-16 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-ink/10 pt-8 font-mono text-xs">
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-ink/10 pt-8 font-mono text-xs">
             <Link
               href="/"
               className="group inline-flex items-center gap-2 font-bold text-ink/75 hover:text-accent transition-colors"
@@ -717,12 +724,20 @@ export default async function DashboardPage() {
               <span>Back to Home</span>
             </Link>
 
-            <Link
-              href="/lighthouse-score-green-website-feels-slow"
-              className="group inline-flex items-center gap-2 font-bold text-accent hover:underline"
-            >
-              <span>Read: Your Lighthouse Score Is Green &rarr;</span>
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Link
+                href="/react-page-slow-database-query-bottleneck"
+                className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"
+              >
+                <span>React vs Database Bottleneck -&gt;</span>
+              </Link>
+              <Link
+                href="/lighthouse-score-green-website-feels-slow"
+                className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"
+              >
+                <span>Your Lighthouse Score Is Green -&gt;</span>
+              </Link>
+            </div>
           </div>
         </div>
       </article>

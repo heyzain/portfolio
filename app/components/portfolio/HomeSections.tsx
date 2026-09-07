@@ -59,6 +59,8 @@ export function HomeSections() {
           { label: "GitHub", href: `https://${profile.github}`, icon: <Github className="h-5 w-5" /> },
         ]}
         secondaryLinks={[
+          { label: "About", href: "/about" },
+          { label: "Projects", href: "/projects" },
           { label: "LinkedIn", href: `https://${profile.linkedin}` },
           { label: "Résumé", href: profile.resumeUrl },
         ]}

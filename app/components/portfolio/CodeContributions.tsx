@@ -296,20 +296,22 @@ export function CodeContributions() {
 
             {/* Metrics Chips & Live Status */}
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 rounded-2xl sm:rounded-full border border-ink/10 bg-paper/80 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] max-w-full">
-                {metrics.map((metric) => (
-                  <div
-                    key={metric.label}
-                    className="flex items-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-full border border-ink/8 bg-white/80 px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-xs transition hover:bg-white hover:border-ink/15"
-                  >
-                    <metric.icon className="h-3.5 w-3.5 text-accent opacity-85 shrink-0" />
-                    <span className="font-display text-xs sm:text-base font-bold leading-none text-ink">{formatNumber(metric.value)}</span>
-                    <span className="font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-                      {metric.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
+              {stats.user && (
+                <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 rounded-2xl sm:rounded-full border border-ink/10 bg-paper/80 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] max-w-full">
+                  {metrics.map((metric) => (
+                    <div
+                      key={metric.label}
+                      className="flex items-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-full border border-ink/8 bg-white/80 px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-xs transition hover:bg-white hover:border-ink/15"
+                    >
+                      <metric.icon className="h-3.5 w-3.5 text-accent opacity-85 shrink-0" />
+                      <span className="font-display text-xs sm:text-base font-bold leading-none text-ink">{formatNumber(metric.value)}</span>
+                      <span className="font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                        {metric.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               <div className="flex items-center gap-1.5 sm:gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 sm:px-3.5 sm:py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 shrink-0">
                 <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />

@@ -78,11 +78,13 @@ export function Hero({ ready }: { ready: boolean }) {
 
       {/* kinetic manifesto */}
       <div className="relative z-10 mx-auto mt-10 sm:mt-14 md:mt-20 xl:mt-24 w-full max-w-[1400px]">
-        <p data-hero-reveal data-hero-meta className="mb-3 sm:mb-5 font-mono text-[10px] sm:text-xs tracking-[0.16em] sm:tracking-[0.25em] text-accent">
-          ① {profile.name.toUpperCase()} — OPEN TO FULL-STACK ROLES
-        </p>
+        <div data-hero-reveal data-hero-meta className="mb-3 sm:mb-5">
+          <h1 className="font-mono text-[11px] sm:text-xs tracking-[0.16em] sm:tracking-[0.25em] text-accent font-bold uppercase">
+            ① Zain Ali — Full-Stack Developer
+          </h1>
+        </div>
         <div className="relative">
-          <h1 className="relative z-10 max-w-[66rem] font-display font-medium leading-[0.98] sm:leading-[0.95] tracking-tight text-foreground xl:max-w-[74rem]">
+          <div className="relative z-10 max-w-[66rem] font-display font-medium leading-[0.98] sm:leading-[0.95] tracking-tight text-foreground xl:max-w-[74rem]">
             <span data-hero-reveal data-hero-line className="block text-[10vw] sm:text-[11.5vw] md:text-[7.45vw] 2xl:text-[7.2vw]">
               I build web apps
             </span>
@@ -92,7 +94,7 @@ export function Hero({ ready }: { ready: boolean }) {
             <span data-hero-reveal data-hero-line className="block text-[10vw] sm:text-[11.5vw] md:text-[7.45vw] 2xl:text-[7.2vw]">
               use<span className="text-accent">.</span>
             </span>
-          </h1>
+          </div>
           <div
             data-hero-reveal
             data-hero-meta
@@ -169,7 +171,7 @@ export function Hero({ ready }: { ready: boolean }) {
                       <span className="font-semibold text-white/85">PRODUCT ENG.</span>
                     </div>
                     <div className="rounded-lg border border-white/8 bg-white/[0.03] p-2">
-                      <span className="block text-[0.48rem] text-white/40">EXPERIENCE</span>
+                      <span className="block text-[0.48rem] text-white/40">DEV EXPERIENCE</span>
                       <span className="font-semibold text-white/85">2+ YEARS</span>
                     </div>
                     <div className="rounded-lg border border-white/8 bg-white/[0.03] p-2">
@@ -222,11 +224,9 @@ export function Hero({ ready }: { ready: boolean }) {
           </div>
         </div>
         <div className="mt-6 sm:mt-8 md:mt-10 flex flex-wrap items-end justify-between gap-8">
-          <div className="max-w-md">
+          <div className="max-w-xl">
             <p data-hero-reveal data-hero-meta className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-              {profile.name}, full-stack developer. I own the whole build —
-              database, API, and interface — and ship products that solve the
-              problem they were made for.
+              I&apos;m {profile.name}, a full-stack developer based in Pakistan. I specialize in Next.js, React, Node.js, TypeScript, and MongoDB, building production-ready SaaS applications, AI products, marketplaces, and web platforms from database to deployment.
             </p>
             <div data-hero-reveal data-hero-meta className="mt-4 sm:mt-6 flex flex-wrap items-center gap-2.5 sm:gap-3">
               <MagneticButton
@@ -255,7 +255,10 @@ export function Hero({ ready }: { ready: boolean }) {
               AVAILABLE FOR HIRE
             </span>
             <span className="rounded-full border border-ink/10 bg-white/60 px-2.5 py-1 font-semibold text-ink">
-              2+ YRS EXP
+              2+ YRS DEV
+            </span>
+            <span className="rounded-full border border-ink/10 bg-white/60 px-2.5 py-1 font-semibold text-ink">
+              1+ YR PRO
             </span>
             <span className="rounded-full border border-ink/10 bg-white/60 px-2.5 py-1 font-semibold text-ink">
               BSCS DEGREE

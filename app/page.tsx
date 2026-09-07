@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import { HomeSections } from "@/components/portfolio/HomeSections";
-import { siteDescription } from "@/lib/seo";
+import { siteDescription, siteTitleDefault, siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Zain Ali - Full-Stack Developer",
+  title: siteTitleDefault,
   description: siteDescription,
   alternates: {
-    canonical: "/",
+    canonical: siteUrl,
   },
   openGraph: {
-    title: "Zain Ali - Full-Stack Developer",
+    title: siteTitleDefault,
     description: siteDescription,
-    url: "/",
+    url: siteUrl,
   },
 };
 

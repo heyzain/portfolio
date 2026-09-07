@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { scrollToSection } from "@/lib/smooth-scroll";
 import { cn } from "@/lib/utils";
@@ -215,6 +216,32 @@ export function FloatingNav({ ready = true }: { ready?: boolean }) {
                     </button>
                   );
                 })}
+
+                <div className="my-1 border-t border-ink/10" />
+
+                <Link
+                  href="/about"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    "flex items-center justify-between rounded-xl px-3.5 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors cursor-pointer text-left",
+                    isNavbarOverDark ? "hover:bg-white/10 text-white/80" : "hover:bg-ink/5 text-ink/80"
+                  )}
+                >
+                  <span>About Zain</span>
+                  <span className="text-accent text-[10px]">→</span>
+                </Link>
+
+                <Link
+                  href="/projects"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    "flex items-center justify-between rounded-xl px-3.5 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors cursor-pointer text-left",
+                    isNavbarOverDark ? "hover:bg-white/10 text-white/80" : "hover:bg-ink/5 text-ink/80"
+                  )}
+                >
+                  <span>All Projects</span>
+                  <span className="text-accent text-[10px]">→</span>
+                </Link>
               </div>
             </motion.div>
           )}

@@ -15,9 +15,10 @@ import {
   Activity, 
   HelpCircle,
   Sparkles,
-  ArrowRight
+  ArrowRight,
 } from "lucide-react";
 import { toast } from "sonner";
+import { ArticleAuthorBio } from "@/components/portfolio/ArticleAuthorBio";
 
 export function BlogPostClient() {
   const [copied, setCopied] = useState(false);
@@ -124,14 +125,25 @@ console.log(
         <div className="pointer-events-none absolute inset-0 ambient-grid opacity-40" />
 
         <div className="relative mx-auto max-w-4xl px-6 pt-12 sm:px-8 sm:pt-16 md:pt-20">
-          {/* Breadcrumb / Category Tag */}
-          <div className="mb-6 flex flex-wrap items-center gap-2 font-mono text-xs text-muted-foreground">
-            <Link href="/" className="hover:text-accent transition-colors">HOME</Link>
-            <span>/</span>
-            <span className="text-accent font-semibold tracking-wider">FRONTEND ARCHITECTURE</span>
-            <span>/</span>
-            <span>PERFORMANCE AUDITING</span>
-          </div>
+          <nav aria-label="Breadcrumb" className="mb-6 font-mono text-xs text-muted-foreground">
+            <ol className="flex flex-wrap items-center gap-2">
+              <li>
+                <Link href="/" className="transition-colors hover:text-accent">
+                  HOME
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href="/#blog" className="transition-colors hover:text-accent">
+                  WRITING
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li className="font-semibold text-accent" aria-current="page">
+                LIGHTHOUSE &amp; REAL SPEED
+              </li>
+            </ol>
+          </nav>
 
           {/* Headline */}
           <h1 className="font-display text-3xl font-medium leading-[1.08] tracking-tight text-ink sm:text-5xl md:text-6xl">
@@ -701,6 +713,33 @@ console.log(
                 ))}
               </div>
             </section>
+          </div>
+
+          <ArticleAuthorBio />
+
+          <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-ink/10 pt-8 font-mono text-xs sm:flex-row">
+            <Link
+              href="/"
+              className="group inline-flex items-center gap-2 font-bold text-ink/75 transition-colors hover:text-accent"
+            >
+              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+              <span>Back to Home</span>
+            </Link>
+
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Link
+                href="/structuring-full-stack-react-apps-for-speed"
+                className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"
+              >
+                <span>Fast Backends, Slow React UIs -&gt;</span>
+              </Link>
+              <Link
+                href="/react-page-slow-database-query-bottleneck"
+                className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"
+              >
+                <span>React vs Database Bottleneck -&gt;</span>
+              </Link>
+            </div>
           </div>
         </div>
       </article>

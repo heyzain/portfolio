@@ -156,8 +156,8 @@ export const about = {
   metrics: [
     { value: "12+", label: "Projects Built" },
     { value: "6+", label: "Production Apps" },
-    { value: "1+", label: "Years Building" },
-    { value: "End-to-End", label: "Product Development" },
+    { value: "2+", label: "Years Full-Stack Dev" },
+    { value: "1+", label: "Year Professional Exp" },
   ],
   profileCard: {
     role: profile.role,

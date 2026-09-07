@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteUrl, absoluteUrl } from "@/lib/seo";
+import { siteUrl, absoluteUrl, personEntityId, siteName } from "@/lib/seo";
 import { profile } from "@/content/portfolio";
 import { BlogPostClient } from "./BlogPostClient";
 
@@ -29,16 +29,16 @@ export const metadata: Metadata = {
   creator: profile.name,
   publisher: profile.name,
   alternates: {
-    canonical: slug,
+    canonical: absoluteUrl(slug),
   },
   openGraph: {
     title,
     description,
-    url: slug,
+    url: absoluteUrl(slug),
     type: "article",
     publishedTime: publishedDate,
     authors: [profile.name],
-    siteName: "Zain Ali Portfolio",
+    siteName,
     images: [
       {
         url: heroImage,
@@ -71,12 +71,14 @@ export default function BlogPostPage() {
     },
     author: {
       "@type": "Person",
+      "@id": personEntityId,
       name: profile.name,
       url: siteUrl,
       jobTitle: profile.role,
     },
     publisher: {
       "@type": "Person",
+      "@id": personEntityId,
       name: profile.name,
       url: siteUrl,
     },

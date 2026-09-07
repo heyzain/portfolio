@@ -11,7 +11,7 @@ const polishChips = ["Responsive", "Performance", "Accessibility", "Security", "
 const stats = [
   { value: "12+", label: "Projects Built" },
   { value: "6+", label: "Production Apps" },
-  { value: "1+", label: "Years Experience" },
+  { value: "2+", label: "Years Building Apps" },
   { value: "Remote", label: "Available Worldwide" },
 ];
 

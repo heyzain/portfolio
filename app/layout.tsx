@@ -3,8 +3,15 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
-import { absoluteUrl, siteDescription, siteKeywords, siteName, siteUrl } from "@/lib/seo";
-import { profile } from "@/content/portfolio";
+import {
+  getPersonSchema,
+  getWebSiteSchema,
+  siteDescription,
+  siteKeywords,
+  siteName,
+  siteTitleDefault,
+  siteUrl,
+} from "@/lib/seo";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -12,12 +19,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: siteName,
   title: {
-    default: "Zain Ali - Full-Stack Developer",
+    default: siteTitleDefault,
     template: "%s | Zain Ali",
   },
   description: siteDescription,
   keywords: siteKeywords,
-  authors: [{ name: "Zain Ali" }],
+  authors: [{ name: "Zain Ali", url: siteUrl }],
   creator: "Zain Ali",
   publisher: "Zain Ali",
   alternates: {
@@ -44,7 +51,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Zain Ali - Full-Stack Developer",
+    title: siteTitleDefault,
     description: siteDescription,
     url: "/",
     siteName,
@@ -53,7 +60,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zain Ali - Full-Stack Developer",
+    title: siteTitleDefault,
     description: siteDescription,
   },
 };
@@ -63,37 +70,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: profile.name,
-    url: siteUrl,
-    jobTitle: profile.role,
-    email: `mailto:${profile.email}`,
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: profile.location,
-    },
-    sameAs: [`https://${profile.github}`, `https://${profile.linkedin}`],
-    knowsAbout: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Tailwind CSS",
-      "Full-stack web development",
-    ],
-    mainEntityOfPage: absoluteUrl("/"),
-  };
+  const personJsonLd = getPersonSchema();
+  const websiteJsonLd = getWebSiteSchema();
 
   return (
     <html lang="en" className={cn("font-sans", inter.variable)} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd).replace(/</g, "\\u003c") }}
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

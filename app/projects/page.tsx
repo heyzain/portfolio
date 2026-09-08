@@ -15,26 +15,34 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Projects & Technical Case Studies — Zain Ali | Full-Stack Developer",
+  title: "Projects & Technical Case Studies — Zain Ali | HeyZain",
   description:
-    "Explore full-stack applications, SaaS platforms, AI products, and marketplaces built by Zain Ali using Next.js, React, Node.js, TypeScript, and MongoDB.",
+    "Explore full-stack applications, SaaS platforms, AI products, and marketplaces built by Zain Ali (HeyZain) using Next.js, React, Node.js, TypeScript, and MongoDB.",
   alternates: {
     canonical: absoluteUrl("/projects"),
   },
   openGraph: {
-    title: "Projects & Technical Case Studies — Zain Ali",
+    title: "Projects & Technical Case Studies — Zain Ali | HeyZain",
     description:
-      "Explore full-stack applications, SaaS platforms, AI products, and marketplaces built by Zain Ali using Next.js, React, Node.js, TypeScript, and MongoDB.",
+      "Explore full-stack applications, SaaS platforms, AI products, and marketplaces built by Zain Ali (HeyZain) using Next.js, React, Node.js, TypeScript, and MongoDB.",
     url: absoluteUrl("/projects"),
     siteName,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Projects & Technical Case Studies — Zain Ali",
+    title: "Projects & Technical Case Studies — Zain Ali | HeyZain",
     description:
-      "Explore full-stack applications, SaaS platforms, AI products, and marketplaces built by Zain Ali using Next.js, React, Node.js, TypeScript, and MongoDB.",
+      "Explore full-stack applications, SaaS platforms, AI products, and marketplaces built by Zain Ali (HeyZain) using Next.js, React, Node.js, TypeScript, and MongoDB.",
   },
+};
+
+const PROJECT_CASE_STUDY_SLUGS: Record<string, string> = {
+  "MT4Life Platform": "mt4life",
+  "ReadMyCup": "readmycup",
+  "DentalBox": "dentalbox",
+  "Bookmi": "bookmi",
+  "LinkVault": "linkvault",
 };
 
 const detailedProjects = [
@@ -260,7 +268,7 @@ export default function ProjectsPage() {
               <Link href="/about" className="text-muted-foreground transition hover:text-accent">
                 ABOUT
               </Link>
-              <Link href="/#blog" className="text-muted-foreground transition hover:text-accent">
+              <Link href="/writing" className="text-muted-foreground transition hover:text-accent">
                 WRITING
               </Link>
               <Link
@@ -378,6 +386,16 @@ export default function ProjectsPage() {
 
                 {/* Action Links */}
                 <div className="mt-6 flex flex-wrap items-center gap-3 pt-4 border-t border-ink/8">
+                  {PROJECT_CASE_STUDY_SLUGS[project.title] && (
+                    <Link
+                      href={`/projects/${PROJECT_CASE_STUDY_SLUGS[project.title]}`}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 font-mono text-xs font-bold text-accent transition hover:bg-accent hover:text-white"
+                    >
+                      <span>Deep Breakdown</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </Link>
+                  )}
+
                   {project.liveLink && (
                     <a
                       href={project.liveLink}

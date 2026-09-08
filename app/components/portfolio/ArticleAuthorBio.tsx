@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRight, Github, Globe, Linkedin, User } from "lucide-react";
+import { ArrowUpRight, Github, Globe, Linkedin } from "lucide-react";
 import { profile } from "@/content/portfolio";
-import { siteUrl } from "@/lib/seo";
 
 export function ArticleAuthorBio() {
   return (
@@ -25,7 +24,7 @@ export function ArticleAuthorBio() {
 
       <div className="mt-5 space-y-4">
         <p className="text-sm leading-relaxed text-ink/85">
-          Zain Ali is a full-stack developer specializing in Next.js, React, Node.js, TypeScript, and MongoDB. He builds production-ready web applications, SaaS products, marketplaces, and AI-powered products from database to deployment.
+          Zain Ali is a full-stack developer and the engineer behind HeyZain, specializing in Next.js, React, Node.js, TypeScript, and MongoDB. He builds production-ready web applications, SaaS products, marketplaces, and AI-powered products from database to deployment.
         </p>
 
         <div className="flex flex-wrap items-center gap-3 pt-2">

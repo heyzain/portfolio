@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Github, Layers } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Github } from "lucide-react";
 import { workProjects } from "@/content/portfolio";
 
 type FeaturedProject = {
@@ -170,7 +170,7 @@ export function StickyProjectCards() {
         <div className="sticky top-0 h-dvh w-full overflow-hidden">
           <div className="mx-auto flex h-full w-full max-w-[1400px] flex-col px-8 pb-8 pt-10 lg:px-12 lg:pt-12">
             <div className="flex items-baseline gap-6">
-              <span className="font-mono text-xs tracking-[0.25em] text-accent">05 FEATURED WORKPLACE PROJECTS</span>
+              <h2 className="font-mono text-xs tracking-[0.25em] text-accent font-normal">05 FEATURED WORKPLACE PROJECTS</h2>
               <span className="h-px flex-1 bg-ink/20" />
               <span className="hidden font-mono text-xs text-muted-foreground md:inline">2024 - 2026</span>
             </div>
@@ -181,7 +181,7 @@ export function StickyProjectCards() {
               <CurlyArrow className="absolute left-[2%] top-14 hidden h-16 w-16 text-muted-foreground/60 xl:block" />
               <div className="relative mx-auto h-[7.5rem] w-full max-w-[960px] lg:h-[9rem]">
                 {projects.map((project, index) => (
-                  <h2
+                  <h3
                     key={project.id}
                     className={`absolute inset-0 flex items-center justify-center text-center font-display text-4xl font-medium leading-[1.02] tracking-tight transition-all duration-500 ease-out md:text-6xl ${
                       index === active
@@ -192,7 +192,7 @@ export function StickyProjectCards() {
                     }`}
                   >
                     {project.title}
-                  </h2>
+                  </h3>
                 ))}
               </div>
             </div>
@@ -352,7 +352,7 @@ export function StickyProjectCards() {
       ) : (
         <div className="mx-auto max-w-[1400px] px-8 pb-24 pt-16 lg:px-12">
           <div className="mb-10 flex items-baseline gap-6">
-            <span className="font-mono text-xs tracking-[0.25em] text-accent">05 FEATURED WORKPLACE PROJECTS</span>
+            <h2 className="font-mono text-xs tracking-[0.25em] text-accent font-normal">05 FEATURED WORKPLACE PROJECTS</h2>
             <span className="h-px flex-1 bg-ink/20" />
             <span className="font-mono text-xs text-muted-foreground">2024 - 2026</span>
           </div>

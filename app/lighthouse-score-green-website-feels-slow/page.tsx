@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 export default function BlogPostPage() {
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "TechArticle",
     headline: title,
     description,
     url: absoluteUrl(slug),
@@ -75,14 +75,14 @@ export default function BlogPostPage() {
       "@type": "Person",
       "@id": personEntityId,
       name: profile.name,
-      url: siteUrl,
+      url: `${siteUrl}/`,
       jobTitle: profile.role,
     },
     publisher: {
       "@type": "Person",
       "@id": personEntityId,
       name: profile.name,
-      url: siteUrl,
+      url: `${siteUrl}/`,
     },
     image: {
       "@type": "ImageObject",
@@ -94,61 +94,6 @@ export default function BlogPostPage() {
       "Lighthouse score, website feels slow, PageSpeed Insights, perceived performance, Core Web Vitals, LCP, INP, CLS, frontend performance",
   };
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Why does my website feel slow even with a good Lighthouse score?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "A Lighthouse test measures performance under controlled synthetic conditions. Your real user experience can also be affected by route transitions, client-side data fetching, animations, background JavaScript execution, and device bottlenecks.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is a 100 Lighthouse score necessary?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. Lighthouse considers scores between 90 and 100 good. Google explicitly notes that achieving a perfect 100 is difficult and not expected for every website. Focus on real user feel and perceived speed.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What are the current Core Web Vitals?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "The current Core Web Vitals are Largest Contentful Paint (LCP) for loading performance, Interaction to Next Paint (INP) for responsiveness, and Cumulative Layout Shift (CLS) for visual stability.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What is perceived website performance?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Perceived performance describes how fast an application feels to the person using it. It is influenced by when useful content appears, immediate interactive feedback, predictable layouts, and transparent progress indicators.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is PageSpeed Insights the same as Lighthouse?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Not exactly. PageSpeed Insights uses Lighthouse to generate its lab diagnostics, but it can also display real-user field data from the Chrome User Experience Report (CrUX) when enough data is available.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Should I remove animations to improve website performance?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Not automatically. Animation can improve hierarchy, feedback, and brand experience. The important question is whether it delays important content or blocks interaction. Measure the experience before removing an animation simply because it exists.",
-        },
-      },
-    ],
-  };
-
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -157,13 +102,13 @@ export default function BlogPostPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: siteUrl,
+        item: `${siteUrl}/`,
       },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Articles",
-        item: absoluteUrl(slug),
+        name: "Writing",
+        item: absoluteUrl("/writing"),
       },
       {
         "@type": "ListItem",
@@ -179,10 +124,6 @@ export default function BlogPostPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c") }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
       <script
         type="application/ld+json"

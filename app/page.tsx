@@ -6,12 +6,17 @@ export const metadata: Metadata = {
   title: siteTitleDefault,
   description: siteDescription,
   alternates: {
-    canonical: siteUrl,
+    canonical: `${siteUrl}/`,
   },
   openGraph: {
     title: siteTitleDefault,
     description: siteDescription,
-    url: siteUrl,
+    url: `${siteUrl}/`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitleDefault,
+    description: siteDescription,
   },
 };
 

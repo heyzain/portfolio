@@ -59,7 +59,7 @@ export function getPersonSchema() {
     url: `${siteUrl}/`,
     jobTitle: "Full-Stack Developer",
     description: siteDescription,
-    image: absoluteUrl("/assets/portrait.jpg"),
+    image: absoluteUrl("/android-chrome-512x512.png"),
     email: "mailto:zainali.portfolio@gmail.com",
     address: {
       "@type": "PostalAddress",
@@ -77,7 +77,7 @@ export function getWebSiteSchema() {
     "@id": websiteEntityId,
     url: `${siteUrl}/`,
     name: "HeyZain",
-    alternateName: "Zain Ali",
+    alternateName: ["Hey Zain", "heyzain.dev"],
     description: siteDescription,
     publisher: {
       "@id": personEntityId,
@@ -95,5 +95,44 @@ export function getBreadcrumbSchema(items: Array<{ name: string; path: string }>
       name: item.name,
       item: absoluteUrl(item.path),
     })),
+  };
+}
+
+export function getSoftwareApplicationSchema(project: {
+  name: string;
+  description: string;
+  applicationCategory: string;
+  url?: string;
+  operatingSystem?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: project.name,
+    description: project.description,
+    applicationCategory: project.applicationCategory,
+    operatingSystem: project.operatingSystem || "Web",
+    url: project.url,
+    author: {
+      "@id": personEntityId,
+    },
+  };
+}
+
+export function getCollectionPageSchema(page: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${absoluteUrl(page.path)}#webpage`,
+    url: absoluteUrl(page.path),
+    name: page.name,
+    description: page.description,
+    mainEntity: {
+      "@id": personEntityId,
+    },
   };
 }

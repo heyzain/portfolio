@@ -27,14 +27,14 @@ import {
 } from "@/content/portfolio";
 
 export const metadata: Metadata = {
-  title: "About Zain Ali — Full-Stack Developer | Profile & Technical Background",
+  title: "About Zain Ali — Full-Stack Developer | HeyZain",
   description:
-    "Learn about Zain Ali, a full-stack developer specializing in Next.js, React, Node.js, TypeScript, and MongoDB. Background, architecture expertise, shipped products, and contact.",
+    "Zain Ali is the full-stack developer behind HeyZain, specializing in Next.js, React, Node.js, TypeScript, and MongoDB. Explore engineering background, architecture philosophy, and shipped products.",
   alternates: {
     canonical: absoluteUrl("/about"),
   },
   openGraph: {
-    title: "About Zain Ali — Full-Stack Developer",
+    title: "About Zain Ali — Full-Stack Developer | HeyZain",
     description:
       "Full-stack developer specializing in Next.js, React, Node.js, TypeScript, and MongoDB. Explore engineering background, shipped products, and technical writing.",
     url: absoluteUrl("/about"),
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Zain Ali — Full-Stack Developer",
+    title: "About Zain Ali — Full-Stack Developer | HeyZain",
     description:
       "Full-stack developer specializing in Next.js, React, Node.js, TypeScript, and MongoDB. Explore engineering background, shipped products, and technical writing.",
   },
@@ -108,7 +108,7 @@ export default function AboutPage() {
               <Link href="/projects" className="text-muted-foreground transition hover:text-accent">
                 PROJECTS
               </Link>
-              <Link href="/#blog" className="text-muted-foreground transition hover:text-accent">
+              <Link href="/writing" className="text-muted-foreground transition hover:text-accent">
                 WRITING
               </Link>
               <Link
@@ -148,7 +148,7 @@ export default function AboutPage() {
               Zain Ali — Full-Stack Developer
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-ink/80 md:text-xl">
-              I&apos;m Zain Ali, a full-stack developer specializing in Next.js, React, Node.js, TypeScript, and MongoDB. I build production-ready SaaS products, marketplaces, AI applications, and full-stack web platforms from architecture through deployment.
+              I&apos;m Zain Ali, the developer behind HeyZain. I&apos;m a full-stack developer specializing in Next.js, React, Node.js, TypeScript, and MongoDB. I build production-ready SaaS products, marketplaces, AI applications, and full-stack web platforms from architecture through deployment.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -225,6 +225,9 @@ export default function AboutPage() {
               <p>
                 Whether architecting multi-tenant SaaS dashboards, AI pipelines with streaming responses, or high-throughput marketplace booking engines, my objective is simple: build reliable, resilient, and performant web products that solve clear business problems.
               </p>
+              <p>
+                Under the brand <strong>HeyZain</strong>, I build, maintain, and publish full-stack applications, developer tools, and technical breakdowns focused on modern web architecture and database optimization.
+              </p>
             </div>
           </section>
 
@@ -289,7 +292,7 @@ export default function AboutPage() {
             </div>
 
             <div className="relative border-l border-ink/15 pl-6 sm:pl-8 space-y-10">
-              {experience.map((exp, idx) => (
+              {experience.map((exp) => (
                 <div key={exp.span} className="relative">
                   <div className="absolute -left-[31px] sm:-left-[39px] top-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-paper bg-accent" />
                   <div className="flex flex-wrap items-center gap-2">

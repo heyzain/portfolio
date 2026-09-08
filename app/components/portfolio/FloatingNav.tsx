@@ -165,7 +165,7 @@ export function FloatingNav({ ready = true }: { ready?: boolean }) {
         >
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent animate-pulse" />
           <span className="whitespace-nowrap font-bold">ZAIN ALI</span>
-          <span className="opacity-40">//</span>
+          <span className="opacity-40">{"//"}</span>
           <span className="whitespace-nowrap text-accent">{activeItem.label}</span>
           <span className="ml-0.5 text-[8px] transition-transform duration-300" style={{ transform: mobileMenuOpen ? "rotate(180deg)" : "rotate(0deg)" }}>
             ▼

@@ -120,7 +120,7 @@ export default async function DashboardPage() {
   return (
     <DashboardShell>
       {/* 1. Fast Shell renders immediately without blocking */}
-      <h1 className="font-display text-2xl font-bold">Analytics Overview</h1>
+      <div className="font-display text-2xl font-bold">Analytics Overview</div>
 
       {/* 2. Heavy async reads stream progressively behind Suspense */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">

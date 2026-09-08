@@ -60,7 +60,7 @@ export const metadata: Metadata = {
 export default function BlogPostPage() {
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "TechArticle",
     headline: title,
     description,
     url: absoluteUrl(slug),
@@ -74,14 +74,14 @@ export default function BlogPostPage() {
       "@type": "Person",
       "@id": personEntityId,
       name: profile.name,
-      url: siteUrl,
+      url: `${siteUrl}/`,
       jobTitle: profile.role,
     },
     publisher: {
       "@type": "Person",
       "@id": personEntityId,
       name: profile.name,
-      url: siteUrl,
+      url: `${siteUrl}/`,
     },
     image: {
       "@type": "ImageObject",
@@ -93,37 +93,6 @@ export default function BlogPostPage() {
       "React Server Components, Next.js architecture, useOptimistic, selective hydration, frontend performance, perceived performance, full stack React, Suspense streaming",
   };
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Why can a website feel slow even if the backend API is fast?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "API latency is only one part of the interaction lifecycle. In client-heavy SPAs, users also wait for client JavaScript download, parsing, tree hydration, post-mount fetch cascades, and blocking round-trip mutation states.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How do React Server Components improve load speed?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Server Components execute on the server and stream pre-rendered HTML without shipping their heavy component code or database dependencies to the browser bundle.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What is the purpose of React 19 useOptimistic?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "useOptimistic lets client components display predicted mutation state immediately when a user triggers an action, providing 0ms perceived feedback while the server action validates and persists the change in the background.",
-        },
-      },
-    ],
-  };
-
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -132,13 +101,13 @@ export default function BlogPostPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: siteUrl,
+        item: `${siteUrl}/`,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Writing",
-        item: `${siteUrl}/#blog`,
+        item: absoluteUrl("/writing"),
       },
       {
         "@type": "ListItem",
@@ -154,10 +123,6 @@ export default function BlogPostPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <script
         type="application/ld+json"

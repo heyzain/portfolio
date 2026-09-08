@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 export default function BlogPostPage() {
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "TechArticle",
     headline: title,
     description,
     url: absoluteUrl(slug),
@@ -73,14 +73,14 @@ export default function BlogPostPage() {
       "@type": "Person",
       "@id": personEntityId,
       name: profile.name,
-      url: siteUrl,
+      url: `${siteUrl}/`,
       jobTitle: profile.role,
     },
     publisher: {
       "@type": "Person",
       "@id": personEntityId,
       name: profile.name,
-      url: siteUrl,
+      url: `${siteUrl}/`,
     },
     image: {
       "@type": "ImageObject",
@@ -155,13 +155,13 @@ export default function BlogPostPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: siteUrl,
+        item: `${siteUrl}/`,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Writing",
-        item: `${siteUrl}/#blog`,
+        item: absoluteUrl("/writing"),
       },
       {
         "@type": "ListItem",

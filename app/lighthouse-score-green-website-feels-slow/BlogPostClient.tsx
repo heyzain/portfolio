@@ -346,7 +346,7 @@ console.log(
                     When does the user understand the page?
                   </h3>
                   <p className="mt-2 text-sm text-ink/80 leading-relaxed">
-                    Suppose your header appears instantly, but the hero containing the actual value proposition arrives much later. Technically, content has rendered. From the user's perspective, however, the page still has not answered the most basic question: <strong>What is this website, and what can I do here?</strong> That is why content priority matters almost as much as raw speed.
+                    Suppose your header appears instantly, but the hero containing the actual value proposition arrives much later. Technically, content has rendered. From the user&apos;s perspective, however, the page still has not answered the most basic question: <strong>What is this website, and what can I do here?</strong> That is why content priority matters almost as much as raw speed.
                   </p>
                 </div>
 
@@ -379,7 +379,7 @@ console.log(
               <h2 className="font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
                 Core Web Vitals Help Measure Important Parts of This Experience
               </h2>
-              <p>Google's current Core Web Vitals focus on three major parts of the user experience:</p>
+              <p>Google&apos;s current Core Web Vitals focus on three major parts of the user experience:</p>
 
               <div className="grid gap-3 sm:grid-cols-3 my-4">
                 <div className="rounded-xl border border-ink/10 bg-paper p-4">
@@ -441,7 +441,7 @@ console.log(
                 <div className="rounded-xl border border-ink/10 bg-white/60 p-4">
                   <h4 className="font-bold text-ink">1. Blocking splash animations</h4>
                   <p className="text-sm text-ink/80 mt-1">
-                    Animations can make a product memorable, but they can also become artificial loading screens. If your app is ready but makes users wait 3 seconds for an intro, you've added 3 seconds to the experience yourself. <em>Does this animation earn the time it asks from the user?</em>
+                    Animations can make a product memorable, but they can also become artificial loading screens. If your app is ready but makes users wait 3 seconds for an intro, you&apos;ve added 3 seconds to the experience yourself. <em>Does this animation earn the time it asks from the user?</em>
                   </p>
                 </div>
 
@@ -482,7 +482,7 @@ console.log(
               <h2 className="font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
                 The Framework I Use: Measure Four Moments, Not One Score
               </h2>
-              <p>Instead of asking only "How fast is this page?", I evaluate four product moments:</p>
+              <p>Instead of asking only &ldquo;How fast is this page?&rdquo;, I evaluate four product moments:</p>
 
               <div className="grid gap-4 sm:grid-cols-2 my-4">
                 <div className="rounded-2xl border border-ink/10 bg-white/70 p-5 shadow-sm">
@@ -610,7 +610,7 @@ console.log(
               <h2 className="font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
                 Test the Experience, Not Just the Page
               </h2>
-              <p>A practical audit should go beyond clicking "Analyze". Here is the workflow I follow:</p>
+              <p>A practical audit should go beyond clicking &ldquo;Analyze&rdquo;. Here is the workflow I follow:</p>
 
               <div className="space-y-3 my-6">
                 {[
@@ -660,7 +660,7 @@ console.log(
             <div className="rounded-2xl border border-ink/15 bg-white/80 p-6 sm:p-8 shadow-sm text-center my-10">
               <p className="font-mono text-xs uppercase tracking-widest text-accent mb-2">The Takeaway</p>
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-ink">
-                "Fast is a user never wondering whether the product is ready."
+                &ldquo;Fast is a user never wondering whether the product is ready.&rdquo;
               </h3>
               <p className="mt-3 text-sm text-muted-foreground max-w-lg mx-auto">
                 Audit the waiting—not only the loading.

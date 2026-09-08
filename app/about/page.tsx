@@ -397,6 +397,24 @@ export default function AboutPage() {
 
             <div className="space-y-3">
               <Link
+                href="/authentication-is-a-lifecycle-not-a-login-screen"
+                className="group block rounded-xl border border-ink/10 bg-white/60 p-4 transition hover:border-accent/40 hover:bg-white"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-accent">
+                    Authentication &amp; Security
+                  </span>
+                  <ArrowUpRight className="h-4 w-4 text-muted-foreground transition group-hover:text-accent" />
+                </div>
+                <h3 className="mt-1 font-display text-base font-bold text-ink group-hover:text-accent transition-colors">
+                  Your Login Works. Your Authentication System Might Not.
+                </h3>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Treating authentication as a continuous state-management lifecycle across sessions, rotation, revocation, and recovery.
+                </p>
+              </Link>
+
+              <Link
                 href="/react-page-slow-database-query-bottleneck"
                 className="group block rounded-xl border border-ink/10 bg-white/60 p-4 transition hover:border-accent/40 hover:bg-white"
               >

@@ -83,5 +83,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.85,
     },
+    {
+      url: absoluteUrl("/authentication-is-a-lifecycle-not-a-login-screen"),
+      lastModified: lastMod,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
   ];
 }

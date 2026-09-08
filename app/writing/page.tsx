@@ -40,6 +40,17 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    title: "Your Login Works. Your Authentication System Might Not.",
+    slug: "/authentication-is-a-lifecycle-not-a-login-screen",
+    category: "AUTHENTICATION & ARCHITECTURE",
+    readTime: "10 min read",
+    excerpt:
+      "A successful login only proves one path works. Real authentication has to handle sessions, validation, expiry, revocation, recovery, and everything that happens after the redirect.",
+    thumbnail: "/authentication-lifecycle-hero.webp",
+    thumbnailAlt: "Authentication is a lifecycle, not a login screen: verify, issue, store, validate, rotate, revoke, recover",
+    datePublished: "2026-09-08",
+  },
+  {
     title: "The Page Felt Slow. React Wasn't the Bottleneck.",
     slug: "/react-page-slow-database-query-bottleneck",
     category: "FULL-STACK PERFORMANCE",

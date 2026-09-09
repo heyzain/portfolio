@@ -118,15 +118,50 @@ export default function BlogPostPage() {
     ],
   };
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Does Server Components eliminate the need for client state?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. Client state (via useState, useReducer, or client stores) is essential for local interactive experiences like controlled form inputs, dropdowns, and drag-and-drop interfaces. The goal is keeping Client Components small and localized at the leaves of the component tree.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When should I avoid optimistic updates?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Avoid optimistic updates for operations with high financial stakes (e.g. credit card checkouts), irreversible destructive actions (permanent database drops), or workflows heavily dependent on unpredictable server validations.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does React selective hydration improve perceived speed?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Under React 18 and 19 concurrent features, if a user clicks a button inside a suspended region while another part of the tree is still hydrating, React pauses background hydration to immediately hydrate and execute the clicked component.",
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c") }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c") }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
       <BlogPostClient />
     </>

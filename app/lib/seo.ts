@@ -6,7 +6,7 @@ export const siteName = "HeyZain";
 export const siteTitleDefault = "Zain Ali — Full-Stack Developer | Next.js, React & Node.js";
 
 export const siteDescription =
-  "Zain Ali is a full-stack developer specializing in Next.js, React, Node.js, TypeScript, and MongoDB. Explore his projects, experience, and technical writing.";
+  "HeyZain is the engineering portfolio and technical publication of Zain Ali, a full-stack developer and software engineer specializing in Next.js, React, Node.js, TypeScript, and MongoDB.";
 
 export const siteKeywords = [
   "Zain Ali",

@@ -36,6 +36,11 @@ interface ProjectCaseStudy {
   highlights: string[];
   githubLink?: string;
   liveLink?: string;
+  relatedArticle?: {
+    title: string;
+    slug: string;
+    description: string;
+  };
 }
 
 const PROJECTS_DATA: Record<string, ProjectCaseStudy> = {
@@ -75,6 +80,12 @@ const PROJECTS_DATA: Record<string, ProjectCaseStudy> = {
     ],
     githubLink: "https://github.com/zainali954/Linkvault",
     liveLink: "https://linkvault-six.vercel.app/",
+    relatedArticle: {
+      title: "Your Login Works. Your Authentication System Might Not.",
+      slug: "/authentication-is-a-lifecycle-not-a-login-screen",
+      description:
+        "Deep-dive technical case study exploring token rotation, multi-device session revocation, and cryptographic PIN vaults.",
+    },
   },
   dentalbox: {
     slug: "dentalbox",
@@ -111,6 +122,12 @@ const PROJECTS_DATA: Record<string, ProjectCaseStudy> = {
       "Real-time dispatch and delivery milestone tracking powered by Socket.IO",
     ],
     githubLink: "https://github.com/kakushinas2/dentalBox",
+    relatedArticle: {
+      title: "The Page Felt Slow. React Wasn't the Bottleneck.",
+      slug: "/react-page-slow-database-query-bottleneck",
+      description:
+        "Technical analysis of tracing full-stack latency from UI clicks to MongoDB execution plans and multi-vendor transactions.",
+    },
   },
   bookmi: {
     slug: "bookmi",
@@ -234,14 +251,18 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
   if (!project) {
     return {
-      title: "Project Not Found | Zain Ali",
+      title: {
+        absolute: "Project Not Found | Zain Ali",
+      },
     };
   }
 
   const canonicalUrl = absoluteUrl(`/projects/${slug}`);
 
   return {
-    title: project.metaTitle,
+    title: {
+      absolute: project.metaTitle,
+    },
     description: project.metaDescription,
     alternates: {
       canonical: canonicalUrl,
@@ -459,6 +480,36 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
               ))}
             </div>
           </section>
+
+          {/* Section: Companion Engineering Essay */}
+          {project.relatedArticle && (
+            <section className="mt-12 rounded-2xl border border-accent/20 bg-accent/5 p-6 sm:p-8">
+              <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-accent">
+                <Sparkles className="h-4 w-4" />
+                <span>Companion Engineering Essay</span>
+              </div>
+              <h3 className="mt-3 font-display text-xl font-bold text-ink sm:text-2xl">
+                <Link
+                  href={project.relatedArticle.slug}
+                  className="hover:text-accent hover:underline transition"
+                >
+                  {project.relatedArticle.title}
+                </Link>
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink/80">
+                {project.relatedArticle.description}
+              </p>
+              <div className="mt-4">
+                <Link
+                  href={project.relatedArticle.slug}
+                  className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-accent hover:underline"
+                >
+                  <span>Read the full technical deep-dive</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </section>
+          )}
 
           {/* Section: Author Context */}
           <section className="space-y-4 pt-10">

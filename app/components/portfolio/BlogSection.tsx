@@ -108,9 +108,18 @@ export function BlogSection() {
               Writing &amp; Thoughts<span className="text-accent">.</span>
             </h2>
           </div>
-          <p className="max-w-md text-xs sm:text-sm leading-relaxed text-muted-foreground">
-            Practical breakdowns on frontend architecture, perceived performance, database query patterns, and shipping real-world software.
-          </p>
+          <div className="max-w-md">
+            <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
+              Practical breakdowns on frontend architecture, perceived performance, database query patterns, and shipping real-world software.
+            </p>
+            <Link
+              href="/writing"
+              className="mt-2.5 inline-flex items-center gap-1 font-mono text-xs font-bold text-accent hover:underline"
+            >
+              <span>Explore all technical writing &amp; research</span>
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
         </div>
 
         {/* 4 Cards Grid */}
@@ -219,6 +228,17 @@ export function BlogSection() {
               </div>
             );
           })}
+        </div>
+
+        {/* Explore All Writing CTA */}
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/writing"
+            className="group inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/80 px-6 py-3 font-mono text-xs font-bold text-ink shadow-xs backdrop-blur-md transition-all hover:border-accent hover:text-accent hover:shadow-md"
+          >
+            <span>Explore All Technical Writing &amp; Research</span>
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
         </div>
       </div>
     </section>

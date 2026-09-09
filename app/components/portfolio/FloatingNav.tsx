@@ -242,6 +242,18 @@ export function FloatingNav({ ready = true }: { ready?: boolean }) {
                   <span>All Projects</span>
                   <span className="text-accent text-[10px]">→</span>
                 </Link>
+
+                <Link
+                  href="/writing"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    "flex items-center justify-between rounded-xl px-3.5 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors cursor-pointer text-left",
+                    isNavbarOverDark ? "hover:bg-white/10 text-white/80" : "hover:bg-ink/5 text-ink/80"
+                  )}
+                >
+                  <span>Writing &amp; Essays</span>
+                  <span className="text-accent text-[10px]">→</span>
+                </Link>
               </div>
             </motion.div>
           )}

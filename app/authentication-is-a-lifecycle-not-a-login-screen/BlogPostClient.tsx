@@ -715,6 +715,15 @@ export function BlogPostClient() {
               <p className="font-semibold text-ink">
                 Storage isn&apos;t merely an implementation detail. Storage determines what questions your authentication system can answer.
               </p>
+
+              <div className="my-6 rounded-2xl border border-ink/12 bg-white/70 p-5 shadow-xs">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-accent">
+                  Production Case Study
+                </span>
+                <p className="mt-1 text-xs sm:text-sm leading-relaxed text-ink/85">
+                  I applied this exact multi-device session revocation and secondary token architecture in <Link href="/projects/linkvault" className="font-semibold text-accent underline underline-offset-2 hover:text-ink">LinkVault</Link>, allowing users to inspect active device sessions and trigger immediate server-side revocation on stolen tokens.
+                </p>
+              </div>
             </section>
 
             <hr className="border-ink/10" />
@@ -1114,6 +1123,12 @@ ROTATE          REVOKE ──► Immediate multi-device invalidation
             </Link>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Link
+                href="/projects/linkvault"
+                className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"
+              >
+                <span>Project: LinkVault Case Study -&gt;</span>
+              </Link>
               <Link
                 href="/react-ui-buggy-remembers-too-much"
                 className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"

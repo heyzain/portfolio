@@ -27,9 +27,11 @@ import {
 } from "@/content/portfolio";
 
 export const metadata: Metadata = {
-  title: "About Zain Ali — Full-Stack Developer | HeyZain",
+  title: {
+    absolute: "About Zain Ali — Full-Stack Developer | HeyZain",
+  },
   description:
-    "Zain Ali is the full-stack developer behind HeyZain, specializing in Next.js, React, Node.js, TypeScript, and MongoDB. Explore engineering background, architecture philosophy, and shipped products.",
+    "HeyZain is the engineering portfolio and technical publication of Zain Ali, a full-stack developer and software engineer specializing in Next.js, React, Node.js, TypeScript, and MongoDB.",
   alternates: {
     canonical: absoluteUrl("/about"),
   },
@@ -148,7 +150,7 @@ export default function AboutPage() {
               Zain Ali — Full-Stack Developer
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-ink/80 md:text-xl">
-              I&apos;m Zain Ali, the developer behind HeyZain. I&apos;m a full-stack developer specializing in Next.js, React, Node.js, TypeScript, and MongoDB. I build production-ready SaaS products, marketplaces, AI applications, and full-stack web platforms from architecture through deployment.
+              HeyZain is the engineering portfolio and technical publication of Zain Ali. I&apos;m a full-stack developer and software engineer specializing in Next.js, React, Node.js, TypeScript, and MongoDB. My engineering work spans complete web applications, mobile platforms, and desktop tools—from schema design and API contracts to production deployment.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -226,7 +228,7 @@ export default function AboutPage() {
                 Whether architecting multi-tenant SaaS dashboards, AI pipelines with streaming responses, or high-throughput marketplace booking engines, my objective is simple: build reliable, resilient, and performant web products that solve clear business problems.
               </p>
               <p>
-                Under the brand <strong>HeyZain</strong>, I build, maintain, and publish full-stack applications, developer tools, and technical breakdowns focused on modern web architecture and database optimization.
+                Through <strong>HeyZain</strong>—my engineering portfolio and technical publication—I build, maintain, and publish full-stack applications, developer tools, and technical breakdowns focused on modern web architecture, state management, and database optimization.
               </p>
             </div>
           </section>

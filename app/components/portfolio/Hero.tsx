@@ -226,7 +226,7 @@ export function Hero({ ready }: { ready: boolean }) {
         <div className="mt-6 sm:mt-8 md:mt-10 flex flex-wrap items-end justify-between gap-8">
           <div className="max-w-xl">
             <p data-hero-reveal data-hero-meta className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-              I&apos;m {profile.name}, the developer behind HeyZain. I&apos;m a full-stack developer based in Pakistan specializing in Next.js, React, Node.js, TypeScript, and MongoDB. I build production-ready SaaS products, AI applications, marketplaces, and web platforms from database and API architecture through deployment.
+              HeyZain is the engineering portfolio and technical publication of {profile.name}, a full-stack developer and software engineer based in Pakistan specializing in Next.js, React, Node.js, TypeScript, and MongoDB. I build production-ready SaaS products, AI applications, marketplaces, and web platforms from database and API architecture through deployment.
             </p>
             <div data-hero-reveal data-hero-meta className="mt-4 sm:mt-6 flex flex-wrap items-center gap-2.5 sm:gap-3">
               <MagneticButton

@@ -12,7 +12,7 @@ const heroImage = "/authentication-lifecycle-hero.webp";
 const heroImageAlt = "Authentication is a lifecycle, not a login screen: verify, issue, store, validate, rotate, revoke, recover";
 
 export const metadata: Metadata = {
-  title: `${title} — Zain Ali | HeyZain`,
+  title,
   description,
   keywords: [
     "authentication lifecycle",
@@ -95,6 +95,69 @@ export default function BlogPostPage() {
       "authentication lifecycle, session management, session revocation, authentication architecture, session expiry, authentication security, multi-device logout",
   };
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Is authentication the same thing as login?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. Login is merely the entry event in the authentication lifecycle where initial identity is confirmed. Authentication encompasses issuing, storing, validating, refreshing, expiring, revoking, and recovering access over time.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why isn't a successful login enough to prove authentication works?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Because a successful login only proves that one credential-verification path worked at a single point in time. It does not prove that sessions are stored safely, expired tokens are rejected, revoked credentials cannot access private endpoints, or that password resets terminate existing device sessions.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why should authentication be validated on the server?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Client-side state (like isAuthenticated = true in React) is only a UI rendering hint, not a security boundary. The frontend can hide buttons, but only the server can authoritatively decide whether an incoming session token is still valid, unexpired, and unrevoked.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How can I test session revocation?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The most reliable test is the two-browser verification: log into the same account in Browser A and Browser B. From Browser A, click 'Log out of all devices'. Then, from Browser B, make a request to a protected API endpoint. The server must reject Browser B with a 401 Unauthorized.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Should password resets invalidate existing sessions?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. When a password reset occurs, the trust relationship of the account has fundamentally changed. If existing active sessions on other browsers or stolen devices remain authenticated, the account remains compromised despite the new password.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What's the difference between expiry and revocation?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Expiry is time-based and predictable: access ceases after a predefined lifetime (e.g. 15 minutes or 7 days). Revocation is intentional and event-driven: access is immediately destroyed before natural expiration due to user logout, administrative action, or security detection.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why is testing only the happy path dangerous?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Because the vast majority of critical security breaches and embarrassing authorization bugs happen outside the happy path: expired tokens still accepted, client-only logouts that leave server sessions alive, unhandled second devices, and lack of brute-force throttling on endpoints.",
+        },
+      },
+    ],
+  };
+
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -125,6 +188,10 @@ export default function BlogPostPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c") }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
       <script
         type="application/ld+json"

@@ -16,7 +16,9 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Technical Writing & Engineering Insights — Zain Ali | HeyZain",
+  title: {
+    absolute: "Technical Writing & Engineering Insights — Zain Ali | HeyZain",
+  },
   description:
     "Explore deep-dive technical essays by Zain Ali (HeyZain) on full-stack React performance, database query optimization, perceived latency, and state architecture.",
   alternates: {

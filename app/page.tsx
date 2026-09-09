@@ -3,7 +3,9 @@ import { HomeSections } from "@/components/portfolio/HomeSections";
 import { siteDescription, siteTitleDefault, siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: siteTitleDefault,
+  title: {
+    absolute: siteTitleDefault,
+  },
   description: siteDescription,
   alternates: {
     canonical: `${siteUrl}/`,

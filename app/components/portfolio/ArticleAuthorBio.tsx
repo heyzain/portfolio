@@ -14,7 +14,9 @@ export function ArticleAuthorBio() {
             AUTHOR &amp; ENGINEER
           </span>
           <h3 className="font-display text-xl font-bold text-ink">
-            {profile.name}
+            <Link href="/about" className="transition-colors hover:text-accent">
+              {profile.name}
+            </Link>
           </h3>
           <p className="text-xs text-muted-foreground font-mono">
             {profile.role} · Pakistan
@@ -24,7 +26,7 @@ export function ArticleAuthorBio() {
 
       <div className="mt-5 space-y-4">
         <p className="text-sm leading-relaxed text-ink/85">
-          Zain Ali is a full-stack developer and the engineer behind HeyZain, specializing in Next.js, React, Node.js, TypeScript, and MongoDB. He builds production-ready web applications, SaaS products, marketplaces, and AI-powered products from database to deployment.
+          HeyZain is the engineering portfolio and technical publication of Zain Ali, a full-stack developer and software engineer specializing in Next.js, React, Node.js, TypeScript, and MongoDB. He builds production-ready web platforms, SaaS products, marketplaces, and developer tools from schema design to edge deployment.
         </p>
 
         <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -56,6 +58,14 @@ export function ArticleAuthorBio() {
           >
             <Globe className="h-3.5 w-3.5 text-accent" />
             <span>About Zain</span>
+            <ArrowUpRight className="h-3 w-3 text-muted-foreground" />
+          </Link>
+
+          <Link
+            href="/writing"
+            className="inline-flex items-center gap-1.5 rounded-full border border-ink/15 bg-paper/60 px-3.5 py-1.5 font-mono text-xs font-semibold text-ink transition hover:border-ink hover:bg-white"
+          >
+            <span>All Articles</span>
             <ArrowUpRight className="h-3 w-3 text-muted-foreground" />
           </Link>
 

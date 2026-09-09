@@ -247,7 +247,7 @@ export function BlogPostClient() {
               </li>
               <li aria-hidden="true">/</li>
               <li>
-                <Link href="/#blog" className="transition-colors hover:text-accent">
+                <Link href="/writing" className="transition-colors hover:text-accent">
                   WRITING
                 </Link>
               </li>
@@ -584,6 +584,15 @@ Query shape
 Index / storage strategy`}
               </DiagramBlock>
               <p>This is one reason full-stack performance problems often resist layer-by-layer thinking. The layers are separate in implementation. They are connected in latency.</p>
+
+              <div className="my-6 rounded-2xl border border-ink/12 bg-white/70 p-5 shadow-xs">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-accent">
+                  Production Case Study
+                </span>
+                <p className="mt-1 text-xs sm:text-sm leading-relaxed text-ink/85">
+                  I tackled these compound index and execution plan bottlenecks directly when engineering the multi-vendor transaction pipelines for <Link href="/projects/dentalbox" className="font-semibold text-accent underline underline-offset-2 hover:text-ink">DentalBox</Link>, ensuring multi-supplier checkouts maintain strict ledger consistency without latency spikes.
+                </p>
+              </div>
             </section>
 
             <section className="space-y-6">
@@ -792,6 +801,12 @@ query D`}
             </Link>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Link
+                href="/projects/dentalbox"
+                className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"
+              >
+                <span>Project: DentalBox Case Study -&gt;</span>
+              </Link>
               <Link
                 href="/structuring-full-stack-react-apps-for-speed"
                 className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"

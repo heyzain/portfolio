@@ -15,7 +15,9 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Projects & Technical Case Studies — Zain Ali | HeyZain",
+  title: {
+    absolute: "Projects & Technical Case Studies — Zain Ali | HeyZain",
+  },
   description:
     "Explore full-stack applications, SaaS platforms, AI products, and marketplaces built by Zain Ali (HeyZain) using Next.js, React, Node.js, TypeScript, and MongoDB.",
   alternates: {

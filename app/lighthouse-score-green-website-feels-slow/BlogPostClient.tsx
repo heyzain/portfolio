@@ -134,7 +134,7 @@ console.log(
               </li>
               <li aria-hidden="true">/</li>
               <li>
-                <Link href="/#blog" className="transition-colors hover:text-accent">
+                <Link href="/writing" className="transition-colors hover:text-accent">
                   WRITING
                 </Link>
               </li>
@@ -727,6 +727,12 @@ console.log(
             </Link>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Link
+                href="/projects"
+                className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"
+              >
+                <span>Explore Shipped Projects -&gt;</span>
+              </Link>
               <Link
                 href="/structuring-full-stack-react-apps-for-speed"
                 className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"

@@ -199,7 +199,7 @@ export default async function DashboardPage() {
               </li>
               <li aria-hidden="true">/</li>
               <li>
-                <Link href="/#blog" className="transition-colors hover:text-accent">
+                <Link href="/writing" className="transition-colors hover:text-accent">
                   WRITING
                 </Link>
               </li>
@@ -674,6 +674,15 @@ export default async function DashboardPage() {
             <p className="mt-3 text-base leading-relaxed text-ink/80">
               By moving reads to the server, streaming slow chunks, isolating client boundaries, and applying optimistic updates, your applications feel immediate, resilient, and responsive.
             </p>
+
+            <div className="mt-6 rounded-2xl border border-ink/12 bg-paper/60 p-5 shadow-xs">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-accent">
+                Production Case Study
+              </span>
+              <p className="mt-1 text-xs sm:text-sm leading-relaxed text-ink/85">
+                I leveraged this progressive full-stack architecture when building <Link href="/projects/linkvault" className="font-semibold text-accent underline underline-offset-2 hover:text-ink">LinkVault</Link> (combining a React 19 PWA with a Manifest V3 extension), achieving sub-100ms bookmark search and instant client-side caching backed by Node.js and MongoDB.
+              </p>
+            </div>
           </section>
 
           {/* FAQ Section */}
@@ -725,6 +734,12 @@ export default async function DashboardPage() {
             </Link>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Link
+                href="/projects/linkvault"
+                className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"
+              >
+                <span>Project: LinkVault Case Study -&gt;</span>
+              </Link>
               <Link
                 href="/react-page-slow-database-query-bottleneck"
                 className="group inline-flex items-center gap-1 font-bold text-accent hover:underline"

@@ -61,6 +61,7 @@ export function HomeSections() {
         secondaryLinks={[
           { label: "About", href: "/about" },
           { label: "Projects", href: "/projects" },
+          { label: "Writing", href: "/writing" },
           { label: "LinkedIn", href: `https://${profile.linkedin}` },
           { label: "Résumé", href: profile.resumeUrl },
         ]}

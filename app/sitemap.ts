@@ -24,6 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: absoluteUrl("/projects/zentrix"),
+      lastModified: lastMod,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
       url: absoluteUrl("/projects/linkvault"),
       lastModified: lastMod,
       changeFrequency: "monthly",

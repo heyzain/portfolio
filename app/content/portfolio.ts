@@ -46,7 +46,7 @@ export const stack = [
     descriptor: "interfaces people actually use",
     build:
       "Component-driven UIs in React with predictable Redux state, styled with Tailwind — responsive layouts, accessible controls, and interactions that stay fast.",
-    proof: ["LinkVault", "Snapsack"],
+    proof: ["Zentrix", "LinkVault", "Snapsack"],
     items: [
       { name: "React", note: "component systems" },
       { name: "Next.js", note: "app routing" },
@@ -114,7 +114,7 @@ export const essay = {
   paragraphs: [
     "I'm a self-taught developer passionate about building practical web apps. Every project I create helps me learn, improve, and get closer to real-world readiness.",
     "My path here wasn't a straight line through a classroom. Alongside my BSCS coursework at the University of Mianwali, most of what I actually know came from outside the syllabus — reading docs until they made sense, rebuilding tutorials from scratch instead of copying them, and shipping small, rough apps just to see them work. The full stack stuck because it let me own a product end to end: the database, the API, the interface someone actually clicks on, all one connected thing instead of a slice of someone else's.",
-    "I don't chase frameworks for their own sake. I care about whether an app actually solves the problem it was built for — a login that doesn't leak sessions, a dashboard that loads before you lose interest, a form that saves your work instead of losing it. That's the thread through LinkVault, ZephyrLint, Tickure and Snapsack: each one started as 'I wish this existed' and ended as something a real person could open in a browser and use. I'm still early, and I'd rather ship the honest version of something than talk myself out of shipping at all.",
+    "I don't chase frameworks for their own sake. I care about whether an app actually solves the problem it was built for — a login that doesn't leak sessions, a dashboard that loads before you lose interest, a form that saves your work instead of losing it. That's the thread through Zentrix, LinkVault, ZephyrLint, Tickure, and Snapsack: each one started as 'I wish this existed' and ended as something a real person could open in a browser and use. I'm still early, and I'd rather ship the honest version of something than talk myself out of shipping at all.",
   ],
   notes: [
     {
@@ -201,7 +201,7 @@ export const experience = [
     company: "Product practice",
     role: "Portfolio projects and full-stack builds",
     blurb:
-      "Moved from isolated lessons into complete products: LinkVault, ZephyrLint, Tickure, and Snapsack.",
+      "Moved from isolated lessons into complete products: Zentrix, LinkVault, ZephyrLint, Tickure, and Snapsack.",
     bullets: [
       "Shipped authentication, dashboards, filters, API routes, MongoDB models, and responsive UI.",
       "Practiced the full cycle: idea, structure, build, test, deploy, improve.",
@@ -289,6 +289,18 @@ export const workProjects = [
 export const playgroundProjects = [
   {
     num: "01",
+    title: "Zentrix",
+    subtitle: "Multi-role Learning Management System",
+    category: "EDTECH & LEARNING MANAGEMENT",
+    desc: "A multi-role learning management system built around course creation, learner enrollment, assessments, and structured learning progress.",
+    stack: "Next.js 16 · React 19 · TypeScript · MongoDB · Mongoose · Redux Toolkit · Cloudinary · LiveKit · Nodemailer",
+    rolenote: "Solo build — architecture, design & full-stack development",
+    image: "/assets/zentrix/zentrix-hero.webp",
+    githubLink: "",
+    liveLink: "https://zentrix-lms.vercel.app",
+  },
+  {
+    num: "02",
     title: "LinkVault",
     subtitle: "PWA & Chrome extension bookmark ecosystem with PIN vault",
     desc: "A full-stack bookmark management platform available as an installable PWA and Manifest V3 Chrome Extension. Features auto-metadata extraction, tokenized public sharing, multi-device session revocation, and a PIN-protected Private Vault for sensitive links.",
@@ -299,7 +311,7 @@ export const playgroundProjects = [
     liveLink: "https://linkvault-six.vercel.app/",
   },
   {
-    num: "02",
+    num: "03",
     title: "ZephyrLint",
     subtitle: "AI-powered code review dashboard",
     desc: "ZephyrLint delivers secure, AI-powered code reviews through a web dashboard, utilizing the Gemini model for analysis across most programming languages. Benefit from diverse review options (deep, rewrite, performance), history preservation, and full control to copy, download, or share your results.",
@@ -310,7 +322,7 @@ export const playgroundProjects = [
     liveLink: "https://zephyrlint.vercel.app/",
   },
   {
-    num: "03",
+    num: "04",
     title: "Tickure",
     subtitle: "Task management & analytics",
     desc: "Tickure is a personal task management web app featuring user authentication, category and label-based organization, advanced filtering and sorting, and a detailed analytics dashboard. It includes a full CRUD system with a responsive UI and supports calendar view and subtask tracking.",
@@ -322,7 +334,7 @@ export const playgroundProjects = [
     liveLink: "https://tickure.vercel.app/",
   },
   {
-    num: "04",
+    num: "05",
     title: "Snapsack",
     subtitle: "Full-featured e-commerce app",
     desc: "Snapsack is a full-featured e-commerce web application with user authentication, product listing, search, sorting, filtering, cart functionality, and a complete admin panel. All core features have been implemented except for payment integration.",
@@ -340,7 +352,7 @@ export const hobbyProjects = playgroundProjects.map((p, i) => ({
   caption: p.subtitle,
   detail: p.stack,
   image: p.image,
-  rotate: [-4, 3, -2, 5][i % 4],
-  x: ["6%", "40%", "20%", "56%"][i % 4],
-  y: ["8%", "2%", "46%", "40%"][i % 4],
+  rotate: [-4, 3, -2, 5, -3][i % 5],
+  x: ["6%", "40%", "20%", "56%", "32%"][i % 5],
+  y: ["8%", "2%", "46%", "40%", "24%"][i % 5],
 }));

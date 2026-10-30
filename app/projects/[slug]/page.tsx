@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
+  AlertCircle,
   ArrowLeft,
   ArrowUpRight,
+  CheckCircle2,
+  ClipboardList,
+  Clock,
   ExternalLink,
   Github,
   Layers,
@@ -18,6 +22,7 @@ import {
   getBreadcrumbSchema,
   getSoftwareApplicationSchema,
 } from "@/lib/seo";
+import { zentrixFeatureStatus, type FeatureCategoryGroup } from "@/content/zentrix-status";
 
 interface ProjectCaseStudy {
   slug: string;
@@ -30,7 +35,26 @@ interface ProjectCaseStudy {
   stack: string[];
   role: string;
   problem: string;
+  problemTitle?: string;
+  problemParagraphs?: string[];
   built: string;
+  builtTitle?: string;
+  learningApproach?: {
+    selfPaced: {
+      title: string;
+      description: string;
+      status: string;
+    };
+    cohortBased: {
+      title: string;
+      description: string;
+      status: string;
+    };
+    connectedEnv: {
+      title: string;
+      description: string;
+    };
+  };
   challenge: string;
   outcome: string;
   highlights: string[];
@@ -41,9 +65,106 @@ interface ProjectCaseStudy {
     slug: string;
     description: string;
   };
+  featureStatus?: {
+    completed: FeatureCategoryGroup;
+    inProgress: FeatureCategoryGroup;
+    planned: FeatureCategoryGroup;
+  };
+  gallery?: {
+    title: string;
+    caption: string;
+    image: string;
+  }[];
 }
 
 const PROJECTS_DATA: Record<string, ProjectCaseStudy> = {
+  zentrix: {
+    slug: "zentrix",
+    title: "Zentrix",
+    subtitle: "Multi-role Learning Management System",
+    metaTitle: "Zentrix — Multi-Role LMS Platform by Zain Ali | HeyZain",
+    metaDescription:
+      "Zentrix is an independently engineered multi-role learning management system with course authoring, learner enrollments, persistent progress tracking, and assessments built by Zain Ali.",
+    category: "EDTECH & LEARNING MANAGEMENT",
+    applicationCategory: "EducationalApplication",
+    stack: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "MongoDB",
+      "Mongoose",
+      "Redux Toolkit",
+      "Cloudinary",
+      "LiveKit",
+      "Nodemailer",
+    ],
+    role: "Solo Build — Architecture, Design & Full-Stack Development",
+    problemTitle: "One Platform. Different Ways to Learn.",
+    problem:
+      "People learn in different ways. Some prefer the flexibility to learn at their own pace, revisit lessons, and fit education around their schedules. Others benefit from a more structured learning experience with organized cohorts, scheduled sessions, and guidance from tutors.\n\nA learning platform should not force everyone into the same approach.\n\nZentrix brings both learning experiences together in one environment: flexible self-paced learning and structured, cohort-based learning. It also provides tutors with tools to organize courses and administrators with the ability to manage users, access, and course publishing.",
+    problemParagraphs: [
+      "People learn in different ways. Some prefer the flexibility to learn at their own pace, revisit lessons, and fit education around their schedules. Others benefit from a more structured learning experience with organized cohorts, scheduled sessions, and guidance from tutors.",
+      "A learning platform should not force everyone into the same approach.",
+      "Zentrix brings both learning experiences together in one environment: flexible self-paced learning and structured, cohort-based learning. It also provides tutors with tools to organize courses and administrators with the ability to manage users, access, and course publishing.",
+    ],
+    builtTitle: "Two Learning Paths. One Platform.",
+    built:
+      "Developed a full-stack LMS supporting two distinct learning models: flexible self-paced learning and structured cohort-based learning, backed by role-specific experiences for learners, tutors, and administrators.",
+    learningApproach: {
+      selfPaced: {
+        title: "Self-Paced Learning",
+        description:
+          "Learners can discover courses, enroll, access structured modules and lessons, complete quizzes, and track their progress independently — learning whenever and wherever it suits them.",
+        status: "COMPLETE · VERIFIED",
+      },
+      cohortBased: {
+        title: "Structured Cohort-Based Learning",
+        description:
+          "Learners can follow a more organized learning journey built around cohorts, scheduled sessions, and tutor guidance, with foundations for live interaction and attendance tracking.",
+        status: "IN PROGRESS",
+      },
+      connectedEnv: {
+        title: "A Connected Learning Environment",
+        description:
+          "Both approaches are supported by role-specific experiences for learners, tutors, and administrators, bringing course creation, enrollment, assessments, and learning management together.",
+      },
+    },
+    challenge:
+      "Designing a connected multi-role learning architecture while maintaining proper authorization, course ownership, enrollment restrictions, and persistent learner progress. Additional engineering challenges include quiz attempt integrity, course and curriculum persistence, media upload validation, and keeping paid-course enrollment restricted until a real payment workflow exists.",
+    outcome:
+      "Built a substantial full-stack learning management platform with manually verified core workflows, separate user experiences, and a continuously evolving feature roadmap. The core multi-role architecture, enrollment workflows, and quiz engines are manually verified, with automated testing and broader QA tooling under active enhancement.",
+    highlights: [
+      "Multi-Role Access Control (RBAC) separating Learner, Tutor, and Administrator environments with server-side authorization guards",
+      "Hierarchical Curriculum Engine structuring modules and lessons with distinct draft, review, and publication lifecycles",
+      "Stateful Enrollment & Learning Progress with persistent lesson tracking and verified quiz attempt scoring",
+      "Direct Media & Assessment Pipeline incorporating Cloudinary upload signatures and timed quiz scoring",
+      "Tutor Moderation & Lifecycle System preventing unpublished or rejected content from public indexing",
+    ],
+    liveLink: "https://zentrix-lms.vercel.app",
+    featureStatus: zentrixFeatureStatus,
+    gallery: [
+      {
+        title: "Course Catalog & Landing Page",
+        caption: "Public course catalog with category filters, search querying, and publication-state verification.",
+        image: "/assets/zentrix/zentrix-hero.webp",
+      },
+      {
+        title: "Curriculum Builder & Course Management",
+        caption: "Tutor curriculum authoring workflow with modules, lessons, and draft saving.",
+        image: "/assets/zentrix/zentrix-curriculum-builder.webp",
+      },
+      {
+        title: "Curriculum & Lesson Player",
+        caption: "Structured video and document delivery player maintaining persistent progress records.",
+        image: "/assets/zentrix/zentrix-lesson-player.webp",
+      },
+      {
+        title: "Interactive Quiz & Assessment Engine",
+        caption: "Assessment engine with question scoring, passing score validation, and attempt integrity.",
+        image: "/assets/zentrix/zentrix-quiz-assessment.webp",
+      },
+    ],
+  },
   linkvault: {
     slug: "linkvault",
     title: "LinkVault",
@@ -321,7 +442,7 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
       <main className="min-h-screen bg-paper text-ink selection:bg-accent/20">
         {/* Navigation Bar */}
         <header className="sticky top-0 z-50 border-b border-ink/10 bg-paper/90 backdrop-blur-md">
-          <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 sm:px-8 py-4">
             <Link
               href="/projects"
               className="group flex items-center gap-2 font-mono text-xs font-semibold tracking-wider text-muted-foreground transition hover:text-ink"
@@ -347,7 +468,7 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
         </header>
 
         {/* Content Container */}
-        <article className="mx-auto max-w-4xl px-6 py-12 md:py-20">
+        <article className="mx-auto max-w-7xl px-6 sm:px-8 py-12 md:py-20">
           {/* Breadcrumb Navigation */}
           <nav aria-label="Breadcrumb" className="mb-6 font-mono text-xs text-muted-foreground">
             <ol className="flex items-center gap-2">
@@ -430,20 +551,91 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
 
           {/* Section: Architectural Breakdown Grid */}
           <div className="my-12 grid gap-6 sm:grid-cols-2">
-            <section className="rounded-2xl border border-ink/10 bg-white/70 p-6 shadow-xs">
+            <section className="rounded-2xl border border-ink/10 bg-white/70 p-6 sm:p-7 shadow-xs">
               <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-accent">
                 <Layers className="h-4 w-4" />
-                <span>The Problem Solved</span>
+                <span>{project.problemTitle || "The Problem Solved"}</span>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-ink/85">{project.problem}</p>
+              {project.problemParagraphs ? (
+                <div className="mt-3.5 space-y-3 text-sm leading-relaxed text-ink/85">
+                  {project.problemParagraphs.map((paragraph, idx) => (
+                    <p
+                      key={idx}
+                      className={idx === 1 ? "font-semibold text-ink" : ""}
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              ) : (
+                <p className="mt-3 text-sm leading-relaxed text-ink/85">{project.problem}</p>
+              )}
             </section>
 
-            <section className="rounded-2xl border border-ink/10 bg-white/70 p-6 shadow-xs">
+            <section className="rounded-2xl border border-ink/10 bg-white/70 p-6 sm:p-7 shadow-xs">
               <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-accent">
                 <Cpu className="h-4 w-4" />
-                <span>Architectural Scope &amp; Implementation</span>
+                <span>{project.builtTitle || "Architectural Scope & Implementation"}</span>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-ink/85">{project.built}</p>
+
+              {project.learningApproach ? (
+                <div className="mt-4 space-y-3.5">
+                  {/* Subsection 1: Self-Paced Learning */}
+                  <div>
+                    <h4 className="font-display text-xs font-bold uppercase tracking-wider text-ink sm:text-sm">
+                      {project.learningApproach.selfPaced.title}
+                    </h4>
+                    <p className="mt-1 text-xs leading-relaxed text-ink/80 sm:text-sm">
+                      {project.learningApproach.selfPaced.description}
+                    </p>
+                  </div>
+
+                  {/* Subsection 2: Structured Cohort-Based Learning */}
+                  <div>
+                    <h4 className="font-display text-xs font-bold uppercase tracking-wider text-ink sm:text-sm">
+                      {project.learningApproach.cohortBased.title}
+                    </h4>
+                    <p className="mt-1 text-xs leading-relaxed text-ink/80 sm:text-sm">
+                      {project.learningApproach.cohortBased.description}
+                    </p>
+                  </div>
+
+                  {/* Tasteful Development Status Area directly beneath */}
+                  <div className="rounded-xl border border-ink/10 bg-paper/80 p-3 sm:p-3.5">
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                      Development Status
+                    </p>
+                    <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-medium text-ink/85">Self-Paced Learning —</span>
+                        <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-800 dark:text-emerald-300 whitespace-nowrap">
+                          <CheckCircle2 className="h-2.5 w-2.5 text-emerald-600 dark:text-emerald-400" />
+                          <span>{project.learningApproach.selfPaced.status}</span>
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-medium text-ink/85">Cohort-Based Learning —</span>
+                        <span className="inline-flex items-center gap-1 rounded-md border border-amber-500/25 bg-amber-500/10 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-800 dark:text-amber-300 whitespace-nowrap">
+                          <Clock className="h-2.5 w-2.5 text-amber-600 dark:text-amber-400" />
+                          <span>{project.learningApproach.cohortBased.status}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Subsection 3: A Connected Learning Environment */}
+                  <div className="border-t border-ink/8 pt-3">
+                    <h4 className="font-display text-xs font-bold uppercase tracking-wider text-ink sm:text-sm">
+                      {project.learningApproach.connectedEnv.title}
+                    </h4>
+                    <p className="mt-1 text-xs leading-relaxed text-ink/80 sm:text-sm">
+                      {project.learningApproach.connectedEnv.description}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <p className="mt-3 text-sm leading-relaxed text-ink/85">{project.built}</p>
+              )}
             </section>
 
             <section className="rounded-2xl border border-ink/10 bg-white/70 p-6 shadow-xs">
@@ -480,6 +672,214 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
               ))}
             </div>
           </section>
+
+          {/* Section: Interface & Architectural Previews */}
+          {project.gallery && project.gallery.length > 0 && (
+            <section className="space-y-6 border-b border-ink/10 py-12">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/70 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
+                  <span>Verified System Previews</span>
+                </div>
+                <h2 className="mt-3 font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+                  Interface &amp; Workflow Previews
+                </h2>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Verified workflow screenshots captured directly from the Zentrix LMS engineering environment.
+                </p>
+              </div>
+
+              <div className="grid gap-6 sm:grid-cols-2">
+                {project.gallery.map((screen) => (
+                  <div
+                    key={screen.title}
+                    className="overflow-hidden rounded-2xl border border-ink/12 bg-white/80 p-3 shadow-xs transition hover:border-ink/25"
+                  >
+                    <div className="aspect-[16/10] overflow-hidden rounded-xl border border-ink/10 bg-paper/60">
+                      <img
+                        src={screen.image}
+                        alt={`${screen.title} - ${screen.caption}`}
+                        className="h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="px-1.5 pt-3 pb-1">
+                      <h3 className="font-display text-base font-bold text-ink">{screen.title}</h3>
+                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{screen.caption}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Section: Feature Verification & Implementation Status */}
+          {project.featureStatus && (
+            <section className="space-y-8 border-b border-ink/10 py-12">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/10 px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-accent">
+                  <ClipboardList className="h-3.5 w-3.5" />
+                  <span>Feature Status &amp; Verification Matrix</span>
+                </div>
+                <h2 className="mt-3 font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl md:text-4xl">
+                  Implementation &amp; Feature Verification
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base max-w-3xl">
+                  A transparent breakdown of verified capabilities, partially implemented workflows under active refinement, and planned roadmap items. Core functionality has been verified manually in the codebase.
+                </p>
+              </div>
+
+              {/* Status Note Banner */}
+              <div className="rounded-2xl border border-ink/10 bg-white/60 p-5 text-xs sm:text-sm leading-relaxed text-ink/80 shadow-xs">
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-ink">Engineering Verification Note:</span>{" "}
+                All items marked <span className="font-semibold text-emerald-700 dark:text-emerald-400">Complete — Verified</span> have been manually verified by the developer in the codebase. Features marked <span className="font-semibold text-amber-700 dark:text-amber-400">In Progress — Partial</span> have active codebase implementations undergoing refinement. Features marked <span className="font-semibold text-muted-foreground">Planned — Not Implemented</span> represent future roadmap items (payments, messaging, notifications) that are not yet operational.
+              </div>
+
+              {/* 3 Visible Columns / Sections */}
+              <div className="grid gap-6 lg:grid-cols-3">
+                {/* 1. COMPLETE — VERIFIED */}
+                <div className="flex flex-col rounded-2xl border border-emerald-500/25 bg-white/70 p-5 sm:p-6 shadow-xs">
+                  <div className="border-b border-emerald-500/15 pb-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-xs font-bold text-emerald-800 dark:text-emerald-300 whitespace-nowrap">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                        <span>COMPLETE — VERIFIED</span>
+                      </span>
+                      <span className="font-mono text-xs font-bold text-muted-foreground whitespace-nowrap">
+                        {project.featureStatus.completed.features.length} Items
+                      </span>
+                    </div>
+                    <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
+                      {project.featureStatus.completed.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 flex-1 space-y-3">
+                    {project.featureStatus.completed.features.map((item) => (
+                      <div
+                        key={item.name}
+                        className="rounded-xl border border-emerald-500/15 bg-paper/60 p-3.5 sm:p-4 transition hover:border-emerald-500/35 hover:bg-paper"
+                      >
+                        <div className="flex flex-wrap items-center justify-between gap-x-2.5 gap-y-1.5">
+                          <h4 className="font-display text-xs font-bold text-ink sm:text-sm">
+                            {item.name}
+                          </h4>
+                          <span className="inline-flex shrink-0 items-center gap-1 rounded-md border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-emerald-800 dark:text-emerald-300 whitespace-nowrap">
+                            <CheckCircle2 className="h-2.5 w-2.5 text-emerald-600 dark:text-emerald-400" />
+                            <span>{item.status}</span>
+                          </span>
+                        </div>
+                        {item.subItems && item.subItems.length > 0 && (
+                          <ul className="mt-2.5 space-y-1 border-t border-ink/6 pt-2 font-mono text-[11px] text-muted-foreground">
+                            {item.subItems.map((sub) => (
+                              <li key={sub} className="flex items-center gap-1.5">
+                                <span className="h-1 w-1 rounded-full bg-emerald-600 dark:bg-emerald-400 shrink-0" />
+                                <span>{sub}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 2. IN PROGRESS */}
+                <div className="flex flex-col rounded-2xl border border-amber-500/25 bg-white/70 p-5 sm:p-6 shadow-xs">
+                  <div className="border-b border-amber-500/15 pb-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 font-mono text-xs font-bold text-amber-800 dark:text-amber-300 whitespace-nowrap">
+                        <Clock className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
+                        <span>IN PROGRESS</span>
+                      </span>
+                      <span className="font-mono text-xs font-bold text-muted-foreground whitespace-nowrap">
+                        {project.featureStatus.inProgress.features.length} Items
+                      </span>
+                    </div>
+                    <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
+                      {project.featureStatus.inProgress.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 flex-1 space-y-3">
+                    {project.featureStatus.inProgress.features.map((item) => (
+                      <div
+                        key={item.name}
+                        className="rounded-xl border border-amber-500/15 bg-paper/60 p-3.5 sm:p-4 transition hover:border-amber-500/35 hover:bg-paper"
+                      >
+                        <div className="flex flex-wrap items-center justify-between gap-x-2.5 gap-y-1.5">
+                          <h4 className="font-display text-xs font-bold text-ink sm:text-sm">
+                            {item.name}
+                          </h4>
+                          <span className="inline-flex shrink-0 items-center gap-1 rounded-md border border-amber-500/25 bg-amber-500/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-amber-800 dark:text-amber-300 whitespace-nowrap">
+                            <Clock className="h-2.5 w-2.5 text-amber-600 dark:text-amber-400" />
+                            <span>{item.status}</span>
+                          </span>
+                        </div>
+                        {item.subItems && item.subItems.length > 0 && (
+                          <ul className="mt-2.5 space-y-1 border-t border-ink/6 pt-2 font-mono text-[11px] text-muted-foreground">
+                            {item.subItems.map((sub) => (
+                              <li key={sub} className="flex items-center gap-1.5">
+                                <span className="h-1 w-1 rounded-full bg-amber-600 dark:bg-amber-400 shrink-0" />
+                                <span>{sub}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 3. PLANNED */}
+                <div className="flex flex-col rounded-2xl border border-ink/15 bg-white/70 p-5 sm:p-6 shadow-xs">
+                  <div className="border-b border-ink/10 pb-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/15 bg-ink/5 px-3 py-1 font-mono text-xs font-bold text-ink/75 whitespace-nowrap">
+                        <AlertCircle className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                        <span>PLANNED</span>
+                      </span>
+                      <span className="font-mono text-xs font-bold text-muted-foreground whitespace-nowrap">
+                        {project.featureStatus.planned.features.length} Items
+                      </span>
+                    </div>
+                    <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
+                      {project.featureStatus.planned.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 flex-1 space-y-3">
+                    {project.featureStatus.planned.features.map((item) => (
+                      <div
+                        key={item.name}
+                        className="rounded-xl border border-ink/10 bg-paper/60 p-3.5 sm:p-4 transition hover:border-ink/25 hover:bg-paper"
+                      >
+                        <div className="flex flex-wrap items-center justify-between gap-x-2.5 gap-y-1.5">
+                          <h4 className="font-display text-xs font-bold text-ink sm:text-sm">
+                            {item.name}
+                          </h4>
+                          <span className="inline-flex shrink-0 items-center gap-1 rounded-md border border-ink/15 bg-ink/5 px-2 py-0.5 font-mono text-[10px] font-semibold text-muted-foreground whitespace-nowrap">
+                            <AlertCircle className="h-2.5 w-2.5 text-muted-foreground" />
+                            <span>{item.status}</span>
+                          </span>
+                        </div>
+                        {item.subItems && item.subItems.length > 0 && (
+                          <ul className="mt-2.5 space-y-1 border-t border-ink/6 pt-2 font-mono text-[11px] text-muted-foreground">
+                            {item.subItems.map((sub) => (
+                              <li key={sub} className="flex items-center gap-1.5">
+                                <span className="h-1 w-1 rounded-full bg-ink/40 shrink-0" />
+                                <span>{sub}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Section: Companion Engineering Essay */}
           {project.relatedArticle && (

@@ -44,6 +44,7 @@ const PROJECT_CASE_STUDY_SLUGS: Record<string, string> = {
   "ReadMyCup": "readmycup",
   "DentalBox": "dentalbox",
   "Bookmi": "bookmi",
+  "Zentrix": "zentrix",
   "LinkVault": "linkvault",
 };
 
@@ -132,6 +133,23 @@ const detailedProjects = [
       "A high-converting, SEO-optimized digital retail storefront.",
     githubLink: "https://github.com/shoprehan786-arch/shoprehan",
     liveLink: "",
+  },
+  {
+    title: "Zentrix",
+    subtitle: "Multi-role Learning Management System",
+    category: "EDTECH & LEARNING MANAGEMENT",
+    stack: "Next.js 16 · React 19 · TypeScript · MongoDB · Mongoose · Redux Toolkit · Cloudinary · LiveKit · Nodemailer",
+    role: "Solo Build — Architecture, Design & Full-Stack Development",
+    problem:
+      "People learn in different ways. Some prefer the flexibility to learn at their own pace, while others thrive in structured, cohort-based environments with scheduled sessions and tutor guidance. Zentrix unites both learning pathways within a single multi-role platform.",
+    built:
+      "Engineered an LMS supporting dual learning models: flexible self-paced learning and structured cohort journeys. Delivers dedicated environments for Learners, Tutors, and Admins with course authoring, progress persistence, assessment integrity, and live-session foundations.",
+    challenge:
+      "Designing a connected multi-role learning architecture while maintaining proper authorization, course ownership, enrollment restrictions, and persistent learner progress. Additional engineering challenges include quiz attempt integrity, course and curriculum persistence, media upload validation, and keeping paid-course enrollment restricted until a real payment workflow exists.",
+    outcome:
+      "Built a substantial full-stack learning management platform with manually verified core workflows, separate user experiences, and a continuously evolving feature roadmap.",
+    githubLink: "",
+    liveLink: "https://zentrix-lms.vercel.app",
   },
   {
     title: "LinkVault",
@@ -258,7 +276,7 @@ export default function ProjectsPage() {
       <main className="min-h-screen bg-paper text-ink selection:bg-accent/20">
         {/* Navigation Bar */}
         <header className="sticky top-0 z-50 border-b border-ink/10 bg-paper/90 backdrop-blur-md">
-          <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 sm:px-8 py-4">
             <Link
               href="/"
               className="group flex items-center gap-2 font-mono text-xs font-semibold tracking-wider text-muted-foreground transition hover:text-ink"
@@ -284,7 +302,7 @@ export default function ProjectsPage() {
         </header>
 
         {/* Header Section */}
-        <div className="mx-auto max-w-4xl px-6 py-12 md:py-20">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 py-12 md:py-20">
           <nav aria-label="Breadcrumb" className="mb-6 font-mono text-xs text-muted-foreground">
             <ol className="flex items-center gap-2">
               <li>

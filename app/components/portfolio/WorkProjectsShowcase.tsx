@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { ArrowUpRight, ChevronRight, ExternalLink, Eye, Github, X } from "lucide-react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { playgroundProjects } from "@/content/portfolio";
+import { zentrixFeatureStatus } from "@/content/zentrix-status";
 
 type ProjectFeature = {
   title: string;
@@ -64,6 +65,52 @@ type ProjectCardProps = {
 };
 
 const caseStudyCopy = [
+  {
+    brief: "A multi-role learning management system built around course creation, learner enrollment, assessments, and structured learning progress.",
+    challenge: "Designing a connected multi-role learning architecture while maintaining proper authorization, course ownership, enrollment restrictions, and persistent learner progress.",
+    solution: "Developed role-specific experiences for Learners, Tutors, and Administrators with hierarchical curriculum management, free course enrollment, and attempt-validated quizzes.",
+    outcome: "Built a substantial full-stack learning management platform with manually verified core workflows, separate user experiences, and a continuously evolving feature roadmap.",
+    duration: "Solo Build",
+    audience: "Learners, tutors, and administrators in a structured educational ecosystem.",
+    research: [
+      "Multi-role educational platforms require strict server-side authorization to protect curriculum ownership.",
+      "Learner retention depends on persistent progress tracking across lessons and assessment attempt integrity.",
+      "Course lifecycles need distinct draft, review, and publication stages to guarantee quality before catalog exposure.",
+    ],
+    decisions: [
+      { title: "Multi-Role RBAC", description: "Enforced isolated role-based authorization guards across Learner, Tutor, and Admin dashboards." },
+      { title: "Hierarchical Curriculum", description: "Structured content into Course -> Module -> Lesson hierarchies with draft/submitted/published lifecycle states." },
+      { title: "Assessment Integrity", description: "Implemented server-validated quiz scoring and attempt limits to ensure test consistency." },
+    ],
+    sections: [
+      {
+        kicker: "Architecture",
+        title: "Role-isolated experiences across three unified surfaces.",
+        body: "Zentrix brings learners, tutors, and administrators into a structured learning environment with separate experiences and responsibilities while preserving unified user state in MongoDB.",
+        imageLabel: "Course Catalog & Platform",
+        imageCaption: "Public landing page and course discovery catalog with verified status filters.",
+        image: "/assets/zentrix/zentrix-hero.webp",
+      },
+      {
+        kicker: "Learning Experience",
+        title: "Structured lessons, persistent progress, and assessments.",
+        body: "Learners enroll in courses, access structured video and document lessons, track module completions, and submit quizzes with attempt integrity.",
+        imageLabel: "Lesson Player",
+        imageCaption: "Structured curriculum player with lesson progression and media delivery.",
+        image: "/assets/zentrix/zentrix-lesson-player.webp",
+      },
+    ],
+    learnings: [
+      "Role-based systems require server-enforced route guards and ownership checks at every API boundary.",
+      "Payment workflows should remain completely gated until end-to-end webhook validation and refund handling are verified.",
+    ],
+    screens: [
+      { label: "Course Catalog", caption: "Public course catalog and landing page with verified status filters.", image: "/assets/zentrix/zentrix-hero.webp" },
+      { label: "Curriculum Builder", caption: "Tutor curriculum authoring workflow with modules, lessons, and draft saving.", image: "/assets/zentrix/zentrix-curriculum-builder.webp" },
+      { label: "Lesson Player", caption: "Structured curriculum viewer with lesson progress and video player.", image: "/assets/zentrix/zentrix-lesson-player.webp" },
+      { label: "Quiz Assessment", caption: "Assessment engine with question scoring, passing score validation, and attempt integrity.", image: "/assets/zentrix/zentrix-quiz-assessment.webp" },
+    ],
+  },
   {
     brief: "An installable PWA and Manifest V3 Chrome extension ecosystem for smart bookmark organization and PIN-protected link security.",
     challenge: "Standard bookmark tools lack rapid multi-surface capture (browser tabs, desktop, mobile) and fail to provide privacy isolation for sensitive resources.",
@@ -258,7 +305,7 @@ const projects: Project[] = playgroundProjects.map((project, index) => ({
   title: project.title,
   tagline: project.subtitle,
   description: project.desc,
-  category: index === 1 ? "AI Tool" : index === 3 ? "Commerce" : "Product",
+  category: (project as { category?: string }).category || (index === 0 ? "EDTECH & LEARNING MANAGEMENT" : index === 2 ? "AI Tool" : index === 4 ? "Commerce" : "Product"),
   overview: project.desc,
   role: project.rolenote,
   year: "2026",
@@ -278,7 +325,7 @@ const projects: Project[] = playgroundProjects.map((project, index) => ({
   ],
   caseStudy: caseStudyCopy[index],
   results: {
-    metric: "01",
+    metric: project.num,
     label: "Solo Build",
     description: project.rolenote,
   },
@@ -601,7 +648,89 @@ function ProjectCaseStudyModal({ project, onClose }: { project: Project | null; 
             </section>
           ) : null}
 
+          {project.title === "Zentrix" ? (
+            <section className="mt-16 rounded-[26px] border border-ink/10 bg-white/70 p-6 sm:p-8">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-ink/10 pb-5">
+                <div>
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-accent">Feature Status &amp; Verification</p>
+                  <h4 className="mt-1 font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">Implementation &amp; Verification Matrix</h4>
+                </div>
+                <a
+                  href="/projects/zentrix"
+                  className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-accent hover:underline"
+                >
+                  <span>View Full Verification Breakdown</span>
+                  <ArrowUpRight size={14} />
+                </a>
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-ink/75">
+                Transparent feature-status breakdown reflecting manual testing in the codebase. Core workflows are verified; payment, messaging, and advanced preferences remain on the roadmap.
+              </p>
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">Complete — Verified</span>
+                    <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-800 dark:text-emerald-300">11 Features</span>
+                  </div>
+                  <ul className="mt-3 space-y-1.5 text-xs text-ink/80">
+                    <li>• Authentication (Signup, Verify, Login, Reset)</li>
+                    <li>• Role-Based Access (Learner, Tutor, Admin)</li>
+                    <li>• Course Catalog &amp; Discovery</li>
+                    <li>• Course Management &amp; Moderation</li>
+                    <li>• Free Enrollment &amp; Persistent Progress</li>
+                    <li>• Quizzes &amp; Attempt Integrity</li>
+                    <li>• Admin Management &amp; Tutor Approval</li>
+                    <li>• Certificates, Reviews, Analytics, OAuth</li>
+                  </ul>
+                </div>
+                <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300">In Progress — Partial</span>
+                    <span className="rounded-full bg-amber-500/15 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-800 dark:text-amber-300">6 Features</span>
+                  </div>
+                  <ul className="mt-3 space-y-1.5 text-xs text-ink/80">
+                    <li>• Media Management (Upload &amp; playback refinements)</li>
+                    <li>• Assignments (Submissions &amp; grading)</li>
+                    <li>• Cohorts (Scheduling &amp; operations)</li>
+                    <li>• Live Sessions (Real-time AV &amp; screenshare)</li>
+                    <li>• Calendar (Scheduling &amp; timezones)</li>
+                    <li>• Automated QA (Vitest, lint, regression checks)</li>
+                  </ul>
+                </div>
+                <div className="rounded-2xl border border-ink/10 bg-ink/5 p-4">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-muted-foreground">Planned — Not Implemented</span>
+                    <span className="rounded-full bg-ink/10 px-2 py-0.5 font-mono text-[10px] font-bold text-muted-foreground">5 Features</span>
+                  </div>
+                  <ul className="mt-3 space-y-1.5 text-xs text-ink/80">
+                    <li>• Stripe Payments (Checkout, Webhooks)</li>
+                    <li>• Payment Management &amp; Refunds</li>
+                    <li>• Tutor &amp; Learner Messaging</li>
+                    <li>• Real-Time Live Notifications</li>
+                    <li>• Advanced Settings &amp; Preferences</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+          ) : null}
+
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-end">
+            {project.title === "Zentrix" && (
+              <a
+                href="/projects/zentrix"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-5 py-3 text-sm font-bold text-accent transition hover:-translate-y-0.5 hover:bg-accent hover:text-white focus:outline-none focus:ring-2 focus:ring-accent"
+              >
+                Deep Breakdown <ArrowUpRight size={16} />
+              </a>
+            )}
+            {project.title === "LinkVault" && (
+              <a
+                href="/projects/linkvault"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-5 py-3 text-sm font-bold text-accent transition hover:-translate-y-0.5 hover:bg-accent hover:text-white focus:outline-none focus:ring-2 focus:ring-accent"
+              >
+                Deep Breakdown <ArrowUpRight size={16} />
+              </a>
+            )}
             {project.liveLink ? (
               <a href={project.liveLink} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-bold text-paper transition hover:-translate-y-0.5 hover:bg-vermillion focus:outline-none focus:ring-2 focus:ring-ink">
                 Visit Live <ExternalLink size={16} />

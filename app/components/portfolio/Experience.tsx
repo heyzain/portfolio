@@ -95,7 +95,7 @@ export function Experience() {
                 <div>
                   <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent">Proof</p>
                   <p className="mt-2 text-sm leading-relaxed text-background/72">
-                    LinkVault, ZephyrLint, Tickure, and Snapsack turned the practice into real full-stack product
+                    Zentrix, LinkVault, ZephyrLint, Tickure, and Snapsack turned the practice into real full-stack product
                     work with auth, APIs, databases, dashboards, and responsive UI.
                   </p>
                 </div>
